@@ -1,32 +1,32 @@
 typedef struct SystemConstants{
-unsigned long baudRate;
-float ticksPerRevOutput;
+  unsigned long baudRate;
+  float ticksPerRevOutput;
 }SystemConstants;
-///493.8
+
 static constexpr const SystemConstants sysCons= {
- .baudRate = 921600,.ticksPerRevOutput = 336.6
+  .baudRate = 921600,.ticksPerRevOutput = 495
 };
 
 typedef struct MotorControl{
-uint8_t leftMotorDirectionPin;
-uint8_t rightMotorDirectionPin;
-bool leftMotorForwardState;
-bool rightMotorForwardState;
-uint8_t leftMotorSpeedPin;
-uint8_t rightMotorSpeedPin;
+  uint8_t leftMotorDirectionPin;
+  uint8_t rightMotorDirectionPin;
+  bool leftMotorForwardState;
+  bool rightMotorForwardState;
+  uint8_t leftMotorSpeedPin;
+  uint8_t rightMotorSpeedPin;
 }MotorControl;
 
 static constexpr const MotorControl motorControl = {
-4,7,LOW,HIGH,5,6
+  4,7,LOW,HIGH,5,6
 };
 
 typedef struct EncoderData{
-int rightEncoderPrev;
-int leftEncoderPrev;
-int leftEncoderTicks;
-int rightEncoderTicks;
-uint8_t leftEncoderDirection;
-uint8_t rightEncoderDirection;
+  uint8_t rightEncoderPrev;
+  uint8_t leftEncoderPrev;
+  uint8_t leftEncoderTicks;
+  uint8_t rightEncoderTicks;
+  uint8_t leftEncoderDirection;
+  uint8_t rightEncoderDirection;
 }EncoderData;
 
 static EncoderData encoderData = {
@@ -34,10 +34,10 @@ static EncoderData encoderData = {
 };
 
 typedef struct EncoderPins{
-uint8_t leftEnc;
-uint8_t leftEncDirection;
-uint8_t rightEnc;
-uint8_t rightEncDirection;
+  uint8_t leftEnc;
+  uint8_t leftEncDirection;
+  uint8_t rightEnc;
+  uint8_t rightEncDirection;
 }EncoderPins;
 
 static constexpr const EncoderPins encoderPins = {
@@ -45,14 +45,26 @@ static constexpr const EncoderPins encoderPins = {
 };
 
 typedef struct MotorState{
-float filteredRightVel;
-float filteredLeftVel;
-float rawRight;
-float rawLeft;
-void reset(){
-  filteredRightVel=0;
-  filteredLeftVel=0;
-}
+  float filteredRightVel;
+  float filteredLeftVel;
+  float rawRight;
+  float rawLeft;
+  void reset(){
+    filteredRightVel=0;
+    filteredLeftVel=0;
+  }
+  float getRawRight(){
+    return this->rawRight;
+  }
+  float getRawLeft(){
+    return this->rawLeft;
+  }
+  float getFilteredRightVel(){
+    return this->filteredRightVel;
+  }
+  float getFilteredLeftVel(){
+    return this->filteredLeftVel;
+  }
 }MotorState;
 
 static MotorState currentVelocity = {.filteredRightVel=0,.filteredLeftVel=0,0,0};
@@ -71,93 +83,103 @@ static GlobalTime globalTimer = {
   .controlLoopPrevTime=0
 };
 
+/**
+Everything here is in millisecodns
+*/
 typedef struct Intervals{
-unsigned long velocityCalculationInterval; // in milliseconds
-uint16_t debugPrintInterval; // in milliseconds
+  unsigned long velocityCalculationInterval; // in milliseconds
+  uint16_t debugPrintInterval; // in milliseconds
 }Intervals;
 
 static const constexpr Intervals intervals = {
-  .velocityCalculationInterval = 2,.debugPrintInterval = 1000
+  .velocityCalculationInterval = 50,.debugPrintInterval = 1000
 };
 
 typedef struct Gains{
-float kp;
-float kd;
-float ki;
-float iSat;
+  float kp;
+  float kd;
+  float ki;
+  float iSat;
 }Gains;
 
 typedef struct MotorsGain{
-Gains leftMotorGains;
-Gains rightMotorGains;
+  Gains leftMotorGains;
+  Gains rightMotorGains;
 }MotorsGain;
 
 static const constexpr MotorsGain motorGains = {
-  .leftMotorGains = {50,0.0001,0.0001,100},.rightMotorGains= {50,0.0001,0.0001,100}
+  .leftMotorGains = {50,0.0,0.0,50},.rightMotorGains= {50,0.0,0.0,50}
 };
 
 typedef struct ControlLoopVariables{
-float motor_setpoint = 0;
-float motor_input = 0;
-float motor_output = 0;
-float motor_error = 0;
-float motor_prev_error =0;
-float motor_integral =0;
-float motor_derivative=0;
-ControlLoopVariables(const Gains * const ipGains):motorGains(ipGains){
-;
-}
-const Gains * const motorGains;
-void resetController(){
-motor_setpoint = 0;
-motor_input = 0;
-motor_output = 0;
-motor_error = 0;
-motor_prev_error =0;
-motor_integral =0;
-motor_derivative=0;
-}
+  float motor_setpoint = 0; // Velocity setpoint has to be in Radians per second
+  float motor_input = 0; // Velocity Input has to be in Radians per second
+  float motor_output = 0;
+  float motor_error = 0;
+  float motor_prev_error =0;
+  float motor_integral =0;
+  float motor_derivative=0;
+  ControlLoopVariables(const Gains ipGains):motorGains(ipGains){
+    ;
+  }
+
+  const Gains motorGains;
+  void resetController(){
+    motor_setpoint = 0;
+    motor_input = 0;
+    motor_output = 0;
+    motor_error = 0;
+    motor_prev_error =0;
+    motor_integral =0;
+    motor_derivative=0;
+  }
 }ControlLoopVariables;
 
 static const constexpr float rotationToRadians= 6.28318; // 1 rotation is 2Pi radians
-static ControlLoopVariables leftMotor(&motorGains.leftMotorGains);
-static ControlLoopVariables rightMotor(&motorGains.rightMotorGains);
-volatile bool startControl = true;
+static ControlLoopVariables leftMotor(motorGains.leftMotorGains);
+static ControlLoopVariables rightMotor(motorGains.rightMotorGains);
+volatile bool startControl = false;
+static const constexpr int16_t controlFreqInHz = 50; // minimum speed seen , 20 rpm => therefore, time for 1 tick is 6ms => choosing control freq 20ms
+static const constexpr int16_t controlTimeinMs= (1000/controlFreqInHz);
 
-#define DEBUG_VELOCITIES 0
-#define TRAJECTORY 1
-#define DEBUG_CONTROL 1
-// wheel diameter 64.5mm
-#if TRAJECTORY
-static constexpr const int NO_OF_WAYPOINTS = 350;
-//Diameter 64.5 mm
-static const constexpr float vmax =0.8; //(m/s) actually some 0.406~
-static constexpr float getXLinearVelocity(const float& t,const float& T){
-    return  t*(4*vmax/T)+(-(4*vmax/(T*T))*t*t);
-}
-static constexpr  float getT(const float&  xInitial, const float& xFinal){
-    return (6/(4*vmax))*(xFinal - xInitial);
-}
+#define DEBUG_VELOCITIES 1
+#define TRAJECTORY 0
+#define DEBUG_CONTROL 0
+
+// Utility functions to convert linear velocity to radians per sec, and vice versa
 static constexpr float convertLinearToRPS(const float& linearVelocity){
   return linearVelocity*15.503875969;
 }
 static constexpr float convertRPSToLinear(const float& RPS){
   return RPS*(1/15.503875969);
 }
+
+// This section generates a parabolic trajectory in case TRAJECTORY is set to 1
+// wheel diameter 64.5mm
+#if TRAJECTORY
+static constexpr const int NO_OF_WAYPOINTS = 350;
+//Diameter 64.5 mm
+static const constexpr float vmax =0.406; //(m/s) actually some 0.406~
+static constexpr float getXLinearVelocity(const float& t,const float& T){
+    return  t*(4*vmax/T)+(-(4*vmax/(T*T))*t*t);
+}
+static constexpr  float getT(const float&  xInitial, const float& xFinal){
+    return (6.0/(4.0*vmax))*(xFinal - xInitial);
+}
 template<int Max>
 struct Trajectory {
       constexpr Trajectory() : wayPoints(),noOfWayPoints(Max),totalTime(0) {
       float time = 0.0;
-      const constexpr float loopRate = 100; // 250 Hz
+      const constexpr float loopRate = controlFreqInHz;
       const constexpr float timeIncrement = 1/loopRate;
       const constexpr float xInit = 0;  
-      const constexpr float xFinal = 0.4052654; // 1 rotation of the wheel
+      const constexpr float xFinal = 0.20263272615; // 1 rotation of the wheel //0.20263272615
       const constexpr float totalTime = getT(xInit,xFinal);
       int i=0;
       while (true) {
           this->wayPoints[i] = convertLinearToRPS(getXLinearVelocity(time,totalTime));
           time += timeIncrement;
-          if(time>=totalTime){
+          if(time>totalTime){
               this->wayPoints[i] = 0;
               if(i<Max){
                 ++i;
@@ -183,11 +205,12 @@ struct Trajectory {
 };
 static const constexpr auto wayPoints = Trajectory<NO_OF_WAYPOINTS>();
 #endif 
+
 // the setup function runs once when you press reset or power the board
 void setup() {
   // Setup serial output:
   Serial.begin(sysCons.baudRate);
-  delay(5000);
+
   // initialize digital pin LED_BUILTIN as an output.
   pinMode(LED_BUILTIN, OUTPUT);
 
@@ -231,11 +254,7 @@ void setup() {
       }
     #endif
   #endif
-  // pwmWrite(100,0);
-  // delay(50);
-  // pwmWrite(35,0);
-  // delay(50);
-  // pwmWrite(30,0);
+  pwmWrite(100,100);
 }
 
 volatile unsigned long current_time = 0;
@@ -245,37 +264,22 @@ unsigned int controlActionEndTime = 0;
 float integratedTargetDistance = 0;
 
 //right motor and left motor work well with this
-static const constexpr float alpha = 0.1;
-static inline void filterVelocity(float& raw,float& filter)
+static const constexpr float alpha = 0.9;
+static inline void filterVelocity(const float raw,float& filter)
 {
   filter = filter + alpha*((raw - filter));
 }
 // the loop function runs over and over again forever
 void loop() {
   /**
-    Calculate velocity every 2ms
-  */
-  auto diff = globalTimer.globalTimeInMs - globalTimer.velCalcPrevTime;
-  if ((diff>=intervals.velocityCalculationInterval)) {
-    cli();
-    globalTimer.velCalcPrevTime = globalTimer.globalTimeInMs;
-    currentVelocity.rawRight = getRPSFromTicks(getRotationsFromTicks(encoderData.rightEncoderTicks),float(diff));
-    currentVelocity.rawLeft = getRPSFromTicks(getRotationsFromTicks(encoderData.leftEncoderTicks),float(diff));
-    filterVelocity(currentVelocity.rawRight,currentVelocity.filteredRightVel);
-    filterVelocity(currentVelocity.rawLeft,currentVelocity.filteredLeftVel);
-    encoderData.rightEncoderTicks=0;
-    encoderData.leftEncoderTicks=0;
-    sei();
-  }
-/**
-Control loop sub thread every 4ms
-**/
-  if ((globalTimer.globalTimeInMs - globalTimer.controlLoopPrevTime >=10)){
-    controlLoop();
-  }
-/**
-Subthread to debug print every second
-*/ 
+  Control loop sub thread every 
+  **/
+    if ((globalTimer.globalTimeInMs - globalTimer.controlLoopPrevTime >=controlTimeinMs)){
+      controlLoop();
+    }
+  /**
+  Subthread to debug print every second
+  */ 
   if((globalTimer.globalTimeInMs - globalTimer.debugPrevTime)>=intervals.debugPrintInterval){
 
     #if DEBUG_ENCODER_TICK
@@ -294,24 +298,12 @@ Subthread to debug print every second
 
     #if DEBUG_VELOCITIES
     Serial.println("Left vs Right motor Velocities:");
-    Serial.print(currentVelocity.rawLeft,5);
+    Serial.print(currentVelocity.getRawLeft(),5);
     Serial.print("\t");
-    Serial.println(currentVelocity.filteredRightVel,5);
+    Serial.println(currentVelocity.getRawRight(),5);
     #endif
 
     #if DEBUG_CONTROL
-    // Serial.println("Left Motor Control values:output vs error wrt isControllerRunning:");
-    // Serial.print(leftMotor.motor_output,5);
-    // Serial.print("\t");
-    // Serial.print(leftMotor.motor_error,5);
-    // Serial.print("\t");
-    // Serial.println(startControl);
-    // Serial.println("Right Motor Control values:output vs error wrt isControllerRunning:");
-    // Serial.print(rightMotor.motor_output,5);
-    // Serial.print("\t");
-    // Serial.print(rightMotor.motor_error,5);
-    // Serial.print("\t");
-    // Serial.println(startControl);
     if(!startControl){
       Serial.print("Control action Time: ");
       Serial.println(controlActionEndTime-controlActionStartTime);
@@ -325,8 +317,8 @@ Subthread to debug print every second
 }
 //Returns Radians per second velocity from rotations in 1Khz Intervals
 //1 sec = 1000 ms //Encoder is on Motor Shaft
-static inline float getRPSFromTicks(const float& rotations,const float& interval){
-  return (float)rotations* rotationToRadians * ((float)(1000.0)/(float)interval);
+static inline float getRPSFromTicks(const float& rotations,const float& intervalMs){
+  return (float)rotations* rotationToRadians * ((float)(1000.0)/(float)intervalMs);
 }
 static inline float getRotationsFromTicks(const int ticks){
   return  (float)(ticks/sysCons.ticksPerRevOutput);
@@ -335,7 +327,7 @@ static inline float getRotationsFromTicks(const int ticks){
 // Writes actual PWM values to the motor
 // Has a safety saturation check
 void pwmWrite(uint8_t pwmL, uint8_t pwmR){
-  uint8_t limit = 180;
+  uint8_t limit = 255;
   if(pwmL>=limit){
     pwmL = limit;
   }
@@ -354,15 +346,36 @@ void setDirection(bool leftDirection,bool rightDirection){
   digitalWrite(motorControl.leftMotorDirectionPin,leftMotor); // Left wheel, LOW for forward
   digitalWrite(motorControl.rightMotorDirectionPin,rightMotor); // Right wheel, HIGH for forward
 }
+#define VELC_COUNTER 1 // wait for 1 ticks
 //Left motor Reverse Direction pin val =  1
+volatile uint8_t currConLeft = 0;
+volatile unsigned long oldTimeLeft = 0;
 void leftMotorISR(){
+  currConLeft+=1;
   encoderData.leftEncoderDirection = digitalRead(encoderPins.leftEncDirection);
   (encoderData.leftEncoderDirection==1)?encoderData.leftEncoderTicks-=1:encoderData.leftEncoderTicks+=1;
+  if(currConLeft==VELC_COUNTER){
+    auto currentTime = globalTimer.globalTimeInMs;
+    currentVelocity.rawLeft = getRPSFromTicks(getRotationsFromTicks(encoderData.leftEncoderTicks*100),float(currentTime-oldTimeLeft))/100;
+    currConLeft = 0;
+    oldTimeLeft = currentTime;
+    encoderData.leftEncoderTicks = 0;
+  }
 }
 //Right motor Forward Direction pin val = 1
+volatile uint8_t currConRight = 0;
+volatile unsigned long oldTimeRight = 0;
 void rightMotorISR(){
+  currConRight+=1;
   encoderData.rightEncoderDirection = digitalRead(encoderPins.rightEncDirection);
   (encoderData.rightEncoderDirection==1)?encoderData.rightEncoderTicks+=1:encoderData.rightEncoderTicks-=1;
+  if(currConRight==VELC_COUNTER){
+    auto currentTime = globalTimer.globalTimeInMs;
+    currentVelocity.rawRight = getRPSFromTicks(getRotationsFromTicks(encoderData.rightEncoderTicks*100),float(currentTime-oldTimeRight))/100;
+    currConRight = 0;
+    oldTimeRight = currentTime;
+    encoderData.rightEncoderTicks = 0;
+  }
 }
 
 
@@ -374,11 +387,11 @@ static void controlAction(ControlLoopVariables& motor){
   motor.motor_error = motor.motor_setpoint - motor.motor_input;
   //calculate integral and derivative terms for each motor
   motor.motor_integral += motor.motor_error * elapsed_time; 
-  motor.motor_integral = constrain(motor.motor_integral, -1*motor.motorGains->iSat, motor.motorGains->iSat);
+  motor.motor_integral = constrain(motor.motor_integral, -1*motor.motorGains.iSat, motor.motorGains.iSat);
   motor.motor_derivative = (motor.motor_error - motor.motor_prev_error) / elapsed_time;
   motor.motor_prev_error = motor.motor_error;
   //Calculate Outut
-  motor.motor_output = motor.motorGains->kp * motor.motor_error +motor.motorGains->ki * motor.motor_integral + motor.motorGains->kd * motor.motor_derivative;
+  motor.motor_output = motor.motorGains.kp * motor.motor_error +motor.motorGains.ki * motor.motor_integral + motor.motorGains.kd * motor.motor_derivative;
 }
 
 template <typename T> 
@@ -402,26 +415,32 @@ void controlLoop() {
     globalTimer.controlLoopPrevTime = current_time;
 
     // Set Input as Left and Right Motor velocity
-    leftMotor.motor_input = currentVelocity.filteredLeftVel;
-    rightMotor.motor_input = currentVelocity.filteredRightVel;
+    filterVelocity(currentVelocity.rawRight,currentVelocity.filteredRightVel);
+    filterVelocity(currentVelocity.rawLeft,currentVelocity.filteredLeftVel);
+    rightMotor.motor_input = currentVelocity.getFilteredRightVel();
+    leftMotor.motor_input = currentVelocity.getFilteredLeftVel();
 
     #if TRAJECTORY
-
     //Set local waypoint:
-
     leftMotor.motor_setpoint = wayPoints.wayPoints[wayPointCounter];
     rightMotor.motor_setpoint = wayPoints.wayPoints[wayPointCounter];
-
-    //Integrate velocity to find distance
-    //Integrate Target
-    // integratedTargetDistance += convertRPSToLinear(leftMotor.motor_setpoint)*elapsed_time;
-    //Integrate Right Motor
-    integratedTargetDistance +=convertRPSToLinear(rightMotor.motor_input)*elapsed_time;
-    //Integrate Left Motor
-    //integratedTargetDistance +=convertRPSToLinear(leftMotor.motor_input)*elapsed_time;
     #endif
 
-    // run control loop and calculate output
+    //Integrate velocity to find distance
+    #if INT_TARGET
+    //Integrate Target
+    integratedTargetDistance += convertRPSToLinear(leftMotor.motor_setpoint)*elapsed_time;
+    #endif
+    #if INT_RIGHT
+    //Integrate Right Motor
+    integratedTargetDistance +=convertRPSToLinear(rightMotor.motor_input)*elapsed_time;
+    #endif
+    #if INT_LEFT
+    //Integrate Left Motor
+    integratedTargetDistance +=convertRPSToLinear(leftMotor.motor_input)*elapsed_time;
+    #endif
+
+    // Run control loop and calculate output
     controlAction(leftMotor);
     controlAction(rightMotor);
 
