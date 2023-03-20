@@ -1,13 +1,26 @@
 #include <ros.h>
 #include <geometry_msgs/Pose2D.h>
+
+#define DEBUG_VELOCITIES 0
+#define TRAJECTORY 0
+#define DEBUG_CONTROL 0
+#define PRINT_ON_ROS 1
+
 typedef struct SystemConstants{
   unsigned long baudRate;
   float ticksPerRevOutput;
+  uint8_t controlFreqInHz = 50;// minimum speed seen , 20 rpm => therefore, time for 1 tick is 6ms => choosing control freq 20ms => Freq = 50Hz
+  float controlTimeinMs = (float)1000.0/controlFreqInHz;  
+  constexpr SystemConstants(unsigned long baud,float ticksPerRevOp,uint8_t controlFreq)
+  :baudRate(baud),
+  ticksPerRevOutput(ticksPerRevOp),
+  controlFreqInHz(controlFreq),
+  controlTimeinMs((float)1000/this->controlFreqInHz)  
+  {}
 }SystemConstants;
 
-static constexpr const SystemConstants sysCons= {
-  .baudRate = 921600,.ticksPerRevOutput = 495
-};
+static constexpr const SystemConstants sysCons= SystemConstants(921600,495,10);
+
 
 typedef struct MotorControl{
   uint8_t leftMotorDirectionPin;
@@ -72,10 +85,10 @@ typedef struct MotorState{
 static MotorState currentVelocity = {.filteredRightVel=0,.filteredLeftVel=0,0,0};
 
 typedef struct GlobalTime{
-  unsigned long globalTimeInMs;
-  unsigned long debugPrevTime;
-  unsigned long velCalcPrevTime;
-  unsigned long controlLoopPrevTime;
+  float globalTimeInMs;
+  float debugPrevTime;
+  float velCalcPrevTime;
+  float controlLoopPrevTime;
 }GlobalTime;
 
 static GlobalTime globalTimer = {
@@ -89,12 +102,15 @@ static GlobalTime globalTimer = {
 Everything here is in millisecodns
 */
 typedef struct Intervals{
-  unsigned long velocityCalculationInterval; // in milliseconds
-  uint16_t debugPrintInterval; // in milliseconds
+  float rosSpinRate; // in milliseconds
+  float debugPrintInterval; // in milliseconds
 }Intervals;
 
+// static const constexpr int16_t controlFreqInHz = 50;
+// static const constexpr float controlTimeinMs= (1000.0/controlFreqInHz);
+
 static const constexpr Intervals intervals = {
-  .velocityCalculationInterval = 50,.debugPrintInterval = 1000
+  .rosSpinRate = sysCons.controlTimeinMs,.debugPrintInterval = 1000
 };
 
 typedef struct Gains{
@@ -137,17 +153,16 @@ typedef struct ControlLoopVariables{
   }
 }ControlLoopVariables;
 
+typedef struct Target{
+  float leftMotorTarget;
+  float rightMotorTarget;
+}Target;
+
+static Target target = {0.0,0.0};
 static const constexpr float rotationToRadians= 6.28318; // 1 rotation is 2Pi radians
 static ControlLoopVariables leftMotor(motorGains.leftMotorGains);
 static ControlLoopVariables rightMotor(motorGains.rightMotorGains);
 volatile bool startControl = false;
-static const constexpr int16_t controlFreqInHz = 50; // minimum speed seen , 20 rpm => therefore, time for 1 tick is 6ms => choosing control freq 20ms
-static const constexpr int16_t controlTimeinMs= (1000/controlFreqInHz);
-
-#define DEBUG_VELOCITIES 0
-#define TRAJECTORY 0
-#define DEBUG_CONTROL 0
-#define PRINT_ON_ROS 1
 
 // Utility functions to convert linear velocity to radians per sec, and vice versa
 static constexpr float convertLinearToRPS(const float& linearVelocity){
@@ -208,10 +223,19 @@ struct Trajectory {
 };
 static const constexpr auto wayPoints = Trajectory<NO_OF_WAYPOINTS>();
 #endif 
+/**
+  ROS Variables and callbacks
+**/
 #define TOPIC_NAME_1 "CURR_VEL"
+#define TOPIC_NAME_2 "TARG_VEL"
 static ros::NodeHandle nh;
 geometry_msgs::Pose2D currentPose;
-static ros::Publisher currVelMsg(TOPIC_NAME_1, &currentPose);
+static ros::Publisher currVelMsgPub(TOPIC_NAME_1, &currentPose);
+void targetVelCallback(const geometry_msgs::Pose2D& msg) {
+  target.leftMotorTarget = msg.x;
+  target.rightMotorTarget = msg.y;
+}
+static ros::Subscriber<geometry_msgs::Pose2D> targetVelSub(TOPIC_NAME_2, targetVelCallback);
 
 // the setup function runs once when you press reset or power the board
 void setup() {
@@ -244,11 +268,16 @@ void setup() {
   Setup timer1 for 1Khz frequency
   */
   cli();  // Disable global interrupts
-  TCCR1A = 0; //Register set to 0
-  TCCR1B = (1 << WGM12) | (1 << CS10);  // Set CTC mode and prescaler to 1
-  TCNT1 = 0;
-  OCR1A = 15999; //Counter for 1KHz interrupt 16*10^6/1000-1 no prescaler
-  TIMSK1 |= (1 << OCIE1A); //Compare interrupt mode
+  // Set TIMER1 prescaler to divide by 8, giving a 2MHz clock frequency
+  TCCR1B = (1 << CS11);
+  
+  // Set TIMER1 to clear on match and set TOP to 199
+  TCCR1A = 0;
+  TCCR1B |= (1 << WGM12);
+  OCR1A = 199;
+  
+  // Enable TIMER1 interrupt
+  TIMSK1 |= (1 << OCIE1A);
   sei();  // Enable global interrupts
 
   #if TRAJECTORY
@@ -261,19 +290,22 @@ void setup() {
       }
     #endif
   #endif
+  
   nh.getHardware()->setBaud(sysCons.baudRate);
   nh.initNode();
-  nh.advertise(currVelMsg);
-  pwmWrite(100,100);
+  nh.advertise(currVelMsgPub);
+  nh.subscribe(targetVelSub);
 }
 
-volatile unsigned long current_time = 0;
+volatile float current_time = 0;
 volatile float elapsed_time = 0;
-unsigned int controlActionStartTime = 0;
-unsigned int controlActionEndTime = 0;
+#if TRAJECTORY
+float controlActionStartTime = 0;
+float controlActionEndTime = 0;
+#endif
 float integratedTargetDistance = 0;
 
-//right motor and left motor work well with this
+// Right motor and Left motor work well with this
 static const constexpr float alpha = 0.9;
 static inline void filterVelocity(const float raw,float& filter)
 {
@@ -285,20 +317,25 @@ void loop() {
   /**
   Control loop sub thread every 
   **/
-    if ((globalTimer.globalTimeInMs - globalTimer.controlLoopPrevTime >=controlTimeinMs)){
-      controlLoop();
-    }
+  if ((globalTimer.globalTimeInMs - globalTimer.controlLoopPrevTime >=sysCons.controlTimeinMs)){
+    controlLoop();
+  }
+  /**
+  ROS SPIN subthread
+  **/
+  if(globalTimer.globalTimeInMs - globalTimer.velCalcPrevTime >= intervals.rosSpinRate){
+
+    #if PRINT_ON_ROS
+      currentPose.x = currentVelocity.getRawLeft();
+      currentPose.y = currentVelocity.getRawRight();
+      currVelMsgPub.publish( &currentPose );
+    #endif
+    nh.spinOnce();
+  }  
   /**
   Subthread to debug print every second
   */ 
   if((globalTimer.globalTimeInMs - globalTimer.debugPrevTime)>=intervals.debugPrintInterval){
-
-    #if PRINT_ON_ROS
-    currentPose.x = currentVelocity.getRawLeft();
-    currentPose.y = currentVelocity.getRawRight();
-    currVelMsg.publish( &currentPose );
-    nh.spinOnce();
-    #endif
 
     #if DEBUG_ENCODER_TICK
     Serial.println("Encoder ticks:");
@@ -338,7 +375,7 @@ void loop() {
 static inline float getRPSFromTicks(const float& rotations,const float& intervalMs){
   return (float)rotations* rotationToRadians * ((float)(1000.0)/(float)intervalMs);
 }
-static inline float getRotationsFromTicks(const int ticks){
+static inline float getRotationsFromTicks(const int& ticks){
   return  (float)(ticks/sysCons.ticksPerRevOutput);
 }
 
@@ -364,32 +401,33 @@ void setDirection(bool leftDirection,bool rightDirection){
   digitalWrite(motorControl.leftMotorDirectionPin,leftMotor); // Left wheel, LOW for forward
   digitalWrite(motorControl.rightMotorDirectionPin,rightMotor); // Right wheel, HIGH for forward
 }
-#define VELC_COUNTER 1 // wait for 1 ticks
+#define VELC_COUNTER 2 // wait for 1 ticks
 //Left motor Reverse Direction pin val =  1
 volatile uint8_t currConLeft = 0;
-volatile unsigned long oldTimeLeft = 0;
+volatile float oldTimeLeft = 0;
 void leftMotorISR(){
   currConLeft+=1;
   encoderData.leftEncoderDirection = digitalRead(encoderPins.leftEncDirection);
   (encoderData.leftEncoderDirection==1)?encoderData.leftEncoderTicks-=1:encoderData.leftEncoderTicks+=1;
   if(currConLeft==VELC_COUNTER){
     auto currentTime = globalTimer.globalTimeInMs;
-    currentVelocity.rawLeft = getRPSFromTicks(getRotationsFromTicks(encoderData.leftEncoderTicks*100),float(currentTime-oldTimeLeft))/100;
+    currentVelocity.rawLeft = getRPSFromTicks(getRotationsFromTicks(encoderData.leftEncoderTicks),float(currentTime-oldTimeLeft));
     currConLeft = 0;
     oldTimeLeft = currentTime;
     encoderData.leftEncoderTicks = 0;
   }
 }
+
 //Right motor Forward Direction pin val = 1
 volatile uint8_t currConRight = 0;
-volatile unsigned long oldTimeRight = 0;
+volatile float oldTimeRight = 0;
 void rightMotorISR(){
   currConRight+=1;
   encoderData.rightEncoderDirection = digitalRead(encoderPins.rightEncDirection);
   (encoderData.rightEncoderDirection==1)?encoderData.rightEncoderTicks+=1:encoderData.rightEncoderTicks-=1;
   if(currConRight==VELC_COUNTER){
     auto currentTime = globalTimer.globalTimeInMs;
-    currentVelocity.rawRight = getRPSFromTicks(getRotationsFromTicks(encoderData.rightEncoderTicks*100),float(currentTime-oldTimeRight))/100;
+    currentVelocity.rawRight = getRPSFromTicks(getRotationsFromTicks(encoderData.rightEncoderTicks),float(currentTime-oldTimeRight));
     currConRight = 0;
     oldTimeRight = currentTime;
     encoderData.rightEncoderTicks = 0;
@@ -416,6 +454,7 @@ template <typename T>
 int sgn(T val) {
     return (T(0) < val) - (val < T(0));
 }
+
 #if TRAJECTORY
 int wayPointCounter = 0;
 #endif
@@ -434,7 +473,9 @@ void controlLoop() {
 
     // Set Input as Left and Right Motor velocity
     filterVelocity(currentVelocity.rawRight,currentVelocity.filteredRightVel);
+
     filterVelocity(currentVelocity.rawLeft,currentVelocity.filteredLeftVel);
+
     rightMotor.motor_input = currentVelocity.getFilteredRightVel();
     leftMotor.motor_input = currentVelocity.getFilteredLeftVel();
 
@@ -443,19 +484,22 @@ void controlLoop() {
     leftMotor.motor_setpoint = wayPoints.wayPoints[wayPointCounter];
     rightMotor.motor_setpoint = wayPoints.wayPoints[wayPointCounter];
     #endif
+    
+    leftMotor.motor_setpoint = target.leftMotorTarget;
+    rightMotor.motor_setpoint = target.rightMotorTarget;
 
     //Integrate velocity to find distance
     #if INT_TARGET
-    //Integrate Target
-    integratedTargetDistance += convertRPSToLinear(leftMotor.motor_setpoint)*elapsed_time;
+      //Integrate Target
+      integratedTargetDistance += convertRPSToLinear(leftMotor.motor_setpoint)*elapsed_time;
     #endif
     #if INT_RIGHT
-    //Integrate Right Motor
-    integratedTargetDistance +=convertRPSToLinear(rightMotor.motor_input)*elapsed_time;
+      //Integrate Right Motor
+      integratedTargetDistance +=convertRPSToLinear(rightMotor.motor_input)*elapsed_time;
     #endif
     #if INT_LEFT
-    //Integrate Left Motor
-    integratedTargetDistance +=convertRPSToLinear(leftMotor.motor_input)*elapsed_time;
+      //Integrate Left Motor
+      integratedTargetDistance +=convertRPSToLinear(leftMotor.motor_input)*elapsed_time;
     #endif
 
     // Run control loop and calculate output
@@ -488,9 +532,9 @@ void controlLoop() {
 }
 
 /**
-1 khz timer tick counter on Timer 1
+10 khz timer tick counter on Timer 1
 */ 
 ISR(TIMER1_COMPA_vect) {
-  globalTimer.globalTimeInMs+=1;
+  globalTimer.globalTimeInMs+=0.1;
 }
 
