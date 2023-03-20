@@ -1,5 +1,6 @@
 #include <ros.h>
 #include <geometry_msgs/Pose2D.h>
+#include <std_msgs/Bool.h>
 
 #define DEBUG_VELOCITIES 0
 #define TRAJECTORY 0
@@ -9,8 +10,8 @@
 typedef struct SystemConstants{
   unsigned long baudRate;
   float ticksPerRevOutput;
-  uint8_t controlFreqInHz = 50;// minimum speed seen , 20 rpm => therefore, time for 1 tick is 6ms => choosing control freq 20ms => Freq = 50Hz
-  float controlTimeinMs = (float)1000.0/controlFreqInHz;  
+  uint8_t controlFreqInHz;// minimum speed seen , 20 rpm => therefore, time for 1 tick is 6ms => choosing control freq 20ms => Freq = 50Hz
+  float controlTimeinMs;
   constexpr SystemConstants(unsigned long baud,float ticksPerRevOp,uint8_t controlFreq)
   :baudRate(baud),
   ticksPerRevOutput(ticksPerRevOp),
@@ -19,8 +20,7 @@ typedef struct SystemConstants{
   {}
 }SystemConstants;
 
-static constexpr const SystemConstants sysCons= SystemConstants(921600,495,10);
-
+static constexpr const SystemConstants sysCons= SystemConstants(2000000,495,50);
 
 typedef struct MotorControl{
   uint8_t leftMotorDirectionPin;
@@ -106,8 +106,6 @@ typedef struct Intervals{
   float debugPrintInterval; // in milliseconds
 }Intervals;
 
-// static const constexpr int16_t controlFreqInHz = 50;
-// static const constexpr float controlTimeinMs= (1000.0/controlFreqInHz);
 
 static const constexpr Intervals intervals = {
   .rosSpinRate = sysCons.controlTimeinMs,.debugPrintInterval = 1000
@@ -126,7 +124,7 @@ typedef struct MotorsGain{
 }MotorsGain;
 
 static const constexpr MotorsGain motorGains = {
-  .leftMotorGains = {50,0.0,0.0,50},.rightMotorGains= {50,0.0,0.0,50}
+  .leftMotorGains = {45,0.0,0.0,50},.rightMotorGains= {45,0.0,0.0,50}
 };
 
 typedef struct ControlLoopVariables{
@@ -226,14 +224,24 @@ static const constexpr auto wayPoints = Trajectory<NO_OF_WAYPOINTS>();
 /**
   ROS Variables and callbacks
 **/
+
 #define TOPIC_NAME_1 "CURR_VEL"
 #define TOPIC_NAME_2 "TARG_VEL"
 static ros::NodeHandle nh;
-geometry_msgs::Pose2D currentPose;
-static ros::Publisher currVelMsgPub(TOPIC_NAME_1, &currentPose);
+geometry_msgs::Pose2D currentVel;
+static ros::Publisher currVelMsgPub(TOPIC_NAME_1, &currentVel);
 void targetVelCallback(const geometry_msgs::Pose2D& msg) {
   target.leftMotorTarget = msg.x;
   target.rightMotorTarget = msg.y;
+  if(msg.theta>0.5){
+    startControl=true;
+  }
+  else{
+    startControl=false;
+    leftMotor.resetController();
+    rightMotor.resetController();
+    pwmWrite(0,0);    
+  }
 }
 static ros::Subscriber<geometry_msgs::Pose2D> targetVelSub(TOPIC_NAME_2, targetVelCallback);
 
@@ -295,6 +303,7 @@ void setup() {
   nh.initNode();
   nh.advertise(currVelMsgPub);
   nh.subscribe(targetVelSub);
+  delay(1000);
 }
 
 volatile float current_time = 0;
@@ -326,9 +335,9 @@ void loop() {
   if(globalTimer.globalTimeInMs - globalTimer.velCalcPrevTime >= intervals.rosSpinRate){
 
     #if PRINT_ON_ROS
-      currentPose.x = currentVelocity.getRawLeft();
-      currentPose.y = currentVelocity.getRawRight();
-      currVelMsgPub.publish( &currentPose );
+      currentVel.x = target.leftMotorTarget;
+      currentVel.y = target.rightMotorTarget;
+      currVelMsgPub.publish( &currentVel );
     #endif
     nh.spinOnce();
   }  
@@ -382,7 +391,7 @@ static inline float getRotationsFromTicks(const int& ticks){
 // Writes actual PWM values to the motor
 // Has a safety saturation check
 void pwmWrite(uint8_t pwmL, uint8_t pwmR){
-  uint8_t limit = 255;
+  uint8_t limit = 190;
   if(pwmL>=limit){
     pwmL = limit;
   }
@@ -401,7 +410,7 @@ void setDirection(bool leftDirection,bool rightDirection){
   digitalWrite(motorControl.leftMotorDirectionPin,leftMotor); // Left wheel, LOW for forward
   digitalWrite(motorControl.rightMotorDirectionPin,rightMotor); // Right wheel, HIGH for forward
 }
-#define VELC_COUNTER 2 // wait for 1 ticks
+#define VELC_COUNTER 1 // wait for 1 ticks
 //Left motor Reverse Direction pin val =  1
 volatile uint8_t currConLeft = 0;
 volatile float oldTimeLeft = 0;
