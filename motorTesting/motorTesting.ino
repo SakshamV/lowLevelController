@@ -1,3 +1,5 @@
+#include <ros.h>
+#include <geometry_msgs/Pose2D.h>
 typedef struct SystemConstants{
   unsigned long baudRate;
   float ticksPerRevOutput;
@@ -142,9 +144,10 @@ volatile bool startControl = false;
 static const constexpr int16_t controlFreqInHz = 50; // minimum speed seen , 20 rpm => therefore, time for 1 tick is 6ms => choosing control freq 20ms
 static const constexpr int16_t controlTimeinMs= (1000/controlFreqInHz);
 
-#define DEBUG_VELOCITIES 1
+#define DEBUG_VELOCITIES 0
 #define TRAJECTORY 0
 #define DEBUG_CONTROL 0
+#define PRINT_ON_ROS 1
 
 // Utility functions to convert linear velocity to radians per sec, and vice versa
 static constexpr float convertLinearToRPS(const float& linearVelocity){
@@ -205,6 +208,10 @@ struct Trajectory {
 };
 static const constexpr auto wayPoints = Trajectory<NO_OF_WAYPOINTS>();
 #endif 
+#define TOPIC_NAME_1 "CURR_VEL"
+static ros::NodeHandle nh;
+geometry_msgs::Pose2D currentPose;
+static ros::Publisher currVelMsg(TOPIC_NAME_1, &currentPose);
 
 // the setup function runs once when you press reset or power the board
 void setup() {
@@ -254,6 +261,9 @@ void setup() {
       }
     #endif
   #endif
+  nh.getHardware()->setBaud(sysCons.baudRate);
+  nh.initNode();
+  nh.advertise(currVelMsg);
   pwmWrite(100,100);
 }
 
@@ -269,6 +279,7 @@ static inline void filterVelocity(const float raw,float& filter)
 {
   filter = filter + alpha*((raw - filter));
 }
+
 // the loop function runs over and over again forever
 void loop() {
   /**
@@ -281,6 +292,13 @@ void loop() {
   Subthread to debug print every second
   */ 
   if((globalTimer.globalTimeInMs - globalTimer.debugPrevTime)>=intervals.debugPrintInterval){
+
+    #if PRINT_ON_ROS
+    currentPose.x = currentVelocity.getRawLeft();
+    currentPose.y = currentVelocity.getRawRight();
+    currVelMsg.publish( &currentPose );
+    nh.spinOnce();
+    #endif
 
     #if DEBUG_ENCODER_TICK
     Serial.println("Encoder ticks:");
@@ -452,7 +470,7 @@ void controlLoop() {
     setDirection((leftSign==1)?true:false,(rightSign==1)?true:false);
     pwmWrite((uint8_t)(leftMotor.motor_output*(float)leftSign),(uint8_t)(rightMotor.motor_output*(float)rightSign));
 
-#if TRAJECTORY
+  #if TRAJECTORY
     if(wayPointCounter<wayPoints.noOfWayPoints){
       ++wayPointCounter;
     }else{
@@ -465,7 +483,7 @@ void controlLoop() {
       leftMotor.resetController();
       rightMotor.resetController();
     }
-#endif
+  #endif
   }
 }
 
