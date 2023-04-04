@@ -22,7 +22,7 @@ typedef struct SystemConstants {
       controlTimeinMs((float)1000 / this->controlFreqInHz) {}
 } SystemConstants;
 
-static constexpr const SystemConstants sysCons = SystemConstants(921600, 495, 50);
+static constexpr const SystemConstants sysCons = SystemConstants(1000000, 495, 50);
 
 typedef struct MotorControl {
   uint8_t leftMotorDirectionPin;
@@ -127,10 +127,16 @@ class GlobalTime {
       this->globalTimeInTicks =((uint32_t)ovfs << 16) | tcnt1;
       return this->globalTimeInTicks;
     }
-    float convertTicksToTimeMs(uint32_t ticks){
-        auto overflows = ( (ticks & 0xFFFF0000) >>16);
-        auto tcnt1 = (ticks & 0x0000FFFF);
+    constexpr float convertTicksToTimeMs(uint32_t ticks){
+        const auto overflows = ( (ticks & 0xFFFF0000) >>16);
+        const auto tcnt1 = (ticks & 0x0000FFFF);
         return (float(tcnt1)*time_per_tick_ms + float(time_per_ovf_ms)*overflows);
+    }
+    static constexpr uint32_t convertTimeMsToTicks(uint16_t time_in_ms){
+      const auto noOfOverflows = uint32_t(uint32_t(time_in_ms*1000) / uint32_t(time_per_ovf_ms*1000));
+      const auto rem = uint32_t(uint32_t(time_in_ms) % uint32_t(time_per_ovf_ms));
+      const auto tcnt1 = uint32_t(uint32_t(rem*10000)/uint32_t(time_per_tick_ms*10000));
+      return ((uint32_t)noOfOverflows << 16) | tcnt1;
     }
     inline void incrementOvf(){
       this->noOfOverFlows+=1;
@@ -163,14 +169,14 @@ static GlobalTime<unsigned long> globalTimer;
 Everything here is in millisecodns
 */
 typedef struct Intervals {
-  int16_t rosSpinRate;         // in milliseconds
-  int16_t debugPrintInterval;  // in milliseconds
-  int16_t velCheckInterval; // in ms
+  uint32_t rosSpinRate;         // in Ticks From Milliseconds
+  uint32_t debugPrintInterval;  // in Ticks From Milliseconds
 } Intervals;
 
 
 static const constexpr Intervals intervalsMs = {
-  .rosSpinRate = int16_t(sysCons.controlTimeinMs), .debugPrintInterval = 1000,.velCheckInterval = 8
+  .rosSpinRate = GlobalTime<unsigned long>::convertTimeMsToTicks(uint16_t(sysCons.controlTimeinMs)),
+  .debugPrintInterval = GlobalTime<unsigned long>::convertTimeMsToTicks(1000)
 };
 
 typedef struct Gains {
@@ -255,55 +261,56 @@ static constexpr float convertRPSToLinear(const float& RPS) {
 // This section generates a parabolic trajectory in case TRAJECTORY is set to 1
 // wheel diameter 64.5mm
 #if TRAJECTORY
-static constexpr const int NO_OF_WAYPOINTS = 350;
-//Diameter 64.5 mm
-static const constexpr float vmax = 0.406;  //(m/s) actually some 0.406~
-static constexpr float getXLinearVelocity(const float& t, const float& T) {
-  return t * (4 * vmax / T) + (-(4 * vmax / (T * T)) * t * t);
-}
-static constexpr float getT(const float& xInitial, const float& xFinal) {
-  return (6.0 / (4.0 * vmax)) * (xFinal - xInitial);
-}
-template<int Max>
-struct Trajectory {
-  constexpr Trajectory()
-    : wayPoints(), noOfWayPoints(Max), totalTime(0) {
-    float time = 0.0;
-    const constexpr float loopRate = controlFreqInHz;
-    const constexpr float timeIncrement = 1 / loopRate;
-    const constexpr float xInit = 0;
-    const constexpr float xFinal = 0.20263272615;  // 1 rotation of the wheel //0.20263272615
-    const constexpr float totalTime = getT(xInit, xFinal);
-    int i = 0;
-    while (true) {
-      this->wayPoints[i] = convertLinearToRPS(getXLinearVelocity(time, totalTime));
-      time += timeIncrement;
-      if (time > totalTime) {
-        this->wayPoints[i] = 0;
-        if (i < Max) {
-          ++i;
-        } else {
+  static constexpr const int NO_OF_WAYPOINTS = 350;
+  //Diameter 64.5 mm
+  static const constexpr float vmax = 0.406;  //(m/s) actually some 0.406~
+  static constexpr float getXLinearVelocity(const float& t, const float& T) {
+    return t * (4 * vmax / T) + (-(4 * vmax / (T * T)) * t * t);
+  }
+  static constexpr float getT(const float& xInitial, const float& xFinal) {
+    return (6.0 / (4.0 * vmax)) * (xFinal - xInitial);
+  }
+  template<int Max>
+  struct Trajectory {
+    constexpr Trajectory()
+      : wayPoints(), noOfWayPoints(Max), totalTime(0) {
+      float time = 0.0;
+      const constexpr float loopRate = controlFreqInHz;
+      const constexpr float timeIncrement = 1 / loopRate;
+      const constexpr float xInit = 0;
+      const constexpr float xFinal = 0.20263272615;  // 1 rotation of the wheel //0.20263272615
+      const constexpr float totalTime = getT(xInit, xFinal);
+      int i = 0;
+      while (true) {
+        this->wayPoints[i] = convertLinearToRPS(getXLinearVelocity(time, totalTime));
+        time += timeIncrement;
+        if (time > totalTime) {
           this->wayPoints[i] = 0;
-        }
-        break;
-      } else {
-        if (i < Max) {
-          ++i;
-        } else {
-          this->wayPoints[i] = 0;
+          if (i < Max) {
+            ++i;
+          } else {
+            this->wayPoints[i] = 0;
+          }
           break;
+        } else {
+          if (i < Max) {
+            ++i;
+          } else {
+            this->wayPoints[i] = 0;
+            break;
+          }
         }
       }
+      noOfWayPoints = i;
+      this->totalTime = totalTime;
     }
-    noOfWayPoints = i;
-    this->totalTime = totalTime;
-  }
-  float wayPoints[Max];
-  int noOfWayPoints;
-  float totalTime;
-};
-static const constexpr auto wayPoints = Trajectory<NO_OF_WAYPOINTS>();
+    float wayPoints[Max];
+    int noOfWayPoints;
+    float totalTime;
+  };
+  static const constexpr auto wayPoints = Trajectory<NO_OF_WAYPOINTS>();
 #endif
+
 /**
   ROS Variables and callbacks
 **/
@@ -439,32 +446,31 @@ void loop() {
   Control loop sub thread every 
   **/
   #if ENABLE_CONTROL
-    if ((globalTimer.convertTimeToTicks(globalTimer.getGlobalTimeinMs() - globalTimer.controlLoopPrevTime)>= sysCons.controlTimeinMs)) {
+    if ((globalTimer.convertTicksToTimeMs(globalTimer.getGlobalTimeinMs() - globalTimer.controlLoopPrevTime)>= sysCons.controlTimeinMs)) {
       controlLoop();
     }
   #endif
   /**
   ROS SPIN subthread
   **/
-  if (globalTimer.convertTicksToTimeMs(globalTimer.getGlobalTimeinTicks() - globalTimer.velCalcPrevTime) >= intervalsMs.rosSpinRate) {
+  if ((globalTimer.getGlobalTimeinTicks() - globalTimer.velCalcPrevTime) >= intervalsMs.rosSpinRate) {
     globalTimer.velCalcPrevTime = globalTimer.getGlobalTimeinTicks();
     #if ENABLE_ROS
       currentVel.x = float(encoderData.leftEncoderTicks - encoderData.leftEncoderPrev);
       currentVel.y = float(encoderData.rightEncoderTicks - encoderData.rightEncoderPrev);
-
       encoderData.rightEncoderPrev = encoderData.rightEncoderTicks;
       encoderData.leftEncoderPrev = encoderData.leftEncoderTicks;
     #endif
     #if ENABLE_ROS
       currVelMsgPub.publish( &currentVel );
       nh.spinOnce();
-      nh.spinOnce();
+      // nh.spinOnce();
     #endif
   }
   /**
   Subthread to debug print every second
   */
-  auto dbgInterval = globalTimer.convertTicksToTimeMs((globalTimer.getGlobalTimeinTicks() - globalTimer.debugPrevTime));
+  auto dbgInterval = ((globalTimer.getGlobalTimeinTicks() - globalTimer.debugPrevTime));
   if ( dbgInterval>= intervalsMs.debugPrintInterval) {
 
   globalTimer.debugPrevTime = globalTimer.getGlobalTimeinTicks();
@@ -489,7 +495,7 @@ void loop() {
     Serial.print("\t");
     Serial.print(currentVelocity.getFilteredRightVel(), 5);
     Serial.print("\t");
-    Serial.println(dbgInterval, 5);
+    Serial.println(globalTimer.convertTicksToTimeMs(dbgInterval), 5);
   #endif
 
   #if DEBUG_CONTROL
