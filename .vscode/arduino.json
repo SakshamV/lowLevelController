@@ -1,4 +1,0 @@
-{
-    "sketch": "motorTesting/motorTesting.ino",
-    "board": "arduino:avr:uno"
-}
