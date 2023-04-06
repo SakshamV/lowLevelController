@@ -1,12 +1,13 @@
 #include <ros.h>
 #include <geometry_msgs/Pose2D.h>
+#include <terpbot_msgs/Gains.h>
 #include <std_msgs/Bool.h>
 
 #define DEBUG_VELOCITIES 0
 #define TRAJECTORY 0
 #define DEBUG_CONTROL 0
 #define PRINT_ON_ROS 0
-#define ENABLE_CONTROL 0
+#define ENABLE_CONTROL 1
 #define ENABLE_ROS 1
 #define CALC_VEL 0
 
@@ -191,8 +192,8 @@ typedef struct MotorsGain {
   Gains rightMotorGains;
 } MotorsGain;
 
-static const constexpr MotorsGain motorGains = {
-  .leftMotorGains = { 45, 0.0, 0.0, 50 }, .rightMotorGains = { 45, 0.0, 0.0, 50 }
+static MotorsGain motorGains = {
+  .leftMotorGains = { 5, 0, 0.0, 50 }, .rightMotorGains = { 45, 0.0, 0.0, 50 }
 };
 
 typedef struct ControlLoopVariables {
@@ -203,12 +204,12 @@ typedef struct ControlLoopVariables {
   float motor_prev_error = 0;
   float motor_integral = 0;
   float motor_derivative = 0;
-  ControlLoopVariables(const Gains* ipGains)
+  ControlLoopVariables(Gains* ipGains)
     : motorGains(ipGains) {
     ;
   }
 
-  const Gains* motorGains;
+  Gains* motorGains;
   void resetController() {
     motor_setpoint = 0;
     motor_input = 0;
@@ -317,19 +318,20 @@ static constexpr float convertRPSToLinear(const float& RPS) {
 #if ENABLE_ROS
   #define TOPIC_NAME_1 "CURR_VEL"
   #define TOPIC_NAME_2 "TARG_VEL"
-
+  #define TOPIC_NAME_3 "GAINS"
   static ros::NodeHandle nh;
   geometry_msgs::Pose2D currentVel;
   static ros::Publisher currVelMsgPub(TOPIC_NAME_1, &currentVel);
 
   //140 rpm = 14.660765699999999
 
-  // Returns sign of the given number, +1 or -1
+// Returns sign of the given number, +1 or -1
   template<typename T>
   int sgn(T val) {
     return (T(0) < val) - (val < T(0));
   }
-  void targetVelCallback(const geometry_msgs::Pose2D& msg) {
+
+  void targVelCBOld(const geometry_msgs::Pose2D& msg) {
 
     target.leftMotorTarget = (msg.x/14.660765699999999)*190;
     target.rightMotorTarget = (msg.y/14.660765699999999)*190;
@@ -352,7 +354,35 @@ static constexpr float convertRPSToLinear(const float& RPS) {
       }
     }
   }
+  void targetVelCallback(const geometry_msgs::Pose2D& msg) {
+    target.leftMotorTarget = msg.x;
+    target.rightMotorTarget = msg.y;
+    if(msg.theta>0.5){
+      startControl=true;
+    }else{
+      startControl=false;
+      leftMotor.resetController();
+      rightMotor.resetController();
+      pwmWrite(0, 0);
+    }
+  }
+  void setGainsCallback(const terpbot_msgs::Gains& msg){
+    // True is interpreted as left motor
+    // False is interpreted as right motor
+    if(msg.isleft == HIGH){
+      leftMotor.motorGains->iSat = msg.i_clamp;
+      leftMotor.motorGains->kp = msg.kp;
+      leftMotor.motorGains->ki = msg.ki;
+      leftMotor.motorGains->kd = msg.kd;
+    }else{
+      rightMotor.motorGains->iSat = msg.i_clamp;
+      rightMotor.motorGains->kp = msg.kp;
+      rightMotor.motorGains->ki = msg.ki;
+      rightMotor.motorGains->kd = msg.kd;
+    }
+  }
   static ros::Subscriber<geometry_msgs::Pose2D> targetVelSub(TOPIC_NAME_2, targetVelCallback);
+  static ros::Subscriber<terpbot_msgs::Gains> gainsSub(TOPIC_NAME_3, setGainsCallback);
 #endif
 
 // the setup function runs once when you press reset or power the board
@@ -413,6 +443,7 @@ void setup() {
     nh.initNode();
     nh.advertise(currVelMsgPub);
     nh.subscribe(targetVelSub);
+    nh.subscribe(gainsSub);
     while(!nh.connected()){
       nh.spinOnce();
     }
@@ -446,25 +477,25 @@ void loop() {
   Control loop sub thread every 
   **/
   #if ENABLE_CONTROL
-    if ((globalTimer.convertTicksToTimeMs(globalTimer.getGlobalTimeinMs() - globalTimer.controlLoopPrevTime)>= sysCons.controlTimeinMs)) {
-      controlLoop();
+    auto ctrlInterval = globalTimer.convertTicksToTimeMs(globalTimer.getGlobalTimeinTicks() - globalTimer.controlLoopPrevTime);
+    if (( ctrlInterval >= sysCons.controlTimeinMs)) {
+      globalTimer.controlLoopPrevTime = globalTimer.getGlobalTimeinTicks();
+      controlLoop(ctrlInterval);
     }
   #endif
   /**
   ROS SPIN subthread
   **/
-  if ((globalTimer.getGlobalTimeinTicks() - globalTimer.velCalcPrevTime) >= intervalsMs.rosSpinRate) {
+  if ( (globalTimer.getGlobalTimeinTicks() - globalTimer.velCalcPrevTime) >= intervalsMs.rosSpinRate) {
     globalTimer.velCalcPrevTime = globalTimer.getGlobalTimeinTicks();
     #if ENABLE_ROS
       currentVel.x = float(encoderData.leftEncoderTicks - encoderData.leftEncoderPrev);
       currentVel.y = float(encoderData.rightEncoderTicks - encoderData.rightEncoderPrev);
       encoderData.rightEncoderPrev = encoderData.rightEncoderTicks;
       encoderData.leftEncoderPrev = encoderData.leftEncoderTicks;
-    #endif
-    #if ENABLE_ROS
+      currentVel.theta=leftMotor.motorGains->kp;
       currVelMsgPub.publish( &currentVel );
       nh.spinOnce();
-      // nh.spinOnce();
     #endif
   }
   /**
@@ -528,7 +559,7 @@ static inline float getRotationsFromTicks(const int8_t& ticks) {
 // Writes actual PWM values to the motor
 // Has a safety saturation check
 void pwmWrite(uint8_t pwmL, uint8_t pwmR) {
-  uint8_t limit = 190;
+  uint8_t limit = 255;
   if (pwmL >= limit) {
     pwmL = limit;
   }
@@ -596,11 +627,11 @@ static void controlAction(ControlLoopVariables& motor) {
   motor.motor_error = motor.motor_setpoint - motor.motor_input;
   //calculate integral and derivative terms for each motor
   motor.motor_integral += motor.motor_error * elapsed_time;
-  motor.motor_integral = constrain(motor.motor_integral, -1 * motor.motorGains.iSat, motor.motorGains.iSat);
+  motor.motor_integral = constrain(motor.motor_integral, -1 * motor.motorGains->iSat, motor.motorGains->iSat);
   motor.motor_derivative = (motor.motor_error - motor.motor_prev_error) / elapsed_time;
   motor.motor_prev_error = motor.motor_error;
   //Calculate Outut
-  motor.motor_output = motor.motorGains.kp * motor.motor_error + motor.motorGains.ki * motor.motor_integral + motor.motorGains.kd * motor.motor_derivative;
+  motor.motor_output = motor.motorGains->kp * motor.motor_error + motor.motorGains->ki * motor.motor_integral + motor.motorGains->kd * motor.motor_derivative;
 }
 
 
@@ -608,26 +639,28 @@ static void controlAction(ControlLoopVariables& motor) {
   int wayPointCounter = 0;
 #endif
 
-void controlLoop() {
+void controlLoop(float& time_delta) {
   if (startControl) {
-#if TRAJECTORY
+  #if TRAJECTORY
     if (wayPointCounter == 0) {
       controlActionStartTime = (unsigned int)globalTimer.getGlobalTimeinMs();
       integratedTargetDistance = 0;
     }
-#endif
+  #endif
     // Calculate elapsed time
-    current_time = globalTimer.getGlobalTimeinMs();
-    elapsed_time = (float)(current_time - globalTimer.controlLoopPrevTime) / 1000.0;
-    globalTimer.controlLoopPrevTime = current_time;
+    elapsed_time = (time_delta) / 1000.0;
 
     // Set Input as Left and Right Motor velocity
-    filterVelocity(currentVelocity.rawRight, currentVelocity.filteredRightVel);
+    // filterVelocity(currentVelocity.rawRight, currentVelocity.filteredRightVel);
 
-    filterVelocity(currentVelocity.rawLeft, currentVelocity.filteredLeftVel);
+    // filterVelocity(currentVelocity.rawLeft, currentVelocity.filteredLeftVel);
+    leftMotor.motor_input = currentVel.x;
 
-    rightMotor.motor_input = currentVelocity.getFilteredRightVel();
-    leftMotor.motor_input = currentVelocity.getFilteredLeftVel();
+    rightMotor.motor_input = currentVel.y;
+
+    leftMotor.motor_setpoint = target.leftMotorTarget;
+    rightMotor.motor_setpoint = target.rightMotorTarget;
+
 
 #if TRAJECTORY
     //Set local waypoint:
@@ -639,18 +672,18 @@ void controlLoop() {
     rightMotor.motor_setpoint = target.rightMotorTarget;
 
 //Integrate velocity to find distance
-#if INT_TARGET
+  #if INT_TARGET
     //Integrate Target
     integratedTargetDistance += convertRPSToLinear(leftMotor.motor_setpoint) * elapsed_time;
-#endif
-#if INT_RIGHT
+  #endif
+  #if INT_RIGHT
     //Integrate Right Motor
     integratedTargetDistance += convertRPSToLinear(rightMotor.motor_input) * elapsed_time;
-#endif
-#if INT_LEFT
+  #endif
+  #if INT_LEFT
     //Integrate Left Motor
     integratedTargetDistance += convertRPSToLinear(leftMotor.motor_input) * elapsed_time;
-#endif
+  #endif
 
     // Run control loop and calculate output
     controlAction(leftMotor);
@@ -662,7 +695,7 @@ void controlLoop() {
 
     // Send the output to the motors
     setDirection((leftSign == 1) ? true : false, (rightSign == 1) ? true : false);
-    pwmWrite((uint8_t)(leftMotor.motor_output * (float)leftSign), (uint8_t)(rightMotor.motor_output * (float)rightSign));
+    pwmWrite(uint8_t( (leftMotor.motor_output * float(leftSign)) ) , uint8_t( (rightMotor.motor_output * float(rightSign)) ) );
 
 #if TRAJECTORY
     if (wayPointCounter < wayPoints.noOfWayPoints) {
