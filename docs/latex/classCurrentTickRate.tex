@@ -26,9 +26,9 @@ Collaboration diagram for Current\+Tick\+Rate\+:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 virtual uint8\+\_\+t \mbox{\hyperlink{classCurrentTickRate_a4759b11291b326ed8d71e5f0284f8206}{serialize}} (unsigned char $\ast$outbuffer) const override
-\item 
+\begin{DoxyCompactList}\small\item\em \+: Serializes Member variables to outbuffer \end{DoxyCompactList}\item 
 virtual uint8\+\_\+t \mbox{\hyperlink{classCurrentTickRate_a47366c7a8623803cb2a5f978a0f77975}{deserialize}} (unsigned char $\ast$inbuffer) override
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \+: Deserializes custom message from inpt data buffer and updates the member variables \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -41,7 +41,7 @@ float \mbox{\hyperlink{classCurrentTickRate_a04fc81ccae72bc9bb4804c7eb14965b9}{r
 \doxysubsection{Detailed Description}
 
 
-Definition at line 275 of file U\+A\+R\+T\+Parser.\+h.
+Definition at line 307 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
@@ -54,11 +54,20 @@ Definition at line 275 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
-Implements \mbox{\hyperlink{classCustomMsg_a90502e0d930c29c08684f60fc4f23de7}{Custom\+Msg}}.
+\+: Deserializes custom message from inpt data buffer and updates the member variables 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inbuffer} & Valid pointer to a buffer \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classCustomMsg_ad5bbe6e076164334a3865dd32a953c35}{Custom\+Msg}}.
 
 
 
-Definition at line 323 of file U\+A\+R\+T\+Parser.\+h.
+Definition at line 355 of file U\+A\+R\+T\+Parser.\+h.
 
 \mbox{\Hypertarget{classCurrentTickRate_a4759b11291b326ed8d71e5f0284f8206}\label{classCurrentTickRate_a4759b11291b326ed8d71e5f0284f8206}} 
 \index{CurrentTickRate@{CurrentTickRate}!serialize@{serialize}}
@@ -68,11 +77,20 @@ Definition at line 323 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
+\+: Serializes Member variables to outbuffer 
+
+
+\begin{DoxyParams}{Parameters}
+{\em outbuffer} & Valid pointer to buffer where data has to be written \\
+\hline
+\end{DoxyParams}
+
+
 Implements \mbox{\hyperlink{classCustomMsg_a35e14ec5186cc64dad60c6380df18733}{Custom\+Msg}}.
 
 
 
-Definition at line 279 of file U\+A\+R\+T\+Parser.\+h.
+Definition at line 311 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
@@ -85,7 +103,7 @@ Definition at line 279 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
-Definition at line 277 of file U\+A\+R\+T\+Parser.\+h.
+Definition at line 309 of file U\+A\+R\+T\+Parser.\+h.
 
 \mbox{\Hypertarget{classCurrentTickRate_a04fc81ccae72bc9bb4804c7eb14965b9}\label{classCurrentTickRate_a04fc81ccae72bc9bb4804c7eb14965b9}} 
 \index{CurrentTickRate@{CurrentTickRate}!rightTickRate@{rightTickRate}}
@@ -95,7 +113,7 @@ Definition at line 277 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
-Definition at line 278 of file U\+A\+R\+T\+Parser.\+h.
+Definition at line 310 of file U\+A\+R\+T\+Parser.\+h.
 
 
 

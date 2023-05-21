@@ -101,22 +101,27 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7008d6752ce64f82e56aae6ea6c2bb65"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTarget.html#a7008d6752ce64f82e56aae6ea6c2bb65">Target</a> ()</td></tr>
 <tr class="separator:a7008d6752ce64f82e56aae6ea6c2bb65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afde82153ebd1fe06d206305d13652bae"><td class="memItemLeft" align="right" valign="top">virtual uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTarget.html#afde82153ebd1fe06d206305d13652bae">serialize</a> (unsigned char *outbuffer) const override</td></tr>
+<tr class="memdesc:afde82153ebd1fe06d206305d13652bae"><td class="mdescLeft">&#160;</td><td class="mdescRight">: Serializes Member variables to outbuffer  <a href="classTarget.html#afde82153ebd1fe06d206305d13652bae">More...</a><br /></td></tr>
 <tr class="separator:afde82153ebd1fe06d206305d13652bae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb145d920891aa265848e28b4b7b4ff3"><td class="memItemLeft" align="right" valign="top">virtual uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTarget.html#acb145d920891aa265848e28b4b7b4ff3">deserialize</a> (unsigned char *inbuffer) override</td></tr>
+<tr class="memdesc:acb145d920891aa265848e28b4b7b4ff3"><td class="mdescLeft">&#160;</td><td class="mdescRight">: Deserializes custom message from inpt data buffer and updates the member variables  <a href="classTarget.html#acb145d920891aa265848e28b4b7b4ff3">More...</a><br /></td></tr>
 <tr class="separator:acb145d920891aa265848e28b4b7b4ff3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:aa19700cdb3c0dd4e4d639fbbd1de6e5c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTarget.html#aa19700cdb3c0dd4e4d639fbbd1de6e5c">leftMotorTarget</a></td></tr>
+<tr class="memdesc:aa19700cdb3c0dd4e4d639fbbd1de6e5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">: <a class="el" href="classTarget.html">Target</a> left motor speed  <a href="classTarget.html#aa19700cdb3c0dd4e4d639fbbd1de6e5c">More...</a><br /></td></tr>
 <tr class="separator:aa19700cdb3c0dd4e4d639fbbd1de6e5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67b337a9927de0748df60d5fcf45afb5"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTarget.html#a67b337a9927de0748df60d5fcf45afb5">rightMotorTarget</a></td></tr>
+<tr class="memdesc:a67b337a9927de0748df60d5fcf45afb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">: <a class="el" href="classTarget.html">Target</a> right motor speed  <a href="classTarget.html#a67b337a9927de0748df60d5fcf45afb5">More...</a><br /></td></tr>
 <tr class="separator:a67b337a9927de0748df60d5fcf45afb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9615f63401e2029e51ae4d7fb5a16349"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTarget.html#a9615f63401e2029e51ae4d7fb5a16349">theta</a></td></tr>
+<tr class="memdesc:a9615f63401e2029e51ae4d7fb5a16349"><td class="mdescLeft">&#160;</td><td class="mdescRight">: Theta is used to control start and stop of control action. When theta is 0, control action is stopped, when theta is 1, control action is started  <a href="classTarget.html#a9615f63401e2029e51ae4d7fb5a16349">More...</a><br /></td></tr>
 <tr class="separator:a9615f63401e2029e51ae4d7fb5a16349"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="UARTParser_8h_source.html#l00169">169</a> of file <a class="el" href="UARTParser_8h_source.html">UARTParser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="UARTParser_8h_source.html#l00192">192</a> of file <a class="el" href="UARTParser_8h_source.html">UARTParser.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a7008d6752ce64f82e56aae6ea6c2bb65"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7008d6752ce64f82e56aae6ea6c2bb65">&#9670;&nbsp;</a></span>Target()</h2>
@@ -141,7 +146,7 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="UARTParser_8h_source.html#l00174">174</a> of file <a class="el" href="UARTParser_8h_source.html">UARTParser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="UARTParser_8h_source.html#l00206">206</a> of file <a class="el" href="UARTParser_8h_source.html">UARTParser.h</a>.</p>
 
 </div>
 </div>
@@ -170,9 +175,17 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="classCustomMsg.html#a90502e0d930c29c08684f60fc4f23de7">CustomMsg</a>.</p>
+<p>: Deserializes custom message from inpt data buffer and updates the member variables </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inbuffer</td><td>Valid pointer to a buffer </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="UARTParser_8h_source.html#l00231">231</a> of file <a class="el" href="UARTParser_8h_source.html">UARTParser.h</a>.</p>
+<p>Implements <a class="el" href="classCustomMsg.html#ad5bbe6e076164334a3865dd32a953c35">CustomMsg</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="UARTParser_8h_source.html#l00263">263</a> of file <a class="el" href="UARTParser_8h_source.html">UARTParser.h</a>.</p>
 
 </div>
 </div>
@@ -200,9 +213,17 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>: Serializes Member variables to outbuffer </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">outbuffer</td><td>Valid pointer to buffer where data has to be written </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Implements <a class="el" href="classCustomMsg.html#a35e14ec5186cc64dad60c6380df18733">CustomMsg</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="UARTParser_8h_source.html#l00181">181</a> of file <a class="el" href="UARTParser_8h_source.html">UARTParser.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="UARTParser_8h_source.html#l00213">213</a> of file <a class="el" href="UARTParser_8h_source.html">UARTParser.h</a>.</p>
 
 </div>
 </div>
@@ -219,7 +240,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="UARTParser_8h_source.html#l00171">171</a> of file <a class="el" href="UARTParser_8h_source.html">UARTParser.h</a>.</p>
+<p>: <a class="el" href="classTarget.html">Target</a> left motor speed </p>
+
+<p class="definition">Definition at line <a class="el" href="UARTParser_8h_source.html#l00197">197</a> of file <a class="el" href="UARTParser_8h_source.html">UARTParser.h</a>.</p>
 
 </div>
 </div>
@@ -235,7 +258,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="UARTParser_8h_source.html#l00172">172</a> of file <a class="el" href="UARTParser_8h_source.html">UARTParser.h</a>.</p>
+<p>: <a class="el" href="classTarget.html">Target</a> right motor speed </p>
+
+<p class="definition">Definition at line <a class="el" href="UARTParser_8h_source.html#l00201">201</a> of file <a class="el" href="UARTParser_8h_source.html">UARTParser.h</a>.</p>
 
 </div>
 </div>
@@ -251,7 +276,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="UARTParser_8h_source.html#l00173">173</a> of file <a class="el" href="UARTParser_8h_source.html">UARTParser.h</a>.</p>
+<p>: Theta is used to control start and stop of control action. When theta is 0, control action is stopped, when theta is 1, control action is started </p>
+
+<p class="definition">Definition at line <a class="el" href="UARTParser_8h_source.html#l00205">205</a> of file <a class="el" href="UARTParser_8h_source.html">UARTParser.h</a>.</p>
 
 </div>
 </div>

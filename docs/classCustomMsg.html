@@ -92,9 +92,11 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a35e14ec5186cc64dad60c6380df18733"><td class="memItemLeft" align="right" valign="top">virtual uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCustomMsg.html#a35e14ec5186cc64dad60c6380df18733">serialize</a> (unsigned char *outbuffer) const =0</td></tr>
+<tr class="memdesc:a35e14ec5186cc64dad60c6380df18733"><td class="mdescLeft">&#160;</td><td class="mdescRight">: Serializes Member variables to outbuffer  <a href="classCustomMsg.html#a35e14ec5186cc64dad60c6380df18733">More...</a><br /></td></tr>
 <tr class="separator:a35e14ec5186cc64dad60c6380df18733"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90502e0d930c29c08684f60fc4f23de7"><td class="memItemLeft" align="right" valign="top">virtual uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCustomMsg.html#a90502e0d930c29c08684f60fc4f23de7">deserialize</a> (unsigned char *data)=0</td></tr>
-<tr class="separator:a90502e0d930c29c08684f60fc4f23de7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5bbe6e076164334a3865dd32a953c35"><td class="memItemLeft" align="right" valign="top">virtual uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCustomMsg.html#ad5bbe6e076164334a3865dd32a953c35">deserialize</a> (unsigned char *inbuffer)=0</td></tr>
+<tr class="memdesc:ad5bbe6e076164334a3865dd32a953c35"><td class="mdescLeft">&#160;</td><td class="mdescRight">: Deserializes custom message from inpt data buffer and updates the member variables  <a href="classCustomMsg.html#ad5bbe6e076164334a3865dd32a953c35">More...</a><br /></td></tr>
+<tr class="separator:ad5bbe6e076164334a3865dd32a953c35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>: Abstract class for custom messages </p>
@@ -109,8 +111,8 @@ Public Member Functions</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="UARTParser_8h_source.html#l00014">14</a> of file <a class="el" href="UARTParser_8h_source.html">UARTParser.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a90502e0d930c29c08684f60fc4f23de7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a90502e0d930c29c08684f60fc4f23de7">&#9670;&nbsp;</a></span>deserialize()</h2>
+<a id="ad5bbe6e076164334a3865dd32a953c35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5bbe6e076164334a3865dd32a953c35">&#9670;&nbsp;</a></span>deserialize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -122,7 +124,7 @@ Public Member Functions</h2></td></tr>
           <td class="memname">virtual uint8_t CustomMsg::deserialize </td>
           <td>(</td>
           <td class="paramtype">unsigned char *&#160;</td>
-          <td class="paramname"><em>data</em></td><td>)</td>
+          <td class="paramname"><em>inbuffer</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -132,6 +134,14 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>: Deserializes custom message from inpt data buffer and updates the member variables </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inbuffer</td><td>Valid pointer to a buffer </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implemented in <a class="el" href="classCurrentTickRate.html#a47366c7a8623803cb2a5f978a0f77975">CurrentTickRate</a>, <a class="el" href="classTarget.html#acb145d920891aa265848e28b4b7b4ff3">Target</a>, and <a class="el" href="classGains.html#a0fd9c90c926d86e97c7ec053bf7baed8">Gains</a>.</p>
 
@@ -160,6 +170,14 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>: Serializes Member variables to outbuffer </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">outbuffer</td><td>Valid pointer to buffer where data has to be written </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implemented in <a class="el" href="classCurrentTickRate.html#a4759b11291b326ed8d71e5f0284f8206">CurrentTickRate</a>, <a class="el" href="classTarget.html#afde82153ebd1fe06d206305d13652bae">Target</a>, and <a class="el" href="classGains.html#a284c926d390b0423cb4a17179c1fe2d8">Gains</a>.</p>
 

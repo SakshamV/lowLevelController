@@ -14,8 +14,16 @@
 class CustomMsg
 {
 public:
+  /**
+   * @brief:  Serializes Member variables to outbuffer
+   * @param  outbuffer:  Valid pointer to buffer where data has to be written
+  */
   virtual uint8_t serialize(unsigned char *outbuffer) const = 0;
-  virtual uint8_t deserialize(unsigned char *data) = 0;
+  /**
+   * @brief:  Deserializes custom message from inpt data buffer and updates the member variables
+   * @param  inbuffer:  Valid pointer to a buffer
+  */
+  virtual uint8_t deserialize(unsigned char *inbuffer) = 0;
 };
 
 /**
@@ -28,16 +36,31 @@ enum Tags{TARGET,GAINS,CURRENT};
 */
 static const unsigned char tags[] = {'T','G','C'};
 
+/**
+ * @brief:  Serial port object , initialized to Serial port 0, the default port on Arduino Uno, used for Serial.begin() etc
+*/
 HardwareSerial* hw= &Serial;
 
 
 class Gains:public CustomMsg{
   public:
+  /// \name Gains
+  /// @brief:Defines the gains for the PID controller,and the integral saturation
+
+  ///@{
+  /// @brief:  Proportional gain
   float kp;
+  /// @brief:  Derivative gain
   float kd;
+  /// @brief:  Integral gain
   float ki;
+  /// @brief:  Integral Saturation
   float iSat;
+  ///@}
+
+  /// @brief:  is the message meant for left motor or right motor
   bool isLeft;
+
   virtual uint8_t serialize(unsigned char *outbuffer) const override
   {
       uint8_t offset = 0;
@@ -168,8 +191,17 @@ class Gains:public CustomMsg{
 
 class Target :public CustomMsg{
   public:
+  /**
+   * @brief:  Target left motor speed
+  */
   float leftMotorTarget;
+  /**
+   * @brief:  Target right motor speed
+  */
   float rightMotorTarget;
+  /**
+   * @brief:  Theta is used to control start and stop of control action. When theta is 0, control action is stopped, when theta is 1, control action is started
+  */
   float theta;
   Target()
   :leftMotorTarget(0),

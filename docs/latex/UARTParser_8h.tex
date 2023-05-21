@@ -47,7 +47,7 @@ int \mbox{\hyperlink{UARTParser_8h_a959d0a2944eb4f434de2f9d8b1fbea6e}{read\+Uart
 static const unsigned char \mbox{\hyperlink{UARTParser_8h_a699debe60f841d3ebfda7df38f7747c8}{tags}} \mbox{[}$\,$\mbox{]} = \{\textquotesingle{}T\textquotesingle{},\textquotesingle{}G\textquotesingle{},\textquotesingle{}C\textquotesingle{}\}
 \begin{DoxyCompactList}\small\item\em \+: Tags for each message \end{DoxyCompactList}\item 
 Hardware\+Serial $\ast$ \mbox{\hyperlink{UARTParser_8h_a2430b658fd49bee7a14938820c7f9119}{hw}} = \&Serial
-\item 
+\begin{DoxyCompactList}\small\item\em \+: Serial port object , initialized to Serial port 0, the default port on Arduino Uno, used for Serial.\+begin() etc \end{DoxyCompactList}\item 
 uint8\+\_\+t \mbox{\hyperlink{UARTParser_8h_aad401fc6b792ab66b08a387f967db1f8}{out\+\_\+buf}} \mbox{[}50\mbox{]}
 \begin{DoxyCompactList}\small\item\em \+: Output buffer for serial port \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -79,7 +79,7 @@ C\+U\+R\+R\+E\+NT&\\
 \end{DoxyEnumFields}
 
 
-Definition at line 24 of file U\+A\+R\+T\+Parser.\+h.
+Definition at line 32 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
@@ -102,7 +102,7 @@ void publish\+Custom\+Msg (\begin{DoxyParamCaption}\item[{T \&}]{input }\end{Dox
 \end{DoxyParams}
 
 
-Definition at line 371 of file U\+A\+R\+T\+Parser.\+h.
+Definition at line 403 of file U\+A\+R\+T\+Parser.\+h.
 
 \mbox{\Hypertarget{UARTParser_8h_a959d0a2944eb4f434de2f9d8b1fbea6e}\label{UARTParser_8h_a959d0a2944eb4f434de2f9d8b1fbea6e}} 
 \index{UARTParser.h@{UARTParser.h}!readUart@{readUart}}
@@ -116,7 +116,7 @@ Definition at line 371 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
-Definition at line 359 of file U\+A\+R\+T\+Parser.\+h.
+Definition at line 391 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
@@ -129,7 +129,11 @@ Definition at line 359 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
-Definition at line 31 of file U\+A\+R\+T\+Parser.\+h.
+\+: Serial port object , initialized to Serial port 0, the default port on Arduino Uno, used for Serial.\+begin() etc 
+
+
+
+Definition at line 42 of file U\+A\+R\+T\+Parser.\+h.
 
 \mbox{\Hypertarget{UARTParser_8h_aad401fc6b792ab66b08a387f967db1f8}\label{UARTParser_8h_aad401fc6b792ab66b08a387f967db1f8}} 
 \index{UARTParser.h@{UARTParser.h}!out\_buf@{out\_buf}}
@@ -143,7 +147,7 @@ Definition at line 31 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
-Definition at line 364 of file U\+A\+R\+T\+Parser.\+h.
+Definition at line 396 of file U\+A\+R\+T\+Parser.\+h.
 
 \mbox{\Hypertarget{UARTParser_8h_a699debe60f841d3ebfda7df38f7747c8}\label{UARTParser_8h_a699debe60f841d3ebfda7df38f7747c8}} 
 \index{UARTParser.h@{UARTParser.h}!tags@{tags}}
@@ -157,5 +161,5 @@ Definition at line 364 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
-Definition at line 29 of file U\+A\+R\+T\+Parser.\+h.
+Definition at line 37 of file U\+A\+R\+T\+Parser.\+h.
 

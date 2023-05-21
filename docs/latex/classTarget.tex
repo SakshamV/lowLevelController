@@ -28,24 +28,24 @@ Collaboration diagram for Target\+:\nopagebreak
 \mbox{\hyperlink{classTarget_a7008d6752ce64f82e56aae6ea6c2bb65}{Target}} ()
 \item 
 virtual uint8\+\_\+t \mbox{\hyperlink{classTarget_afde82153ebd1fe06d206305d13652bae}{serialize}} (unsigned char $\ast$outbuffer) const override
-\item 
+\begin{DoxyCompactList}\small\item\em \+: Serializes Member variables to outbuffer \end{DoxyCompactList}\item 
 virtual uint8\+\_\+t \mbox{\hyperlink{classTarget_acb145d920891aa265848e28b4b7b4ff3}{deserialize}} (unsigned char $\ast$inbuffer) override
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \+: Deserializes custom message from inpt data buffer and updates the member variables \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 float \mbox{\hyperlink{classTarget_aa19700cdb3c0dd4e4d639fbbd1de6e5c}{left\+Motor\+Target}}
-\item 
+\begin{DoxyCompactList}\small\item\em \+: \mbox{\hyperlink{classTarget}{Target}} left motor speed \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{classTarget_a67b337a9927de0748df60d5fcf45afb5}{right\+Motor\+Target}}
-\item 
+\begin{DoxyCompactList}\small\item\em \+: \mbox{\hyperlink{classTarget}{Target}} right motor speed \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{classTarget_a9615f63401e2029e51ae4d7fb5a16349}{theta}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \+: Theta is used to control start and stop of control action. When theta is 0, control action is stopped, when theta is 1, control action is started \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 
 
-Definition at line 169 of file U\+A\+R\+T\+Parser.\+h.
+Definition at line 192 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
@@ -58,7 +58,7 @@ Definition at line 169 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
-Definition at line 174 of file U\+A\+R\+T\+Parser.\+h.
+Definition at line 206 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
@@ -71,11 +71,20 @@ Definition at line 174 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
-Implements \mbox{\hyperlink{classCustomMsg_a90502e0d930c29c08684f60fc4f23de7}{Custom\+Msg}}.
+\+: Deserializes custom message from inpt data buffer and updates the member variables 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inbuffer} & Valid pointer to a buffer \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classCustomMsg_ad5bbe6e076164334a3865dd32a953c35}{Custom\+Msg}}.
 
 
 
-Definition at line 231 of file U\+A\+R\+T\+Parser.\+h.
+Definition at line 263 of file U\+A\+R\+T\+Parser.\+h.
 
 \mbox{\Hypertarget{classTarget_afde82153ebd1fe06d206305d13652bae}\label{classTarget_afde82153ebd1fe06d206305d13652bae}} 
 \index{Target@{Target}!serialize@{serialize}}
@@ -85,11 +94,20 @@ Definition at line 231 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
+\+: Serializes Member variables to outbuffer 
+
+
+\begin{DoxyParams}{Parameters}
+{\em outbuffer} & Valid pointer to buffer where data has to be written \\
+\hline
+\end{DoxyParams}
+
+
 Implements \mbox{\hyperlink{classCustomMsg_a35e14ec5186cc64dad60c6380df18733}{Custom\+Msg}}.
 
 
 
-Definition at line 181 of file U\+A\+R\+T\+Parser.\+h.
+Definition at line 213 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
@@ -102,7 +120,11 @@ Definition at line 181 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
-Definition at line 171 of file U\+A\+R\+T\+Parser.\+h.
+\+: \mbox{\hyperlink{classTarget}{Target}} left motor speed 
+
+
+
+Definition at line 197 of file U\+A\+R\+T\+Parser.\+h.
 
 \mbox{\Hypertarget{classTarget_a67b337a9927de0748df60d5fcf45afb5}\label{classTarget_a67b337a9927de0748df60d5fcf45afb5}} 
 \index{Target@{Target}!rightMotorTarget@{rightMotorTarget}}
@@ -112,7 +134,11 @@ Definition at line 171 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
-Definition at line 172 of file U\+A\+R\+T\+Parser.\+h.
+\+: \mbox{\hyperlink{classTarget}{Target}} right motor speed 
+
+
+
+Definition at line 201 of file U\+A\+R\+T\+Parser.\+h.
 
 \mbox{\Hypertarget{classTarget_a9615f63401e2029e51ae4d7fb5a16349}\label{classTarget_a9615f63401e2029e51ae4d7fb5a16349}} 
 \index{Target@{Target}!theta@{theta}}
@@ -122,7 +148,11 @@ Definition at line 172 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
-Definition at line 173 of file U\+A\+R\+T\+Parser.\+h.
+\+: Theta is used to control start and stop of control action. When theta is 0, control action is stopped, when theta is 1, control action is started 
+
+
+
+Definition at line 205 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
