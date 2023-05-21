@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">LowLevelController
-   &#160;<span id="projectnumber">v2.0.0</span>
+   &#160;<span id="projectnumber">v2.5.0</span>
    </div>
    <div id="projectbrief">Arduino Code for Wheel odometry and velocity control of the terpbot robot</div>
   </td>
@@ -336,99 +336,99 @@ $(function() {
 <div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160; </div>
 <div class="line"><a name="l00317"></a><span class="lineno"><a class="line" href="classCurrentTickRate.html">  317</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCurrentTickRate.html">CurrentTickRate</a>:<span class="keyword">public</span> <a class="code" href="classCustomMsg.html">CustomMsg</a>{</div>
 <div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00319"></a><span class="lineno"><a class="line" href="classCurrentTickRate.html#a7d6b7789a427e6fdc5ce96bb02f0124f">  319</a></span>&#160;  <span class="keywordtype">float</span> <a class="code" href="classCurrentTickRate.html#a7d6b7789a427e6fdc5ce96bb02f0124f">leftTickRate</a>=0;</div>
-<div class="line"><a name="l00320"></a><span class="lineno"><a class="line" href="classCurrentTickRate.html#a04fc81ccae72bc9bb4804c7eb14965b9">  320</a></span>&#160;  <span class="keywordtype">float</span> <a class="code" href="classCurrentTickRate.html#a04fc81ccae72bc9bb4804c7eb14965b9">rightTickRate</a>=0;</div>
-<div class="line"><a name="l00321"></a><span class="lineno"><a class="line" href="classCurrentTickRate.html#a310fe0d31949a292010e8c8a9eb15f48">  321</a></span>&#160;  <span class="keyword">virtual</span> uint8_t <a class="code" href="classCurrentTickRate.html#a310fe0d31949a292010e8c8a9eb15f48">serialize</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> outbuffer)<span class="keyword"> const override</span>{</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    uint8_t offset = 0;</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160; </div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    *(outbuffer+offset) = <span class="charliteral">&#39;{&#39;</span>;</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    offset+=1;</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160; </div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    *(outbuffer+offset) = <a class="code" href="UARTParser_8h.html#a699debe60f841d3ebfda7df38f7747c8">tags</a>[<a class="code" href="UARTParser_8h.html#aef88e249863a4190b6062bbf8fa5c656a7770173898835c0954853cb16e8d284a">Tags::CURRENT</a>];</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    offset+=1;</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160; </div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;    <span class="keyword">union </span>{</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;      <span class="keywordtype">float</span> real;</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;      uint32_t base;</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;    } u_i_leftMotorTicks;</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;    u_i_leftMotorTicks.real = this-&gt;<a class="code" href="classCurrentTickRate.html#a7d6b7789a427e6fdc5ce96bb02f0124f">leftTickRate</a>;</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160; </div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;    *(outbuffer + offset + 0) = (u_i_leftMotorTicks.base &gt;&gt; (8 * 0)) &amp; 0xFF;</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    *(outbuffer + offset + 1) = (u_i_leftMotorTicks.base &gt;&gt; (8 * 1)) &amp; 0xFF;</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;    *(outbuffer + offset + 2) = (u_i_leftMotorTicks.base &gt;&gt; (8 * 2)) &amp; 0xFF;</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    *(outbuffer + offset + 3) = (u_i_leftMotorTicks.base &gt;&gt; (8 * 3)) &amp; 0xFF;</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160; </div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;    offset += <span class="keyword">sizeof</span>(this-&gt;<a class="code" href="classCurrentTickRate.html#a7d6b7789a427e6fdc5ce96bb02f0124f">leftTickRate</a>);</div>
+<div class="line"><a name="l00320"></a><span class="lineno"><a class="line" href="classCurrentTickRate.html#a7d6b7789a427e6fdc5ce96bb02f0124f">  320</a></span>&#160;  <span class="keywordtype">float</span> <a class="code" href="classCurrentTickRate.html#a7d6b7789a427e6fdc5ce96bb02f0124f">leftTickRate</a>=0;</div>
+<div class="line"><a name="l00322"></a><span class="lineno"><a class="line" href="classCurrentTickRate.html#a04fc81ccae72bc9bb4804c7eb14965b9">  322</a></span>&#160;  <span class="keywordtype">float</span> <a class="code" href="classCurrentTickRate.html#a04fc81ccae72bc9bb4804c7eb14965b9">rightTickRate</a>=0;</div>
+<div class="line"><a name="l00323"></a><span class="lineno"><a class="line" href="classCurrentTickRate.html#a310fe0d31949a292010e8c8a9eb15f48">  323</a></span>&#160;  <span class="keyword">virtual</span> uint8_t <a class="code" href="classCurrentTickRate.html#a310fe0d31949a292010e8c8a9eb15f48">serialize</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> outbuffer)<span class="keyword"> const override</span>{</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    uint8_t offset = 0;</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160; </div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    *(outbuffer+offset) = <span class="charliteral">&#39;{&#39;</span>;</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    offset+=1;</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160; </div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    *(outbuffer+offset) = <a class="code" href="UARTParser_8h.html#a699debe60f841d3ebfda7df38f7747c8">tags</a>[<a class="code" href="UARTParser_8h.html#aef88e249863a4190b6062bbf8fa5c656a7770173898835c0954853cb16e8d284a">Tags::CURRENT</a>];</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;    offset+=1;</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160; </div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;    <span class="keyword">union </span>{</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;      <span class="keywordtype">float</span> real;</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;      uint32_t base;</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;    } u_i_leftMotorTicks;</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;    u_i_leftMotorTicks.real = this-&gt;<a class="code" href="classCurrentTickRate.html#a7d6b7789a427e6fdc5ce96bb02f0124f">leftTickRate</a>;</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160; </div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;    *(outbuffer + offset + 0) = (u_i_leftMotorTicks.base &gt;&gt; (8 * 0)) &amp; 0xFF;</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    *(outbuffer + offset + 1) = (u_i_leftMotorTicks.base &gt;&gt; (8 * 1)) &amp; 0xFF;</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;    *(outbuffer + offset + 2) = (u_i_leftMotorTicks.base &gt;&gt; (8 * 2)) &amp; 0xFF;</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;    *(outbuffer + offset + 3) = (u_i_leftMotorTicks.base &gt;&gt; (8 * 3)) &amp; 0xFF;</div>
 <div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160; </div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;    <span class="keyword">union </span>{</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;      <span class="keywordtype">float</span> real;</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;      uint32_t base;</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    } u_i_rightMotorTicks;</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;    u_i_rightMotorTicks.real = this-&gt;<a class="code" href="classCurrentTickRate.html#a04fc81ccae72bc9bb4804c7eb14965b9">rightTickRate</a>;</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160; </div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    *(outbuffer + offset + 0) = (u_i_rightMotorTicks.base &gt;&gt; (8 * 0)) &amp; 0xFF;</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    *(outbuffer + offset + 1) = (u_i_rightMotorTicks.base &gt;&gt; (8 * 1)) &amp; 0xFF;</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    *(outbuffer + offset + 2) = (u_i_rightMotorTicks.base &gt;&gt; (8 * 2)) &amp; 0xFF;</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    *(outbuffer + offset + 3) = (u_i_rightMotorTicks.base &gt;&gt; (8 * 3)) &amp; 0xFF;</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;    </div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    offset += <span class="keyword">sizeof</span>(this-&gt;<a class="code" href="classCurrentTickRate.html#a04fc81ccae72bc9bb4804c7eb14965b9">rightTickRate</a>);</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160; </div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160; </div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    *(outbuffer+offset) = <span class="charliteral">&#39;}&#39;</span>;</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    offset+=1;</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160; </div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    *(outbuffer+offset) = <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    offset+=1;</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160; </div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    <span class="keywordflow">return</span> offset;</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;  }</div>
-<div class="line"><a name="l00365"></a><span class="lineno"><a class="line" href="classCurrentTickRate.html#ae447dea7bfdfe0f031f3b35d8943309a">  365</a></span>&#160;  <span class="keyword">virtual</span> uint8_t <a class="code" href="classCurrentTickRate.html#ae447dea7bfdfe0f031f3b35d8943309a">deserialize</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>  *<span class="keyword">const</span> inbuffer)<span class="keyword"> override</span>{</div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    uint8_t offset = 0;</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    offset+=2;</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160; </div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    <span class="keyword">union </span>{</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;      <span class="keywordtype">float</span> real;</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;      uint32_t base;</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    } u_leftTarg;</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    u_leftTarg.base = 0;</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    u_leftTarg.base |= ((uint32_t) (*(inbuffer + offset + 0))) &lt;&lt; (8 * 0);</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    u_leftTarg.base |= ((uint32_t) (*(inbuffer + offset + 1))) &lt;&lt; (8 * 1);</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    u_leftTarg.base |= ((uint32_t) (*(inbuffer + offset + 2))) &lt;&lt; (8 * 2);</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;    u_leftTarg.base |= ((uint32_t) (*(inbuffer + offset + 3))) &lt;&lt; (8 * 3);</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    this-&gt;leftTickRate = u_leftTarg.real;</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    offset += <span class="keyword">sizeof</span>(this-&gt;<a class="code" href="classCurrentTickRate.html#a7d6b7789a427e6fdc5ce96bb02f0124f">leftTickRate</a>);</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160; </div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    <span class="keyword">union </span>{</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;      <span class="keywordtype">float</span> real;</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;      uint32_t base;</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    } u_rightTarg;</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    u_rightTarg.base = 0;</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    u_rightTarg.base |= ((uint32_t) (*(inbuffer + offset + 0))) &lt;&lt; (8 * 0);</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    u_rightTarg.base |= ((uint32_t) (*(inbuffer + offset + 1))) &lt;&lt; (8 * 1);</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    u_rightTarg.base |= ((uint32_t) (*(inbuffer + offset + 2))) &lt;&lt; (8 * 2);</div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    u_rightTarg.base |= ((uint32_t) (*(inbuffer + offset + 3))) &lt;&lt; (8 * 3);</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;    this-&gt;rightTickRate = u_rightTarg.real;</div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    offset += <span class="keyword">sizeof</span>(this-&gt;<a class="code" href="classCurrentTickRate.html#a04fc81ccae72bc9bb4804c7eb14965b9">rightTickRate</a>);</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160; </div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    offset+=2;</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    <span class="keywordflow">return</span> offset;</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;  }</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;};</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160; </div>
-<div class="line"><a name="l00401"></a><span class="lineno"><a class="line" href="UARTParser_8h.html#a959d0a2944eb4f434de2f9d8b1fbea6e">  401</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="UARTParser_8h.html#a959d0a2944eb4f434de2f9d8b1fbea6e">readUart</a>(){<span class="keywordflow">return</span> <a class="code" href="UARTParser_8h.html#a2430b658fd49bee7a14938820c7f9119">hw</a>-&gt;read();}</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160; </div>
-<div class="line"><a name="l00406"></a><span class="lineno"><a class="line" href="UARTParser_8h.html#aad401fc6b792ab66b08a387f967db1f8">  406</a></span>&#160;uint8_t <a class="code" href="UARTParser_8h.html#aad401fc6b792ab66b08a387f967db1f8">out_buf</a>[50];</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160; </div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00413"></a><span class="lineno"><a class="line" href="UARTParser_8h.html#aa00e2fd1aa7101d2b0561ec5179fdcc5">  413</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="UARTParser_8h.html#aa00e2fd1aa7101d2b0561ec5179fdcc5">publishCustomMsg</a>(T&amp; input){</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;  <span class="keyword">auto</span> length = input.serialize(<a class="code" href="UARTParser_8h.html#aad401fc6b792ab66b08a387f967db1f8">out_buf</a>);</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;  <a class="code" href="UARTParser_8h.html#a2430b658fd49bee7a14938820c7f9119">hw</a>-&gt;write(<a class="code" href="UARTParser_8h.html#aad401fc6b792ab66b08a387f967db1f8">out_buf</a>, length);</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;}</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;    offset += <span class="keyword">sizeof</span>(this-&gt;<a class="code" href="classCurrentTickRate.html#a7d6b7789a427e6fdc5ce96bb02f0124f">leftTickRate</a>);</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160; </div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;    <span class="keyword">union </span>{</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;      <span class="keywordtype">float</span> real;</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;      uint32_t base;</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    } u_i_rightMotorTicks;</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    u_i_rightMotorTicks.real = this-&gt;<a class="code" href="classCurrentTickRate.html#a04fc81ccae72bc9bb4804c7eb14965b9">rightTickRate</a>;</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160; </div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    *(outbuffer + offset + 0) = (u_i_rightMotorTicks.base &gt;&gt; (8 * 0)) &amp; 0xFF;</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    *(outbuffer + offset + 1) = (u_i_rightMotorTicks.base &gt;&gt; (8 * 1)) &amp; 0xFF;</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;    *(outbuffer + offset + 2) = (u_i_rightMotorTicks.base &gt;&gt; (8 * 2)) &amp; 0xFF;</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    *(outbuffer + offset + 3) = (u_i_rightMotorTicks.base &gt;&gt; (8 * 3)) &amp; 0xFF;</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    </div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;    offset += <span class="keyword">sizeof</span>(this-&gt;<a class="code" href="classCurrentTickRate.html#a04fc81ccae72bc9bb4804c7eb14965b9">rightTickRate</a>);</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160; </div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160; </div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    *(outbuffer+offset) = <span class="charliteral">&#39;}&#39;</span>;</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    offset+=1;</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160; </div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    *(outbuffer+offset) = <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    offset+=1;</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160; </div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    <span class="keywordflow">return</span> offset;</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;  }</div>
+<div class="line"><a name="l00367"></a><span class="lineno"><a class="line" href="classCurrentTickRate.html#ae447dea7bfdfe0f031f3b35d8943309a">  367</a></span>&#160;  <span class="keyword">virtual</span> uint8_t <a class="code" href="classCurrentTickRate.html#ae447dea7bfdfe0f031f3b35d8943309a">deserialize</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>  *<span class="keyword">const</span> inbuffer)<span class="keyword"> override</span>{</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    uint8_t offset = 0;</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    offset+=2;</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160; </div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    <span class="keyword">union </span>{</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;      <span class="keywordtype">float</span> real;</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;      uint32_t base;</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    } u_leftTarg;</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    u_leftTarg.base = 0;</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    u_leftTarg.base |= ((uint32_t) (*(inbuffer + offset + 0))) &lt;&lt; (8 * 0);</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;    u_leftTarg.base |= ((uint32_t) (*(inbuffer + offset + 1))) &lt;&lt; (8 * 1);</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    u_leftTarg.base |= ((uint32_t) (*(inbuffer + offset + 2))) &lt;&lt; (8 * 2);</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    u_leftTarg.base |= ((uint32_t) (*(inbuffer + offset + 3))) &lt;&lt; (8 * 3);</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    this-&gt;leftTickRate = u_leftTarg.real;</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    offset += <span class="keyword">sizeof</span>(this-&gt;<a class="code" href="classCurrentTickRate.html#a7d6b7789a427e6fdc5ce96bb02f0124f">leftTickRate</a>);</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160; </div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    <span class="keyword">union </span>{</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;      <span class="keywordtype">float</span> real;</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;      uint32_t base;</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    } u_rightTarg;</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    u_rightTarg.base = 0;</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    u_rightTarg.base |= ((uint32_t) (*(inbuffer + offset + 0))) &lt;&lt; (8 * 0);</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    u_rightTarg.base |= ((uint32_t) (*(inbuffer + offset + 1))) &lt;&lt; (8 * 1);</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;    u_rightTarg.base |= ((uint32_t) (*(inbuffer + offset + 2))) &lt;&lt; (8 * 2);</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    u_rightTarg.base |= ((uint32_t) (*(inbuffer + offset + 3))) &lt;&lt; (8 * 3);</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    this-&gt;rightTickRate = u_rightTarg.real;</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    offset += <span class="keyword">sizeof</span>(this-&gt;<a class="code" href="classCurrentTickRate.html#a04fc81ccae72bc9bb4804c7eb14965b9">rightTickRate</a>);</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160; </div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    offset+=2;</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;    <span class="keywordflow">return</span> offset;</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;  }</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;};</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160; </div>
+<div class="line"><a name="l00403"></a><span class="lineno"><a class="line" href="UARTParser_8h.html#a959d0a2944eb4f434de2f9d8b1fbea6e">  403</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">int</span> <a class="code" href="UARTParser_8h.html#a959d0a2944eb4f434de2f9d8b1fbea6e">readUart</a>(){<span class="keywordflow">return</span> <a class="code" href="UARTParser_8h.html#a2430b658fd49bee7a14938820c7f9119">hw</a>-&gt;read();}</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160; </div>
+<div class="line"><a name="l00408"></a><span class="lineno"><a class="line" href="UARTParser_8h.html#aad401fc6b792ab66b08a387f967db1f8">  408</a></span>&#160;uint8_t <a class="code" href="UARTParser_8h.html#aad401fc6b792ab66b08a387f967db1f8">out_buf</a>[50];</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160; </div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00415"></a><span class="lineno"><a class="line" href="UARTParser_8h.html#aa00e2fd1aa7101d2b0561ec5179fdcc5">  415</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="UARTParser_8h.html#aa00e2fd1aa7101d2b0561ec5179fdcc5">publishCustomMsg</a>(T&amp; input){</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;  <span class="keyword">auto</span> length = input.serialize(<a class="code" href="UARTParser_8h.html#aad401fc6b792ab66b08a387f967db1f8">out_buf</a>);</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;  <a class="code" href="UARTParser_8h.html#a2430b658fd49bee7a14938820c7f9119">hw</a>-&gt;write(<a class="code" href="UARTParser_8h.html#aad401fc6b792ab66b08a387f967db1f8">out_buf</a>, length);</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;}</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassTarget_html_a44c42489f12a6d52aef7b4a7ce7a301f"><div class="ttname"><a href="classTarget.html#a44c42489f12a6d52aef7b4a7ce7a301f">Target::deserialize</a></div><div class="ttdeci">virtual uint8_t deserialize(const unsigned char *const inbuffer) override</div><div class="ttdoc">: Deserializes custom message from inpt data buffer and updates the member variables</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00270">UARTParser.h:270</a></div></div>
 <div class="ttc" id="aclassTarget_html_ab8d3b7e67e405b2309f2cf9ec9405905"><div class="ttname"><a href="classTarget.html#ab8d3b7e67e405b2309f2cf9ec9405905">Target::serialize</a></div><div class="ttdeci">virtual uint8_t serialize(unsigned char *const outbuffer) const override</div><div class="ttdoc">: Serializes Member variables to outbuffer</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00220">UARTParser.h:220</a></div></div>
-<div class="ttc" id="aUARTParser_8h_html_aad401fc6b792ab66b08a387f967db1f8"><div class="ttname"><a href="UARTParser_8h.html#aad401fc6b792ab66b08a387f967db1f8">out_buf</a></div><div class="ttdeci">uint8_t out_buf[50]</div><div class="ttdoc">: Output buffer for serial port</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00406">UARTParser.h:406</a></div></div>
+<div class="ttc" id="aUARTParser_8h_html_aad401fc6b792ab66b08a387f967db1f8"><div class="ttname"><a href="UARTParser_8h.html#aad401fc6b792ab66b08a387f967db1f8">out_buf</a></div><div class="ttdeci">uint8_t out_buf[50]</div><div class="ttdoc">: Output buffer for serial port</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00408">UARTParser.h:408</a></div></div>
 <div class="ttc" id="aclassGains_html_aebcd1038e3f8c4d6443020eb3078bcb9"><div class="ttname"><a href="classGains.html#aebcd1038e3f8c4d6443020eb3078bcb9">Gains::isLeft</a></div><div class="ttdeci">bool isLeft</div><div class="ttdoc">: is the message meant for left motor or right motor</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00066">UARTParser.h:66</a></div></div>
 <div class="ttc" id="aclassGains_html_a88af4f4fbf8a0c23d312b2dfb2a80b27"><div class="ttname"><a href="classGains.html#a88af4f4fbf8a0c23d312b2dfb2a80b27">Gains::kd</a></div><div class="ttdeci">float kd</div><div class="ttdoc">: Derivative gain</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00058">UARTParser.h:58</a></div></div>
 <div class="ttc" id="aclassCustomMsg_html"><div class="ttname"><a href="classCustomMsg.html">CustomMsg</a></div><div class="ttdoc">: Abstract class for custom messages</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00014">UARTParser.h:14</a></div></div>
@@ -436,26 +436,26 @@ $(function() {
 <div class="ttc" id="aUARTParser_8h_html_aef88e249863a4190b6062bbf8fa5c656"><div class="ttname"><a href="UARTParser_8h.html#aef88e249863a4190b6062bbf8fa5c656">Tags</a></div><div class="ttdeci">Tags</div><div class="ttdoc">: Enum for tags</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00034">UARTParser.h:34</a></div></div>
 <div class="ttc" id="aclassTarget_html_aa19700cdb3c0dd4e4d639fbbd1de6e5c"><div class="ttname"><a href="classTarget.html#aa19700cdb3c0dd4e4d639fbbd1de6e5c">Target::leftMotorTarget</a></div><div class="ttdeci">float leftMotorTarget</div><div class="ttdoc">: Target left motor speed</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00204">UARTParser.h:204</a></div></div>
 <div class="ttc" id="aclassTarget_html_a67b337a9927de0748df60d5fcf45afb5"><div class="ttname"><a href="classTarget.html#a67b337a9927de0748df60d5fcf45afb5">Target::rightMotorTarget</a></div><div class="ttdeci">float rightMotorTarget</div><div class="ttdoc">: Target right motor speed</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00208">UARTParser.h:208</a></div></div>
-<div class="ttc" id="aclassCurrentTickRate_html_a310fe0d31949a292010e8c8a9eb15f48"><div class="ttname"><a href="classCurrentTickRate.html#a310fe0d31949a292010e8c8a9eb15f48">CurrentTickRate::serialize</a></div><div class="ttdeci">virtual uint8_t serialize(unsigned char *const outbuffer) const override</div><div class="ttdoc">: Serializes Member variables to outbuffer</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00321">UARTParser.h:321</a></div></div>
+<div class="ttc" id="aclassCurrentTickRate_html_a310fe0d31949a292010e8c8a9eb15f48"><div class="ttname"><a href="classCurrentTickRate.html#a310fe0d31949a292010e8c8a9eb15f48">CurrentTickRate::serialize</a></div><div class="ttdeci">virtual uint8_t serialize(unsigned char *const outbuffer) const override</div><div class="ttdoc">: Serializes Member variables to outbuffer</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00323">UARTParser.h:323</a></div></div>
 <div class="ttc" id="aclassGains_html_a6c843ceb7bf3c09dac8fe0f1714e38a3"><div class="ttname"><a href="classGains.html#a6c843ceb7bf3c09dac8fe0f1714e38a3">Gains::ki</a></div><div class="ttdeci">float ki</div><div class="ttdoc">: Integral gain</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00060">UARTParser.h:60</a></div></div>
 <div class="ttc" id="aclassTarget_html_a9615f63401e2029e51ae4d7fb5a16349"><div class="ttname"><a href="classTarget.html#a9615f63401e2029e51ae4d7fb5a16349">Target::theta</a></div><div class="ttdeci">float theta</div><div class="ttdoc">: Theta is used to control start and stop of control action. When theta is 0, control action is stopp...</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00212">UARTParser.h:212</a></div></div>
 <div class="ttc" id="aclassTarget_html"><div class="ttname"><a href="classTarget.html">Target</a></div><div class="ttdoc">: Custom message to receive Left and right motor target speeds from RPi</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00199">UARTParser.h:199</a></div></div>
 <div class="ttc" id="aUARTParser_8h_html_a2430b658fd49bee7a14938820c7f9119"><div class="ttname"><a href="UARTParser_8h.html#a2430b658fd49bee7a14938820c7f9119">hw</a></div><div class="ttdeci">HardwareSerial * hw</div><div class="ttdoc">: Serial port object , initialized to Serial port 0, the default port on Arduino Uno,...</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00044">UARTParser.h:44</a></div></div>
 <div class="ttc" id="aclassGains_html_ae597981b9e87f1b688de187a4f9b20b5"><div class="ttname"><a href="classGains.html#ae597981b9e87f1b688de187a4f9b20b5">Gains::deserialize</a></div><div class="ttdeci">virtual uint8_t deserialize(const unsigned char *const inbuffer) override</div><div class="ttdoc">: Deserializes custom message from inpt data buffer and updates the member variables</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00134">UARTParser.h:134</a></div></div>
-<div class="ttc" id="aUARTParser_8h_html_aa00e2fd1aa7101d2b0561ec5179fdcc5"><div class="ttname"><a href="UARTParser_8h.html#aa00e2fd1aa7101d2b0561ec5179fdcc5">publishCustomMsg</a></div><div class="ttdeci">void publishCustomMsg(T &amp;input)</div><div class="ttdoc">: Publishes custom message to serial port</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00413">UARTParser.h:413</a></div></div>
+<div class="ttc" id="aUARTParser_8h_html_aa00e2fd1aa7101d2b0561ec5179fdcc5"><div class="ttname"><a href="UARTParser_8h.html#aa00e2fd1aa7101d2b0561ec5179fdcc5">publishCustomMsg</a></div><div class="ttdeci">void publishCustomMsg(T &amp;input)</div><div class="ttdoc">: Publishes custom message to serial port</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00415">UARTParser.h:415</a></div></div>
 <div class="ttc" id="aUARTParser_8h_html_aef88e249863a4190b6062bbf8fa5c656a2968e69007f150c43ef327ac52a4e942"><div class="ttname"><a href="UARTParser_8h.html#aef88e249863a4190b6062bbf8fa5c656a2968e69007f150c43ef327ac52a4e942">GAINS</a></div><div class="ttdeci">@ GAINS</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00034">UARTParser.h:34</a></div></div>
 <div class="ttc" id="aUARTParser_8h_html_aef88e249863a4190b6062bbf8fa5c656a7770173898835c0954853cb16e8d284a"><div class="ttname"><a href="UARTParser_8h.html#aef88e249863a4190b6062bbf8fa5c656a7770173898835c0954853cb16e8d284a">CURRENT</a></div><div class="ttdeci">@ CURRENT</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00034">UARTParser.h:34</a></div></div>
 <div class="ttc" id="aclassCustomMsg_html_a57ccd284f9aca43bbbbd1aac09d559ef"><div class="ttname"><a href="classCustomMsg.html#a57ccd284f9aca43bbbbd1aac09d559ef">CustomMsg::deserialize</a></div><div class="ttdeci">virtual uint8_t deserialize(const unsigned char *const inbuffer)=0</div><div class="ttdoc">: Deserializes custom message from inpt data buffer and updates the member variables</div></div>
-<div class="ttc" id="aUARTParser_8h_html_a959d0a2944eb4f434de2f9d8b1fbea6e"><div class="ttname"><a href="UARTParser_8h.html#a959d0a2944eb4f434de2f9d8b1fbea6e">readUart</a></div><div class="ttdeci">int readUart()</div><div class="ttdoc">: Reads bytes from serial port's cyclic buffer</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00401">UARTParser.h:401</a></div></div>
+<div class="ttc" id="aUARTParser_8h_html_a959d0a2944eb4f434de2f9d8b1fbea6e"><div class="ttname"><a href="UARTParser_8h.html#a959d0a2944eb4f434de2f9d8b1fbea6e">readUart</a></div><div class="ttdeci">int readUart()</div><div class="ttdoc">: Reads bytes from serial port's cyclic buffer</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00403">UARTParser.h:403</a></div></div>
 <div class="ttc" id="aclassGains_html_a215cdaa3c3fe140a02204f8ce1cbbd19"><div class="ttname"><a href="classGains.html#a215cdaa3c3fe140a02204f8ce1cbbd19">Gains::iSat</a></div><div class="ttdeci">float iSat</div><div class="ttdoc">: Integral Saturation</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00062">UARTParser.h:62</a></div></div>
 <div class="ttc" id="aUARTParser_8h_html_aef88e249863a4190b6062bbf8fa5c656a09aa9e75617e9d8719738ca163c09137"><div class="ttname"><a href="UARTParser_8h.html#aef88e249863a4190b6062bbf8fa5c656a09aa9e75617e9d8719738ca163c09137">TARGET</a></div><div class="ttdeci">@ TARGET</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00034">UARTParser.h:34</a></div></div>
 <div class="ttc" id="aclassCustomMsg_html_a9ce9511cc019392fb87f4fa6f61c442a"><div class="ttname"><a href="classCustomMsg.html#a9ce9511cc019392fb87f4fa6f61c442a">CustomMsg::serialize</a></div><div class="ttdeci">virtual uint8_t serialize(unsigned char *const outbuffer) const =0</div><div class="ttdoc">: Serializes Member variables to outbuffer</div></div>
 <div class="ttc" id="aclassCurrentTickRate_html"><div class="ttname"><a href="classCurrentTickRate.html">CurrentTickRate</a></div><div class="ttdoc">: Custom message to send current tick rate of left and right motors to RPi</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00317">UARTParser.h:317</a></div></div>
 <div class="ttc" id="aUARTParser_8h_html_a699debe60f841d3ebfda7df38f7747c8"><div class="ttname"><a href="UARTParser_8h.html#a699debe60f841d3ebfda7df38f7747c8">tags</a></div><div class="ttdeci">static const unsigned char tags[]</div><div class="ttdoc">: Tags for each message</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00039">UARTParser.h:39</a></div></div>
 <div class="ttc" id="aclassGains_html_ae47a58c4536575db94db274cf974df24"><div class="ttname"><a href="classGains.html#ae47a58c4536575db94db274cf974df24">Gains::serialize</a></div><div class="ttdeci">virtual uint8_t serialize(unsigned char *const outbuffer) const override</div><div class="ttdoc">: Serializes Member variables to outbuffer</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00068">UARTParser.h:68</a></div></div>
-<div class="ttc" id="aclassCurrentTickRate_html_ae447dea7bfdfe0f031f3b35d8943309a"><div class="ttname"><a href="classCurrentTickRate.html#ae447dea7bfdfe0f031f3b35d8943309a">CurrentTickRate::deserialize</a></div><div class="ttdeci">virtual uint8_t deserialize(const unsigned char *const inbuffer) override</div><div class="ttdoc">: Deserializes custom message from inpt data buffer and updates the member variables</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00365">UARTParser.h:365</a></div></div>
-<div class="ttc" id="aclassCurrentTickRate_html_a04fc81ccae72bc9bb4804c7eb14965b9"><div class="ttname"><a href="classCurrentTickRate.html#a04fc81ccae72bc9bb4804c7eb14965b9">CurrentTickRate::rightTickRate</a></div><div class="ttdeci">float rightTickRate</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00320">UARTParser.h:320</a></div></div>
-<div class="ttc" id="aclassCurrentTickRate_html_a7d6b7789a427e6fdc5ce96bb02f0124f"><div class="ttname"><a href="classCurrentTickRate.html#a7d6b7789a427e6fdc5ce96bb02f0124f">CurrentTickRate::leftTickRate</a></div><div class="ttdeci">float leftTickRate</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00319">UARTParser.h:319</a></div></div>
+<div class="ttc" id="aclassCurrentTickRate_html_ae447dea7bfdfe0f031f3b35d8943309a"><div class="ttname"><a href="classCurrentTickRate.html#ae447dea7bfdfe0f031f3b35d8943309a">CurrentTickRate::deserialize</a></div><div class="ttdeci">virtual uint8_t deserialize(const unsigned char *const inbuffer) override</div><div class="ttdoc">: Deserializes custom message from inpt data buffer and updates the member variables</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00367">UARTParser.h:367</a></div></div>
+<div class="ttc" id="aclassCurrentTickRate_html_a04fc81ccae72bc9bb4804c7eb14965b9"><div class="ttname"><a href="classCurrentTickRate.html#a04fc81ccae72bc9bb4804c7eb14965b9">CurrentTickRate::rightTickRate</a></div><div class="ttdeci">float rightTickRate</div><div class="ttdoc">: Current tick rate of right motor</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00322">UARTParser.h:322</a></div></div>
+<div class="ttc" id="aclassCurrentTickRate_html_a7d6b7789a427e6fdc5ce96bb02f0124f"><div class="ttname"><a href="classCurrentTickRate.html#a7d6b7789a427e6fdc5ce96bb02f0124f">CurrentTickRate::leftTickRate</a></div><div class="ttdeci">float leftTickRate</div><div class="ttdoc">: Current tick rate of left motor</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00320">UARTParser.h:320</a></div></div>
 <div class="ttc" id="aclassTarget_html_a7008d6752ce64f82e56aae6ea6c2bb65"><div class="ttname"><a href="classTarget.html#a7008d6752ce64f82e56aae6ea6c2bb65">Target::Target</a></div><div class="ttdeci">Target()</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00213">UARTParser.h:213</a></div></div>
 <div class="ttc" id="aclassGains_html"><div class="ttname"><a href="classGains.html">Gains</a></div><div class="ttdoc">: Custom message to receive control gains from RPi</div><div class="ttdef"><b>Definition:</b> <a href="UARTParser_8h_source.html#l00049">UARTParser.h:49</a></div></div>
 <!-- start footer part -->

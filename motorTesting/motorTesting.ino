@@ -1,5 +1,6 @@
 /**
  * @file motorTesting.ino
+ * \mainpage
 */
 #include "./UARTParser.h"
 

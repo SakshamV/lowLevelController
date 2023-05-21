@@ -316,7 +316,9 @@ class Target :public CustomMsg{
 */
 class CurrentTickRate:public CustomMsg{
   public:
+  /// @brief:  Current tick rate of left motor
   float leftTickRate=0;
+  /// @brief:  Current tick rate of right motor
   float rightTickRate=0;
   virtual uint8_t serialize(unsigned char *const outbuffer) const override{
     uint8_t offset = 0;
