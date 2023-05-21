@@ -6,10 +6,10 @@
 
 /**
  * @brief:  Abstract class for custom messages
- * @details:  All custom messages must inherit from this class, 3 custom messages are supported. Gains, Target, Current. \
- * Gains ={'G',k_p,k_i,k_d,i_sat,isLeft}\n \
- * Target = {'T',x,y,theta}\n \
- * Current = {'C',x,y}\n \
+ * @details:  All custom messages must inherit from this class, 3 custom messages are supported. Gains, Target and CurrentTickRate
+ * @note: Gains ={'G',k_p,k_i,k_d,i_sat,isLeft}\n
+ * @note: Target = {'T',x,y,theta}\n
+ * @note: CurrentTickRate = {'C',x,y}\n
 */
 class CustomMsg
 {

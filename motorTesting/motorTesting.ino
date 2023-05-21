@@ -1,3 +1,6 @@
+/**
+ * @file motorTesting.ino
+*/
 #include "./UARTParser.h"
 
 #define DEBUG_VELOCITIES 0
@@ -145,6 +148,9 @@ typedef struct EncoderPins {
   uint8_t rightEncDirection;
 } EncoderPins;
 
+/**
+ * @brief: Encoder wiring details: first 2 define the left encoder pins, next 2 define the right encoder pins
+*/
 static constexpr const EncoderPins encoderPins = {
   .leftEnc = 2, .leftEncDirection = 10, .rightEnc = 3, .rightEncDirection = 11
 };
@@ -193,10 +199,17 @@ static auto motorGains = MotorsGain(19.5,263.33,0.361,100.0,21.0,283.592,0.595,1
  *@brief: Structure to store control loop variables per motor
 */
 typedef struct ControlLoopVariables {
+  /**
+   * @brief: Constructor for ControlLoopVariables
+   * @param ipGains: Pointer to Gains object
+  */
   ControlLoopVariables(Gains * const ipGains)
     : motorGains(ipGains) {
     ;
   }
+  /**
+   * @brief: Resets the controller variables
+  */
   void resetController() {
     motor_setpoint = 0;
     motor_input = 0;

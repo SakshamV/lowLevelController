@@ -22,6 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">LowLevelController
+   &#160;<span id="projectnumber">v2.0.0</span>
    </div>
    <div id="projectbrief">Arduino Code for Wheel odometry and velocity control of the terpbot robot</div>
   </td>
@@ -97,10 +98,16 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>: Abstract class for custom messages </p>
-<p>: All custom messages must inherit from this class, 3 custom messages are supported. <a class="el" href="classGains.html">Gains</a>, <a class="el" href="classTarget.html">Target</a>, Current. \ <a class="el" href="classGains.html">Gains</a> ={'G',k_p,k_i,k_d,i_sat,isLeft}<br  />
- \ <a class="el" href="classTarget.html">Target</a> = {'T',x,y,theta}<br  />
- \ Current = {'C',x,y}<br  />
- \ </p>
+<p>: All custom messages must inherit from this class, 3 custom messages are supported. <a class="el" href="classGains.html">Gains</a>, <a class="el" href="classTarget.html">Target</a> and <a class="el" href="classCurrentTickRate.html">CurrentTickRate</a> </p><dl class="section note"><dt>Note</dt><dd>: <a class="el" href="classGains.html">Gains</a> ={'G',k_p,k_i,k_d,i_sat,isLeft}<br  />
+</dd>
+<dd>
+: <a class="el" href="classTarget.html">Target</a> = {'T',x,y,theta}<br  />
+</dd>
+<dd>
+: <a class="el" href="classCurrentTickRate.html">CurrentTickRate</a> = {'C',x,y}<br  />
+</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="UARTParser_8h_source.html#l00014">14</a> of file <a class="el" href="UARTParser_8h_source.html">UARTParser.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a90502e0d930c29c08684f60fc4f23de7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a90502e0d930c29c08684f60fc4f23de7">&#9670;&nbsp;</a></span>deserialize()</h2>

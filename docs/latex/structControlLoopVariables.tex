@@ -18,9 +18,9 @@ Collaboration diagram for Control\+Loop\+Variables\+:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{structControlLoopVariables_aefae687bace42000b4eae1f119310a3f}{Control\+Loop\+Variables}} (\mbox{\hyperlink{classGains}{Gains}} $\ast$const ip\+Gains)
-\item 
+\begin{DoxyCompactList}\small\item\em \+: Constructor for \mbox{\hyperlink{structControlLoopVariables}{Control\+Loop\+Variables}} \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{structControlLoopVariables_a40b8c2ca92a90f132e2b6a4657336795}{reset\+Controller}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \+: Resets the controller variables \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -45,12 +45,29 @@ float \mbox{\hyperlink{structControlLoopVariables_ad5c5d6f049a5e2fec6cfe8a537694
 \doxysubsection{Detailed Description}
 \+: Structure to store control loop variables per motor 
 
+Definition at line 201 of file motor\+Testing.\+ino.
+
+
+
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{structControlLoopVariables_aefae687bace42000b4eae1f119310a3f}\label{structControlLoopVariables_aefae687bace42000b4eae1f119310a3f}} 
 \index{ControlLoopVariables@{ControlLoopVariables}!ControlLoopVariables@{ControlLoopVariables}}
 \index{ControlLoopVariables@{ControlLoopVariables}!ControlLoopVariables@{ControlLoopVariables}}
 \doxysubsubsection{\texorpdfstring{ControlLoopVariables()}{ControlLoopVariables()}}
 {\footnotesize\ttfamily Control\+Loop\+Variables\+::\+Control\+Loop\+Variables (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGains}{Gains}} $\ast$const}]{ip\+Gains }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\+: Constructor for \mbox{\hyperlink{structControlLoopVariables}{Control\+Loop\+Variables}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ip\+Gains} & Pointer to \mbox{\hyperlink{classGains}{Gains}} object \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 206 of file motor\+Testing.\+ino.
 
 
 
@@ -63,6 +80,14 @@ float \mbox{\hyperlink{structControlLoopVariables_ad5c5d6f049a5e2fec6cfe8a537694
 
 
 
+\+: Resets the controller variables 
+
+
+
+Definition at line 213 of file motor\+Testing.\+ino.
+
+
+
 \doxysubsection{Member Data Documentation}
 \mbox{\Hypertarget{structControlLoopVariables_ad5c5d6f049a5e2fec6cfe8a53769471e}\label{structControlLoopVariables_ad5c5d6f049a5e2fec6cfe8a53769471e}} 
 \index{ControlLoopVariables@{ControlLoopVariables}!motor\_derivative@{motor\_derivative}}
@@ -70,11 +95,19 @@ float \mbox{\hyperlink{structControlLoopVariables_ad5c5d6f049a5e2fec6cfe8a537694
 \doxysubsubsection{\texorpdfstring{motor\_derivative}{motor\_derivative}}
 {\footnotesize\ttfamily float Control\+Loop\+Variables\+::motor\+\_\+derivative = 0}
 
+
+
+Definition at line 229 of file motor\+Testing.\+ino.
+
 \mbox{\Hypertarget{structControlLoopVariables_a1382af3f3410a78a78b5b74496447fe6}\label{structControlLoopVariables_a1382af3f3410a78a78b5b74496447fe6}} 
 \index{ControlLoopVariables@{ControlLoopVariables}!motor\_error@{motor\_error}}
 \index{motor\_error@{motor\_error}!ControlLoopVariables@{ControlLoopVariables}}
 \doxysubsubsection{\texorpdfstring{motor\_error}{motor\_error}}
 {\footnotesize\ttfamily float Control\+Loop\+Variables\+::motor\+\_\+error = 0}
+
+
+
+Definition at line 226 of file motor\+Testing.\+ino.
 
 \mbox{\Hypertarget{structControlLoopVariables_a915bd646440219f032660152cabc8b70}\label{structControlLoopVariables_a915bd646440219f032660152cabc8b70}} 
 \index{ControlLoopVariables@{ControlLoopVariables}!motor\_input@{motor\_input}}
@@ -82,11 +115,19 @@ float \mbox{\hyperlink{structControlLoopVariables_ad5c5d6f049a5e2fec6cfe8a537694
 \doxysubsubsection{\texorpdfstring{motor\_input}{motor\_input}}
 {\footnotesize\ttfamily float Control\+Loop\+Variables\+::motor\+\_\+input = 0}
 
+
+
+Definition at line 224 of file motor\+Testing.\+ino.
+
 \mbox{\Hypertarget{structControlLoopVariables_a0c19c99fee832009bfd3d15993370063}\label{structControlLoopVariables_a0c19c99fee832009bfd3d15993370063}} 
 \index{ControlLoopVariables@{ControlLoopVariables}!motor\_integral@{motor\_integral}}
 \index{motor\_integral@{motor\_integral}!ControlLoopVariables@{ControlLoopVariables}}
 \doxysubsubsection{\texorpdfstring{motor\_integral}{motor\_integral}}
 {\footnotesize\ttfamily float Control\+Loop\+Variables\+::motor\+\_\+integral = 0}
+
+
+
+Definition at line 228 of file motor\+Testing.\+ino.
 
 \mbox{\Hypertarget{structControlLoopVariables_a464d1e7061647edaed2fcc7b7b146243}\label{structControlLoopVariables_a464d1e7061647edaed2fcc7b7b146243}} 
 \index{ControlLoopVariables@{ControlLoopVariables}!motor\_output@{motor\_output}}
@@ -94,11 +135,19 @@ float \mbox{\hyperlink{structControlLoopVariables_ad5c5d6f049a5e2fec6cfe8a537694
 \doxysubsubsection{\texorpdfstring{motor\_output}{motor\_output}}
 {\footnotesize\ttfamily float Control\+Loop\+Variables\+::motor\+\_\+output = 0}
 
+
+
+Definition at line 225 of file motor\+Testing.\+ino.
+
 \mbox{\Hypertarget{structControlLoopVariables_a4d3592cff0db5dc24e61c74213920fca}\label{structControlLoopVariables_a4d3592cff0db5dc24e61c74213920fca}} 
 \index{ControlLoopVariables@{ControlLoopVariables}!motor\_prev\_error@{motor\_prev\_error}}
 \index{motor\_prev\_error@{motor\_prev\_error}!ControlLoopVariables@{ControlLoopVariables}}
 \doxysubsubsection{\texorpdfstring{motor\_prev\_error}{motor\_prev\_error}}
 {\footnotesize\ttfamily float Control\+Loop\+Variables\+::motor\+\_\+prev\+\_\+error = 0}
+
+
+
+Definition at line 227 of file motor\+Testing.\+ino.
 
 \mbox{\Hypertarget{structControlLoopVariables_ae4c1b81ce1795548bd26db4df420d730}\label{structControlLoopVariables_ae4c1b81ce1795548bd26db4df420d730}} 
 \index{ControlLoopVariables@{ControlLoopVariables}!motor\_setpoint@{motor\_setpoint}}
@@ -106,11 +155,19 @@ float \mbox{\hyperlink{structControlLoopVariables_ad5c5d6f049a5e2fec6cfe8a537694
 \doxysubsubsection{\texorpdfstring{motor\_setpoint}{motor\_setpoint}}
 {\footnotesize\ttfamily float Control\+Loop\+Variables\+::motor\+\_\+setpoint = 0}
 
+
+
+Definition at line 223 of file motor\+Testing.\+ino.
+
 \mbox{\Hypertarget{structControlLoopVariables_acf96d8a94e4ce90b22ac355b27abf5ee}\label{structControlLoopVariables_acf96d8a94e4ce90b22ac355b27abf5ee}} 
 \index{ControlLoopVariables@{ControlLoopVariables}!motorGains@{motorGains}}
 \index{motorGains@{motorGains}!ControlLoopVariables@{ControlLoopVariables}}
 \doxysubsubsection{\texorpdfstring{motorGains}{motorGains}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classGains}{Gains}}$\ast$ const Control\+Loop\+Variables\+::motor\+Gains}
+
+
+
+Definition at line 222 of file motor\+Testing.\+ino.
 
 
 
