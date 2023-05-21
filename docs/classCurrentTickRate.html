@@ -63,11 +63,15 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classCurrentTickRate-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">CurrentTickRate Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="UARTParser_8h_source.html">UARTParser.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for CurrentTickRate:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -90,6 +94,107 @@ $(function() {
 <area shape="rect" href="classCustomMsg.html" title=": Abstract class for custom messages" alt="" coords="19,5,118,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a4759b11291b326ed8d71e5f0284f8206"><td class="memItemLeft" align="right" valign="top">virtual uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCurrentTickRate.html#a4759b11291b326ed8d71e5f0284f8206">serialize</a> (unsigned char *outbuffer) const override</td></tr>
+<tr class="separator:a4759b11291b326ed8d71e5f0284f8206"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47366c7a8623803cb2a5f978a0f77975"><td class="memItemLeft" align="right" valign="top">virtual uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCurrentTickRate.html#a47366c7a8623803cb2a5f978a0f77975">deserialize</a> (unsigned char *inbuffer) override</td></tr>
+<tr class="separator:a47366c7a8623803cb2a5f978a0f77975"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a7d6b7789a427e6fdc5ce96bb02f0124f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCurrentTickRate.html#a7d6b7789a427e6fdc5ce96bb02f0124f">leftTickRate</a> =0</td></tr>
+<tr class="separator:a7d6b7789a427e6fdc5ce96bb02f0124f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04fc81ccae72bc9bb4804c7eb14965b9"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCurrentTickRate.html#a04fc81ccae72bc9bb4804c7eb14965b9">rightTickRate</a> =0</td></tr>
+<tr class="separator:a04fc81ccae72bc9bb4804c7eb14965b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a47366c7a8623803cb2a5f978a0f77975"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47366c7a8623803cb2a5f978a0f77975">&#9670;&nbsp;</a></span>deserialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual uint8_t CurrentTickRate::deserialize </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramname"><em>inbuffer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classCustomMsg.html#a90502e0d930c29c08684f60fc4f23de7">CustomMsg</a>.</p>
+
+</div>
+</div>
+<a id="a4759b11291b326ed8d71e5f0284f8206"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4759b11291b326ed8d71e5f0284f8206">&#9670;&nbsp;</a></span>serialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual uint8_t CurrentTickRate::serialize </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramname"><em>outbuffer</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classCustomMsg.html#a35e14ec5186cc64dad60c6380df18733">CustomMsg</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a7d6b7789a427e6fdc5ce96bb02f0124f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d6b7789a427e6fdc5ce96bb02f0124f">&#9670;&nbsp;</a></span>leftTickRate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float CurrentTickRate::leftTickRate =0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a04fc81ccae72bc9bb4804c7eb14965b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04fc81ccae72bc9bb4804c7eb14965b9">&#9670;&nbsp;</a></span>rightTickRate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float CurrentTickRate::rightTickRate =0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>motorTesting/<a class="el" href="UARTParser_8h_source.html">UARTParser.h</a></li>
 </ul>

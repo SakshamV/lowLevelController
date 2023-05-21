@@ -2,6 +2,10 @@
 \label{classCurrentTickRate}\index{CurrentTickRate@{CurrentTickRate}}
 
 
+{\ttfamily \#include $<$U\+A\+R\+T\+Parser.\+h$>$}
+
+
+
 Inheritance diagram for Current\+Tick\+Rate\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -18,8 +22,60 @@ Collaboration diagram for Current\+Tick\+Rate\+:\nopagebreak
 \includegraphics[width=175pt]{classCurrentTickRate__coll__graph}
 \end{center}
 \end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual uint8\+\_\+t \mbox{\hyperlink{classCurrentTickRate_a4759b11291b326ed8d71e5f0284f8206}{serialize}} (unsigned char $\ast$outbuffer) const override
+\item 
+virtual uint8\+\_\+t \mbox{\hyperlink{classCurrentTickRate_a47366c7a8623803cb2a5f978a0f77975}{deserialize}} (unsigned char $\ast$inbuffer) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{classCurrentTickRate_a7d6b7789a427e6fdc5ce96bb02f0124f}{left\+Tick\+Rate}} =0
+\item 
+float \mbox{\hyperlink{classCurrentTickRate_a04fc81ccae72bc9bb4804c7eb14965b9}{right\+Tick\+Rate}} =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCurrentTickRate_a47366c7a8623803cb2a5f978a0f77975}\label{classCurrentTickRate_a47366c7a8623803cb2a5f978a0f77975}} 
+\index{CurrentTickRate@{CurrentTickRate}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!CurrentTickRate@{CurrentTickRate}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily virtual uint8\+\_\+t Current\+Tick\+Rate\+::deserialize (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{inbuffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classCustomMsg_a90502e0d930c29c08684f60fc4f23de7}{Custom\+Msg}}.
+
+\mbox{\Hypertarget{classCurrentTickRate_a4759b11291b326ed8d71e5f0284f8206}\label{classCurrentTickRate_a4759b11291b326ed8d71e5f0284f8206}} 
+\index{CurrentTickRate@{CurrentTickRate}!serialize@{serialize}}
+\index{serialize@{serialize}!CurrentTickRate@{CurrentTickRate}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily virtual uint8\+\_\+t Current\+Tick\+Rate\+::serialize (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{outbuffer }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classCustomMsg_a35e14ec5186cc64dad60c6380df18733}{Custom\+Msg}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classCurrentTickRate_a7d6b7789a427e6fdc5ce96bb02f0124f}\label{classCurrentTickRate_a7d6b7789a427e6fdc5ce96bb02f0124f}} 
+\index{CurrentTickRate@{CurrentTickRate}!leftTickRate@{leftTickRate}}
+\index{leftTickRate@{leftTickRate}!CurrentTickRate@{CurrentTickRate}}
+\doxysubsubsection{\texorpdfstring{leftTickRate}{leftTickRate}}
+{\footnotesize\ttfamily float Current\+Tick\+Rate\+::left\+Tick\+Rate =0}
+
+\mbox{\Hypertarget{classCurrentTickRate_a04fc81ccae72bc9bb4804c7eb14965b9}\label{classCurrentTickRate_a04fc81ccae72bc9bb4804c7eb14965b9}} 
+\index{CurrentTickRate@{CurrentTickRate}!rightTickRate@{rightTickRate}}
+\index{rightTickRate@{rightTickRate}!CurrentTickRate@{CurrentTickRate}}
+\doxysubsubsection{\texorpdfstring{rightTickRate}{rightTickRate}}
+{\footnotesize\ttfamily float Current\+Tick\+Rate\+::right\+Tick\+Rate =0}
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-motor\+Testing/U\+A\+R\+T\+Parser.\+h\end{DoxyCompactItemize}
+motor\+Testing/\mbox{\hyperlink{UARTParser_8h}{U\+A\+R\+T\+Parser.\+h}}\end{DoxyCompactItemize}

@@ -5,6 +5,35 @@
 \+: Structure to manage time globally  
 
 
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+T \mbox{\hyperlink{classGlobalTime_afe8e30ed47e2d45151d6cb7628b56b85}{get\+Global\+Timein\+Ticks}} ()
+\item 
+void \mbox{\hyperlink{classGlobalTime_acfc484f6aef8ea1e310f8897c9691b36}{increment\+Ovf}} ()
+\item 
+uint16\+\_\+t \mbox{\hyperlink{classGlobalTime_ae34a2f056770ec84d7c42cad1cb7a4b3}{get\+Ovf}} ()
+\item 
+uint16\+\_\+t \mbox{\hyperlink{classGlobalTime_a95223f572209d872fe314a2c62255569}{get\+T\+C\+N\+T1}} ()
+\item 
+\mbox{\hyperlink{classGlobalTime_a52e89daf0d03b5802251528633f43520}{Global\+Time}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static constexpr float \mbox{\hyperlink{classGlobalTime_aa2b24df0d81e33c96f2d898716920b63}{convert\+Ticks\+To\+Time\+Ms}} (uint32\+\_\+t ticks)
+\item 
+static constexpr uint32\+\_\+t \mbox{\hyperlink{classGlobalTime_ac4f89090f35d137ce0a03345f5da81af}{convert\+Time\+Ms\+To\+Ticks}} (uint16\+\_\+t time\+\_\+in\+\_\+ms)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+T \mbox{\hyperlink{classGlobalTime_aa9637543b350f19863abcb07d0a3df7f}{debug\+Prev\+Time}}
+\item 
+T \mbox{\hyperlink{classGlobalTime_a2553456f25d1562e02e3d13e2dfab8cc}{uart\+Spin\+Prev\+Time}}
+\item 
+T \mbox{\hyperlink{classGlobalTime_a892727114c8ed2285f72e3e805b3c0eb}{control\+Loop\+Prev\+Time}}
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -13,6 +42,85 @@ class Global\+Time$<$ T $>$}
 
 \+: Structure to manage time globally 
 
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classGlobalTime_a52e89daf0d03b5802251528633f43520}\label{classGlobalTime_a52e89daf0d03b5802251528633f43520}} 
+\index{GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}!GlobalTime@{GlobalTime}}
+\index{GlobalTime@{GlobalTime}!GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{GlobalTime()}{GlobalTime()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classGlobalTime}{Global\+Time}}$<$ T $>$\+::\mbox{\hyperlink{classGlobalTime}{Global\+Time}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGlobalTime_aa2b24df0d81e33c96f2d898716920b63}\label{classGlobalTime_aa2b24df0d81e33c96f2d898716920b63}} 
+\index{GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}!convertTicksToTimeMs@{convertTicksToTimeMs}}
+\index{convertTicksToTimeMs@{convertTicksToTimeMs}!GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{convertTicksToTimeMs()}{convertTicksToTimeMs()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+static constexpr float \mbox{\hyperlink{classGlobalTime}{Global\+Time}}$<$ T $>$\+::convert\+Ticks\+To\+Time\+Ms (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{ticks }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{classGlobalTime_ac4f89090f35d137ce0a03345f5da81af}\label{classGlobalTime_ac4f89090f35d137ce0a03345f5da81af}} 
+\index{GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}!convertTimeMsToTicks@{convertTimeMsToTicks}}
+\index{convertTimeMsToTicks@{convertTimeMsToTicks}!GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{convertTimeMsToTicks()}{convertTimeMsToTicks()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+static constexpr uint32\+\_\+t \mbox{\hyperlink{classGlobalTime}{Global\+Time}}$<$ T $>$\+::convert\+Time\+Ms\+To\+Ticks (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{time\+\_\+in\+\_\+ms }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{classGlobalTime_afe8e30ed47e2d45151d6cb7628b56b85}\label{classGlobalTime_afe8e30ed47e2d45151d6cb7628b56b85}} 
+\index{GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}!getGlobalTimeinTicks@{getGlobalTimeinTicks}}
+\index{getGlobalTimeinTicks@{getGlobalTimeinTicks}!GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getGlobalTimeinTicks()}{getGlobalTimeinTicks()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \mbox{\hyperlink{classGlobalTime}{Global\+Time}}$<$ T $>$\+::get\+Global\+Timein\+Ticks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classGlobalTime_ae34a2f056770ec84d7c42cad1cb7a4b3}\label{classGlobalTime_ae34a2f056770ec84d7c42cad1cb7a4b3}} 
+\index{GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}!getOvf@{getOvf}}
+\index{getOvf@{getOvf}!GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getOvf()}{getOvf()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+uint16\+\_\+t \mbox{\hyperlink{classGlobalTime}{Global\+Time}}$<$ T $>$\+::get\+Ovf (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classGlobalTime_a95223f572209d872fe314a2c62255569}\label{classGlobalTime_a95223f572209d872fe314a2c62255569}} 
+\index{GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}!getTCNT1@{getTCNT1}}
+\index{getTCNT1@{getTCNT1}!GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getTCNT1()}{getTCNT1()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+uint16\+\_\+t \mbox{\hyperlink{classGlobalTime}{Global\+Time}}$<$ T $>$\+::get\+T\+C\+N\+T1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classGlobalTime_acfc484f6aef8ea1e310f8897c9691b36}\label{classGlobalTime_acfc484f6aef8ea1e310f8897c9691b36}} 
+\index{GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}!incrementOvf@{incrementOvf}}
+\index{incrementOvf@{incrementOvf}!GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{incrementOvf()}{incrementOvf()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{classGlobalTime}{Global\+Time}}$<$ T $>$\+::increment\+Ovf (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classGlobalTime_a892727114c8ed2285f72e3e805b3c0eb}\label{classGlobalTime_a892727114c8ed2285f72e3e805b3c0eb}} 
+\index{GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}!controlLoopPrevTime@{controlLoopPrevTime}}
+\index{controlLoopPrevTime@{controlLoopPrevTime}!GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{controlLoopPrevTime}{controlLoopPrevTime}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \mbox{\hyperlink{classGlobalTime}{Global\+Time}}$<$ T $>$\+::control\+Loop\+Prev\+Time}
+
+\mbox{\Hypertarget{classGlobalTime_aa9637543b350f19863abcb07d0a3df7f}\label{classGlobalTime_aa9637543b350f19863abcb07d0a3df7f}} 
+\index{GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}!debugPrevTime@{debugPrevTime}}
+\index{debugPrevTime@{debugPrevTime}!GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{debugPrevTime}{debugPrevTime}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \mbox{\hyperlink{classGlobalTime}{Global\+Time}}$<$ T $>$\+::debug\+Prev\+Time}
+
+\mbox{\Hypertarget{classGlobalTime_a2553456f25d1562e02e3d13e2dfab8cc}\label{classGlobalTime_a2553456f25d1562e02e3d13e2dfab8cc}} 
+\index{GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}!uartSpinPrevTime@{uartSpinPrevTime}}
+\index{uartSpinPrevTime@{uartSpinPrevTime}!GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{uartSpinPrevTime}{uartSpinPrevTime}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \mbox{\hyperlink{classGlobalTime}{Global\+Time}}$<$ T $>$\+::uart\+Spin\+Prev\+Time}
+
+
+
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-motor\+Testing/motor\+Testing.\+ino\end{DoxyCompactItemize}
+motor\+Testing/\mbox{\hyperlink{motorTesting_8ino}{motor\+Testing.\+ino}}\end{DoxyCompactItemize}

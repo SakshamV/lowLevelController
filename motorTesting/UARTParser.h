@@ -362,12 +362,12 @@ inline int readUart(){return hw->read();}
  * @brief: Output buffer for serial port
 */
 uint8_t out_buf[50];
-/**
- * @brief:  Publishes custom message to serial port
- * @param:  input: Custom message object
-*/
 
 template<typename T>
+/**
+ * @brief:  Publishes custom message to serial port
+ * @param  input Custom message object, must have a serialize method
+*/
 void publishCustomMsg(T& input){
   auto length = input.serialize(out_buf);
   hw->write(out_buf, length);

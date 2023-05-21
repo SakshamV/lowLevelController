@@ -1,0 +1,845 @@
+\hypertarget{motorTesting_8ino}{}\doxysection{motor\+Testing/motor\+Testing.ino File Reference}
+\label{motorTesting_8ino}\index{motorTesting/motorTesting.ino@{motorTesting/motorTesting.ino}}
+{\ttfamily \#include \char`\"{}./\+U\+A\+R\+T\+Parser.\+h\char`\"{}}\newline
+Include dependency graph for motor\+Testing.\+ino\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{motorTesting_8ino__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classGlobalTime}{Global\+Time$<$ T $>$}}
+\begin{DoxyCompactList}\small\item\em \+: Structure to manage time globally \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structSystemConstants}{System\+Constants}}
+\begin{DoxyCompactList}\small\item\em \+: Structure to store System constants \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structMotorControl}{Motor\+Control}}
+\begin{DoxyCompactList}\small\item\em \+: Structure to store Motor actuation details \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structEncoderData}{Encoder\+Data}}
+\begin{DoxyCompactList}\small\item\em \+: Structure to store encoder data \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structEncoderPins}{Encoder\+Pins}}
+\begin{DoxyCompactList}\small\item\em \+: Structure to store encoder wiring details \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structIntervals}{Intervals}}
+\begin{DoxyCompactList}\small\item\em \+: Structure to store constant intervals as timer ticks converted from ms \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structMotorsGain}{Motors\+Gain}}
+\begin{DoxyCompactList}\small\item\em \+: Structure to store left and right motor gains \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structControlLoopVariables}{Control\+Loop\+Variables}}
+\begin{DoxyCompactList}\small\item\em \+: Structure to store control loop variables per motor \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{motorTesting_8ino_a02ab22986e1b91acdf811c8092c55ce5}{D\+E\+B\+U\+G\+\_\+\+V\+E\+L\+O\+C\+I\+T\+I\+ES}}~0
+\item 
+\#define \mbox{\hyperlink{motorTesting_8ino_a81b7107be96c1e643e03b1e176625241}{T\+R\+A\+J\+E\+C\+T\+O\+RY}}~0
+\item 
+\#define \mbox{\hyperlink{motorTesting_8ino_a324d50ea513e7bf94a9cf7feada7c5c2}{D\+E\+B\+U\+G\+\_\+\+C\+O\+N\+T\+R\+OL}}~0
+\item 
+\#define \mbox{\hyperlink{motorTesting_8ino_aa2fbd51996513ffc11ed0103dffeef76}{P\+R\+I\+N\+T\+\_\+\+O\+N\+\_\+\+R\+OS}}~0
+\item 
+\#define \mbox{\hyperlink{motorTesting_8ino_a675b6dbd87d6866ee148abf11c9fd82c}{E\+N\+A\+B\+L\+E\+\_\+\+C\+O\+N\+T\+R\+OL}}~1
+\item 
+\#define \mbox{\hyperlink{motorTesting_8ino_a29fb2c6ae726062ba7091f9d2dd03f55}{E\+N\+A\+B\+L\+E\+\_\+\+R\+OS}}~0
+\item 
+\#define \mbox{\hyperlink{motorTesting_8ino_a3c26cdc3b6cb094bded9350adb777765}{C\+A\+L\+C\+\_\+\+V\+EL}}~0
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structSystemConstants}{System\+Constants}} \mbox{\hyperlink{motorTesting_8ino_a507c80ef53ddb1638cf910fc99aa2478}{System\+Constants}}
+\begin{DoxyCompactList}\small\item\em \+: Structure to store System constants \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structMotorControl}{Motor\+Control}} \mbox{\hyperlink{motorTesting_8ino_a5f022ee95a1fe51a40f4d43fac453b3d}{Motor\+Control}}
+\begin{DoxyCompactList}\small\item\em \+: Structure to store Motor actuation details \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structEncoderData}{Encoder\+Data}} \mbox{\hyperlink{motorTesting_8ino_a052f6717812b13c3668cb2a622606aaa}{Encoder\+Data}}
+\begin{DoxyCompactList}\small\item\em \+: Structure to store encoder data \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structEncoderPins}{Encoder\+Pins}} \mbox{\hyperlink{motorTesting_8ino_abeb77af9bb29f31659ad4af068fa3d74}{Encoder\+Pins}}
+\begin{DoxyCompactList}\small\item\em \+: Structure to store encoder wiring details \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structIntervals}{Intervals}} \mbox{\hyperlink{motorTesting_8ino_ab97b00f656235c1df9b798a90e2bdf2d}{Intervals}}
+\begin{DoxyCompactList}\small\item\em \+: Structure to store constant intervals as timer ticks converted from ms \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structMotorsGain}{Motors\+Gain}} \mbox{\hyperlink{motorTesting_8ino_a375bbd1196ffa3f62f3daa9807953995}{Motors\+Gain}}
+\begin{DoxyCompactList}\small\item\em \+: Structure to store left and right motor gains \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structControlLoopVariables}{Control\+Loop\+Variables}} \mbox{\hyperlink{motorTesting_8ino_a9bbc6037068576087b1fdf3429e4ffe3}{Control\+Loop\+Variables}}
+\begin{DoxyCompactList}\small\item\em \+: Structure to store control loop variables per motor \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{motorTesting_8ino_a49799ffce05f1dc19b218abc2b8d4d2f}{Spin\+States}} \{ \mbox{\hyperlink{motorTesting_8ino_a49799ffce05f1dc19b218abc2b8d4d2fac5222d41f21bc883f0c0b9754191b350}{First}}, 
+\mbox{\hyperlink{motorTesting_8ino_a49799ffce05f1dc19b218abc2b8d4d2fab1f09dcb92d081e55b5ab30b74ceb7f4}{Topic\+Name}}, 
+\mbox{\hyperlink{motorTesting_8ino_a49799ffce05f1dc19b218abc2b8d4d2faa9703801ac7bd790f6f980532e4224c0}{Data}}, 
+\mbox{\hyperlink{motorTesting_8ino_a49799ffce05f1dc19b218abc2b8d4d2fa667876a6f108081ad524d7d29d23d506}{End}}
+ \}
+\begin{DoxyCompactList}\small\item\em \+: Defines states for the state machine of the U\+A\+RT parser \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\int \mbox{\hyperlink{motorTesting_8ino_a1ab31b90bc584c635ec159468ceed9b2}{sgn}} (T val)
+\begin{DoxyCompactList}\small\item\em \+: Utility function to find \mbox{\hyperlink{motorTesting_8ino_a1ab31b90bc584c635ec159468ceed9b2}{sgn()}} of a number \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motorTesting_8ino_af825c35f0a1f087f533a60e11a245f31}{attach\+Enc\+Int}} ()
+\begin{DoxyCompactList}\small\item\em \+: Utility function to attach encoder interrupts \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motorTesting_8ino_ab5fb52e2c52385daa4988bd93a9d41b6}{detach\+Enc\+Int}} ()
+\begin{DoxyCompactList}\small\item\em \+: Utility function to detach encoder interrupts \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motorTesting_8ino_ad068583f9bffcd14ae6d4b8be2571e07}{target\+Vel\+Callback}} (const \mbox{\hyperlink{classTarget}{Target}} \&msg)
+\begin{DoxyCompactList}\small\item\em \+: Callback for setting target velocities \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motorTesting_8ino_adb1f85ea29b048450c9dbe06b3bbd486}{set\+Gains\+Callback}} (const \mbox{\hyperlink{classGains}{Gains}} \&msg)
+\begin{DoxyCompactList}\small\item\em \+: Callback for setting gains \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motorTesting_8ino_a19131dc0463ca496b38a9afd37655406}{process}} (uint8\+\_\+t $\ast$buffer)
+\begin{DoxyCompactList}\small\item\em \+: Processes a parsed message and calls the appropriate callback \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motorTesting_8ino_a4dd6d0ab6a375e40811338178971479d}{spin\+Once}} ()
+\begin{DoxyCompactList}\small\item\em \+: Reads a byte from the serial buffer , parses the byte string , manages the parser\textquotesingle{}s state machine \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motorTesting_8ino_a4fc01d736fe50cf5b977f755b675f11d}{setup}} ()
+\begin{DoxyCompactList}\small\item\em \+: Setup function, called once at the start of the program \end{DoxyCompactList}\item 
+static float \mbox{\hyperlink{motorTesting_8ino_a7f95eba7cc6eda9f5aeacdeefe605f67}{filter\+Velocity}} (const float raw, float \&filter)
+\begin{DoxyCompactList}\small\item\em \+: First order I\+IR filter for velocity \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motorTesting_8ino_afe461d27b9c48d5921c00d521181f12f}{loop}} ()
+\begin{DoxyCompactList}\small\item\em \+: Acts as the main execution thread, controls the execution of other subthreads \end{DoxyCompactList}\item 
+static float \mbox{\hyperlink{motorTesting_8ino_af8267c990d52301dc323fdbf1a7cdbe0}{get\+R\+P\+S\+From\+Ticks}} (const float \&rotations, const float \&interval\+Ms)
+\begin{DoxyCompactList}\small\item\em \+: This utility function converts rotations and interval to angular velocity in radians per second \end{DoxyCompactList}\item 
+static float \mbox{\hyperlink{motorTesting_8ino_ab18d52564c864faa3fe9e3b1d8739634}{get\+Rotations\+From\+Ticks}} (const int8\+\_\+t \&ticks)
+\begin{DoxyCompactList}\small\item\em \+: This utility function converts encoder ticks to No of rotations \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motorTesting_8ino_af357507b0a7631b8afa3f44e1c97f859}{pwm\+Write}} (uint8\+\_\+t pwmL, uint8\+\_\+t pwmR)
+\begin{DoxyCompactList}\small\item\em \+: Writes P\+WM values to the motor pins \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motorTesting_8ino_aeeebe176d91494215a61355aa3310a5a}{set\+Direction}} (bool left\+Direction, bool right\+Direction)
+\begin{DoxyCompactList}\small\item\em \+: Sets the direction of the motors \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{motorTesting_8ino_a9ba23771cdc82562f54b74422a20a0af}{control\+Action}} (\mbox{\hyperlink{structControlLoopVariables}{Control\+Loop\+Variables}} \&motor)
+\begin{DoxyCompactList}\small\item\em \+: Takes control action on specified \mbox{\hyperlink{structControlLoopVariables}{Control\+Loop\+Variables}} object \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motorTesting_8ino_af430002f30de883be3e3a8752a8690e3}{control\+Loop}} (unsigned long \&time\+\_\+delta)
+\begin{DoxyCompactList}\small\item\em \+: Sets controller target and input, runs control loop and applies voltage to motors \end{DoxyCompactList}\item 
+\mbox{\hyperlink{motorTesting_8ino_ab16889ae984b9b798989a0d239283cac}{I\+SR}} (T\+I\+M\+E\+R1\+\_\+\+O\+V\+F\+\_\+vect)
+\begin{DoxyCompactList}\small\item\em \+: Interrupt Service Routine for 16 bit Timer 1 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motorTesting_8ino_aad2a54ea9636ce3b4c46c30100f5e56b}{left\+Motor\+I\+SR}} ()
+\begin{DoxyCompactList}\small\item\em \+: Interrupt Service Routine for the left motor encoder \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motorTesting_8ino_a3ff1beaa4bb99fd71d1be948e05b46ea}{right\+Motor\+I\+SR}} ()
+\begin{DoxyCompactList}\small\item\em \+: Interrupt Service Routine for the right motor encoder \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classGlobalTime}{Global\+Time}}$<$ unsigned long $>$ \mbox{\hyperlink{motorTesting_8ino_a37493986c179679b9397500e68ab746e}{global\+Timer}}
+\begin{DoxyCompactList}\small\item\em \+: Used for maintaining time globally \end{DoxyCompactList}\item 
+static constexpr const \mbox{\hyperlink{structSystemConstants}{System\+Constants}} \mbox{\hyperlink{motorTesting_8ino_a56c342474a3948096c70297bd9e841ed}{sys\+Cons}} = \mbox{\hyperlink{structSystemConstants}{System\+Constants}}(2000000, 495, 75)
+\begin{DoxyCompactList}\small\item\em \+: System Constants, defined at compile time. Baud Rate = 2Mbps, ticks per revolution = 495, control frequency = 75Hz \end{DoxyCompactList}\item 
+static constexpr const \mbox{\hyperlink{structMotorControl}{Motor\+Control}} \mbox{\hyperlink{motorTesting_8ino_aba64b1ee1377fd2dad3e32b8c9987800}{motor\+Control}}
+\begin{DoxyCompactList}\small\item\em \+: Motor Actuation details\+: first 2 define the motor direction pins, next 2 define the voltage at motor direction pin which takes the robot forward, last 2 define the motor speed control pins \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structEncoderData}{Encoder\+Data}} \mbox{\hyperlink{motorTesting_8ino_a306866bf1bc3907bfab3bb64017b0b03}{encoder\+Data}}
+\begin{DoxyCompactList}\small\item\em \+: Encoder data structure, stores encoder ticks, encoder direction state, and previous encoder ticks \end{DoxyCompactList}\item 
+static constexpr const \mbox{\hyperlink{structEncoderPins}{Encoder\+Pins}} \mbox{\hyperlink{motorTesting_8ino_acd8714c68c378f4a322e8460c97961f8}{encoder\+Pins}}
+\item 
+static const constexpr \mbox{\hyperlink{structIntervals}{Intervals}} \mbox{\hyperlink{motorTesting_8ino_a9cee8d86af34aeb1dec55392c5edf142}{intervals\+Ticks}}
+\begin{DoxyCompactList}\small\item\em \+: \mbox{\hyperlink{structIntervals}{Intervals}} structure\+: U\+A\+RT spin rate is the same as control frequency, debug print interval = 1000ms \end{DoxyCompactList}\item 
+static auto \mbox{\hyperlink{motorTesting_8ino_aafab5b3b7e6814678e0447420b762cec}{motor\+Gains}} = \mbox{\hyperlink{structMotorsGain}{Motors\+Gain}}(19.\+5,263.\+33,0.\+361,100.\+0,21.\+0,283.\+592,0.\+595,100.\+0)
+\begin{DoxyCompactList}\small\item\em \+: Motor gains, initialized at run time \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classCurrentTickRate}{Current\+Tick\+Rate}} \mbox{\hyperlink{motorTesting_8ino_a8a74d04bf5719776a59b2aca40f0661b}{current\+Tick\+Rate}}
+\begin{DoxyCompactList}\small\item\em \+: Custom message for publishing current tick rates \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classGains}{Gains}} \mbox{\hyperlink{motorTesting_8ino_a3bb37470b57c97e739b2fd130dea2ad2}{gains}}
+\begin{DoxyCompactList}\small\item\em \+: Custom message for receiving gains \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classTarget}{Target}} \mbox{\hyperlink{motorTesting_8ino_abb3238d8ce3264dd1c7cde8858e6f83f}{targ}}
+\begin{DoxyCompactList}\small\item\em \+: Custom message for receiving targets \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classTarget}{Target}} \mbox{\hyperlink{motorTesting_8ino_a27a4ee66359b8249e703adc9fdae8a44}{global\+Target}}
+\begin{DoxyCompactList}\small\item\em \+: Global object for storing target velocities once parsng is done \end{DoxyCompactList}\item 
+static const constexpr float \mbox{\hyperlink{motorTesting_8ino_a2087c5dcd6de773f787f4bfcdc9f47c9}{rotation\+To\+Radians}} = 6.\+28318
+\begin{DoxyCompactList}\small\item\em \+: Stores value of 2$\ast$pi \end{DoxyCompactList}\item 
+volatile bool \mbox{\hyperlink{motorTesting_8ino_abc6728ce2c240dd61b57369281e1cefb}{start\+Control}} = false
+\begin{DoxyCompactList}\small\item\em \+: Global Flag to start control \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{motorTesting_8ino_a49799ffce05f1dc19b218abc2b8d4d2f}{Spin\+States}} \mbox{\hyperlink{motorTesting_8ino_a0bc434e9119e7c568e91955138d8955c}{spin\+States}} =\mbox{\hyperlink{motorTesting_8ino_a49799ffce05f1dc19b218abc2b8d4d2fac5222d41f21bc883f0c0b9754191b350}{Spin\+States\+::\+First}}
+\begin{DoxyCompactList}\small\item\em \+: Defines the current state of the U\+A\+RT parser \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{motorTesting_8ino_abf2c3a6c5424d25e4c467dcbe6c73302}{in\+\_\+buf}} \mbox{[}50\mbox{]}
+\begin{DoxyCompactList}\small\item\em \+: Input buffer for the serial data \end{DoxyCompactList}\item 
+volatile float \mbox{\hyperlink{motorTesting_8ino_af1c4f6e3c8ba8df8cd55823286825913}{elapsed\+\_\+time}} = 0
+\item 
+float \mbox{\hyperlink{motorTesting_8ino_a373887a11f5efd43d050c8c8933c7e9a}{integrated\+Target\+Distance}} = 0
+\item 
+static const constexpr float \mbox{\hyperlink{motorTesting_8ino_a4dabc3cdfa974a53a35b58ac4497d3c5}{alpha}} = 0.\+7
+\begin{DoxyCompactList}\small\item\em \+: I\+IR filter constant \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{motorTesting_8ino_aa5c807e528ebbf7dc19a7cb6a10f84b5}{left\+Filt}} = 0
+\item 
+float \mbox{\hyperlink{motorTesting_8ino_ab0876f70f20e3c75d0a6a1adc4332a75}{right\+Filt}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{motorTesting_8ino_a3c26cdc3b6cb094bded9350adb777765}\label{motorTesting_8ino_a3c26cdc3b6cb094bded9350adb777765}} 
+\index{motorTesting.ino@{motorTesting.ino}!CALC\_VEL@{CALC\_VEL}}
+\index{CALC\_VEL@{CALC\_VEL}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{CALC\_VEL}{CALC\_VEL}}
+{\footnotesize\ttfamily \#define C\+A\+L\+C\+\_\+\+V\+EL~0}
+
+\mbox{\Hypertarget{motorTesting_8ino_a324d50ea513e7bf94a9cf7feada7c5c2}\label{motorTesting_8ino_a324d50ea513e7bf94a9cf7feada7c5c2}} 
+\index{motorTesting.ino@{motorTesting.ino}!DEBUG\_CONTROL@{DEBUG\_CONTROL}}
+\index{DEBUG\_CONTROL@{DEBUG\_CONTROL}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{DEBUG\_CONTROL}{DEBUG\_CONTROL}}
+{\footnotesize\ttfamily \#define D\+E\+B\+U\+G\+\_\+\+C\+O\+N\+T\+R\+OL~0}
+
+\mbox{\Hypertarget{motorTesting_8ino_a02ab22986e1b91acdf811c8092c55ce5}\label{motorTesting_8ino_a02ab22986e1b91acdf811c8092c55ce5}} 
+\index{motorTesting.ino@{motorTesting.ino}!DEBUG\_VELOCITIES@{DEBUG\_VELOCITIES}}
+\index{DEBUG\_VELOCITIES@{DEBUG\_VELOCITIES}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{DEBUG\_VELOCITIES}{DEBUG\_VELOCITIES}}
+{\footnotesize\ttfamily \#define D\+E\+B\+U\+G\+\_\+\+V\+E\+L\+O\+C\+I\+T\+I\+ES~0}
+
+\mbox{\Hypertarget{motorTesting_8ino_a675b6dbd87d6866ee148abf11c9fd82c}\label{motorTesting_8ino_a675b6dbd87d6866ee148abf11c9fd82c}} 
+\index{motorTesting.ino@{motorTesting.ino}!ENABLE\_CONTROL@{ENABLE\_CONTROL}}
+\index{ENABLE\_CONTROL@{ENABLE\_CONTROL}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{ENABLE\_CONTROL}{ENABLE\_CONTROL}}
+{\footnotesize\ttfamily \#define E\+N\+A\+B\+L\+E\+\_\+\+C\+O\+N\+T\+R\+OL~1}
+
+\mbox{\Hypertarget{motorTesting_8ino_a29fb2c6ae726062ba7091f9d2dd03f55}\label{motorTesting_8ino_a29fb2c6ae726062ba7091f9d2dd03f55}} 
+\index{motorTesting.ino@{motorTesting.ino}!ENABLE\_ROS@{ENABLE\_ROS}}
+\index{ENABLE\_ROS@{ENABLE\_ROS}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{ENABLE\_ROS}{ENABLE\_ROS}}
+{\footnotesize\ttfamily \#define E\+N\+A\+B\+L\+E\+\_\+\+R\+OS~0}
+
+\mbox{\Hypertarget{motorTesting_8ino_aa2fbd51996513ffc11ed0103dffeef76}\label{motorTesting_8ino_aa2fbd51996513ffc11ed0103dffeef76}} 
+\index{motorTesting.ino@{motorTesting.ino}!PRINT\_ON\_ROS@{PRINT\_ON\_ROS}}
+\index{PRINT\_ON\_ROS@{PRINT\_ON\_ROS}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{PRINT\_ON\_ROS}{PRINT\_ON\_ROS}}
+{\footnotesize\ttfamily \#define P\+R\+I\+N\+T\+\_\+\+O\+N\+\_\+\+R\+OS~0}
+
+\mbox{\Hypertarget{motorTesting_8ino_a81b7107be96c1e643e03b1e176625241}\label{motorTesting_8ino_a81b7107be96c1e643e03b1e176625241}} 
+\index{motorTesting.ino@{motorTesting.ino}!TRAJECTORY@{TRAJECTORY}}
+\index{TRAJECTORY@{TRAJECTORY}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{TRAJECTORY}{TRAJECTORY}}
+{\footnotesize\ttfamily \#define T\+R\+A\+J\+E\+C\+T\+O\+RY~0}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{motorTesting_8ino_a9bbc6037068576087b1fdf3429e4ffe3}\label{motorTesting_8ino_a9bbc6037068576087b1fdf3429e4ffe3}} 
+\index{motorTesting.ino@{motorTesting.ino}!ControlLoopVariables@{ControlLoopVariables}}
+\index{ControlLoopVariables@{ControlLoopVariables}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{ControlLoopVariables}{ControlLoopVariables}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structControlLoopVariables}{Control\+Loop\+Variables}} \mbox{\hyperlink{structControlLoopVariables}{Control\+Loop\+Variables}}}
+
+
+
+\+: Structure to store control loop variables per motor 
+
+\mbox{\Hypertarget{motorTesting_8ino_a052f6717812b13c3668cb2a622606aaa}\label{motorTesting_8ino_a052f6717812b13c3668cb2a622606aaa}} 
+\index{motorTesting.ino@{motorTesting.ino}!EncoderData@{EncoderData}}
+\index{EncoderData@{EncoderData}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{EncoderData}{EncoderData}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structEncoderData}{Encoder\+Data}} \mbox{\hyperlink{structEncoderData}{Encoder\+Data}}}
+
+
+
+\+: Structure to store encoder data 
+
+\mbox{\Hypertarget{motorTesting_8ino_abeb77af9bb29f31659ad4af068fa3d74}\label{motorTesting_8ino_abeb77af9bb29f31659ad4af068fa3d74}} 
+\index{motorTesting.ino@{motorTesting.ino}!EncoderPins@{EncoderPins}}
+\index{EncoderPins@{EncoderPins}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{EncoderPins}{EncoderPins}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structEncoderPins}{Encoder\+Pins}} \mbox{\hyperlink{structEncoderPins}{Encoder\+Pins}}}
+
+
+
+\+: Structure to store encoder wiring details 
+
+\mbox{\Hypertarget{motorTesting_8ino_ab97b00f656235c1df9b798a90e2bdf2d}\label{motorTesting_8ino_ab97b00f656235c1df9b798a90e2bdf2d}} 
+\index{motorTesting.ino@{motorTesting.ino}!Intervals@{Intervals}}
+\index{Intervals@{Intervals}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{Intervals}{Intervals}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structIntervals}{Intervals}} \mbox{\hyperlink{structIntervals}{Intervals}}}
+
+
+
+\+: Structure to store constant intervals as timer ticks converted from ms 
+
+\mbox{\Hypertarget{motorTesting_8ino_a5f022ee95a1fe51a40f4d43fac453b3d}\label{motorTesting_8ino_a5f022ee95a1fe51a40f4d43fac453b3d}} 
+\index{motorTesting.ino@{motorTesting.ino}!MotorControl@{MotorControl}}
+\index{MotorControl@{MotorControl}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{MotorControl}{MotorControl}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structMotorControl}{Motor\+Control}} \mbox{\hyperlink{structMotorControl}{Motor\+Control}}}
+
+
+
+\+: Structure to store Motor actuation details 
+
+\mbox{\Hypertarget{motorTesting_8ino_a375bbd1196ffa3f62f3daa9807953995}\label{motorTesting_8ino_a375bbd1196ffa3f62f3daa9807953995}} 
+\index{motorTesting.ino@{motorTesting.ino}!MotorsGain@{MotorsGain}}
+\index{MotorsGain@{MotorsGain}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{MotorsGain}{MotorsGain}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structMotorsGain}{Motors\+Gain}} \mbox{\hyperlink{structMotorsGain}{Motors\+Gain}}}
+
+
+
+\+: Structure to store left and right motor gains 
+
+\mbox{\Hypertarget{motorTesting_8ino_a507c80ef53ddb1638cf910fc99aa2478}\label{motorTesting_8ino_a507c80ef53ddb1638cf910fc99aa2478}} 
+\index{motorTesting.ino@{motorTesting.ino}!SystemConstants@{SystemConstants}}
+\index{SystemConstants@{SystemConstants}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{SystemConstants}{SystemConstants}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structSystemConstants}{System\+Constants}} \mbox{\hyperlink{structSystemConstants}{System\+Constants}}}
+
+
+
+\+: Structure to store System constants 
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{motorTesting_8ino_a49799ffce05f1dc19b218abc2b8d4d2f}\label{motorTesting_8ino_a49799ffce05f1dc19b218abc2b8d4d2f}} 
+\index{motorTesting.ino@{motorTesting.ino}!SpinStates@{SpinStates}}
+\index{SpinStates@{SpinStates}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{SpinStates}{SpinStates}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{motorTesting_8ino_a49799ffce05f1dc19b218abc2b8d4d2f}{Spin\+States}}}
+
+
+
+\+: Defines states for the state machine of the U\+A\+RT parser 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{First@{First}!motorTesting.ino@{motorTesting.ino}}\index{motorTesting.ino@{motorTesting.ino}!First@{First}}}\mbox{\Hypertarget{motorTesting_8ino_a49799ffce05f1dc19b218abc2b8d4d2fac5222d41f21bc883f0c0b9754191b350}\label{motorTesting_8ino_a49799ffce05f1dc19b218abc2b8d4d2fac5222d41f21bc883f0c0b9754191b350}} 
+First&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TopicName@{TopicName}!motorTesting.ino@{motorTesting.ino}}\index{motorTesting.ino@{motorTesting.ino}!TopicName@{TopicName}}}\mbox{\Hypertarget{motorTesting_8ino_a49799ffce05f1dc19b218abc2b8d4d2fab1f09dcb92d081e55b5ab30b74ceb7f4}\label{motorTesting_8ino_a49799ffce05f1dc19b218abc2b8d4d2fab1f09dcb92d081e55b5ab30b74ceb7f4}} 
+Topic\+Name&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Data@{Data}!motorTesting.ino@{motorTesting.ino}}\index{motorTesting.ino@{motorTesting.ino}!Data@{Data}}}\mbox{\Hypertarget{motorTesting_8ino_a49799ffce05f1dc19b218abc2b8d4d2faa9703801ac7bd790f6f980532e4224c0}\label{motorTesting_8ino_a49799ffce05f1dc19b218abc2b8d4d2faa9703801ac7bd790f6f980532e4224c0}} 
+Data&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{End@{End}!motorTesting.ino@{motorTesting.ino}}\index{motorTesting.ino@{motorTesting.ino}!End@{End}}}\mbox{\Hypertarget{motorTesting_8ino_a49799ffce05f1dc19b218abc2b8d4d2fa667876a6f108081ad524d7d29d23d506}\label{motorTesting_8ino_a49799ffce05f1dc19b218abc2b8d4d2fa667876a6f108081ad524d7d29d23d506}} 
+End&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{motorTesting_8ino_af825c35f0a1f087f533a60e11a245f31}\label{motorTesting_8ino_af825c35f0a1f087f533a60e11a245f31}} 
+\index{motorTesting.ino@{motorTesting.ino}!attachEncInt@{attachEncInt}}
+\index{attachEncInt@{attachEncInt}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{attachEncInt()}{attachEncInt()}}
+{\footnotesize\ttfamily void attach\+Enc\+Int (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\+: Utility function to attach encoder interrupts 
+
+\mbox{\Hypertarget{motorTesting_8ino_a9ba23771cdc82562f54b74422a20a0af}\label{motorTesting_8ino_a9ba23771cdc82562f54b74422a20a0af}} 
+\index{motorTesting.ino@{motorTesting.ino}!controlAction@{controlAction}}
+\index{controlAction@{controlAction}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{controlAction()}{controlAction()}}
+{\footnotesize\ttfamily static void control\+Action (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structControlLoopVariables}{Control\+Loop\+Variables}} \&}]{motor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\+: Takes control action on specified \mbox{\hyperlink{structControlLoopVariables}{Control\+Loop\+Variables}} object 
+
+\+: Calculates error, integral and derivative terms, applies P\+ID weights, implements anti-\/windup and generates a control output. 
+\begin{DoxyParams}{Parameters}
+{\em motor} & \mbox{\hyperlink{structControlLoopVariables}{Control\+Loop\+Variables}}\& object on which control action is to be taken \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: None 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motorTesting_8ino_af430002f30de883be3e3a8752a8690e3}\label{motorTesting_8ino_af430002f30de883be3e3a8752a8690e3}} 
+\index{motorTesting.ino@{motorTesting.ino}!controlLoop@{controlLoop}}
+\index{controlLoop@{controlLoop}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{controlLoop()}{controlLoop()}}
+{\footnotesize\ttfamily void control\+Loop (\begin{DoxyParamCaption}\item[{unsigned long \&}]{time\+\_\+delta }\end{DoxyParamCaption})}
+
+
+
+\+: Sets controller target and input, runs control loop and applies voltage to motors 
+
+\+: Sets controller target and input, filters input velocity, runs control loop per motor and applies voltage to motors 
+\begin{DoxyParams}{Parameters}
+{\em time\+\_\+delta} & time elapsed in timer ticks since last control loop call \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: None 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motorTesting_8ino_ab5fb52e2c52385daa4988bd93a9d41b6}\label{motorTesting_8ino_ab5fb52e2c52385daa4988bd93a9d41b6}} 
+\index{motorTesting.ino@{motorTesting.ino}!detachEncInt@{detachEncInt}}
+\index{detachEncInt@{detachEncInt}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{detachEncInt()}{detachEncInt()}}
+{\footnotesize\ttfamily void detach\+Enc\+Int (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\+: Utility function to detach encoder interrupts 
+
+\mbox{\Hypertarget{motorTesting_8ino_a7f95eba7cc6eda9f5aeacdeefe605f67}\label{motorTesting_8ino_a7f95eba7cc6eda9f5aeacdeefe605f67}} 
+\index{motorTesting.ino@{motorTesting.ino}!filterVelocity@{filterVelocity}}
+\index{filterVelocity@{filterVelocity}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{filterVelocity()}{filterVelocity()}}
+{\footnotesize\ttfamily static float filter\+Velocity (\begin{DoxyParamCaption}\item[{const float}]{raw,  }\item[{float \&}]{filter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+\+: First order I\+IR filter for velocity 
+
+\begin{DoxyNote}{Note}
+\+: alpha = filter constant = 0.\+7 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em raw} & Raw velocity \\
+\hline
+{\em filter} & Filtered velocity \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: Filtered velocity 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motorTesting_8ino_ab18d52564c864faa3fe9e3b1d8739634}\label{motorTesting_8ino_ab18d52564c864faa3fe9e3b1d8739634}} 
+\index{motorTesting.ino@{motorTesting.ino}!getRotationsFromTicks@{getRotationsFromTicks}}
+\index{getRotationsFromTicks@{getRotationsFromTicks}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{getRotationsFromTicks()}{getRotationsFromTicks()}}
+{\footnotesize\ttfamily static float get\+Rotations\+From\+Ticks (\begin{DoxyParamCaption}\item[{const int8\+\_\+t \&}]{ticks }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+\+: This utility function converts encoder ticks to No of rotations 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ticks} & Encoder ticks \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: No of rotations 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motorTesting_8ino_af8267c990d52301dc323fdbf1a7cdbe0}\label{motorTesting_8ino_af8267c990d52301dc323fdbf1a7cdbe0}} 
+\index{motorTesting.ino@{motorTesting.ino}!getRPSFromTicks@{getRPSFromTicks}}
+\index{getRPSFromTicks@{getRPSFromTicks}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{getRPSFromTicks()}{getRPSFromTicks()}}
+{\footnotesize\ttfamily static float get\+R\+P\+S\+From\+Ticks (\begin{DoxyParamCaption}\item[{const float \&}]{rotations,  }\item[{const float \&}]{interval\+Ms }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+\+: This utility function converts rotations and interval to angular velocity in radians per second 
+
+\begin{DoxyNote}{Note}
+\+: 1 sec = 1000ms, Encoder is on Motor Shaft 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em rotations} & No of rotations \\
+\hline
+{\em interval\+Ms} & Interval in milliseconds \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: No of rotations 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motorTesting_8ino_ab16889ae984b9b798989a0d239283cac}\label{motorTesting_8ino_ab16889ae984b9b798989a0d239283cac}} 
+\index{motorTesting.ino@{motorTesting.ino}!ISR@{ISR}}
+\index{ISR@{ISR}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{ISR()}{ISR()}}
+{\footnotesize\ttfamily I\+SR (\begin{DoxyParamCaption}\item[{T\+I\+M\+E\+R1\+\_\+\+O\+V\+F\+\_\+vect}]{ }\end{DoxyParamCaption})}
+
+
+
+\+: Interrupt Service Routine for 16 bit Timer 1 
+
+\+: This I\+SR is called when the timer overflows, and the overflow count is incremented 
+\begin{DoxyParams}{Parameters}
+{\em } & None \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: None 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motorTesting_8ino_aad2a54ea9636ce3b4c46c30100f5e56b}\label{motorTesting_8ino_aad2a54ea9636ce3b4c46c30100f5e56b}} 
+\index{motorTesting.ino@{motorTesting.ino}!leftMotorISR@{leftMotorISR}}
+\index{leftMotorISR@{leftMotorISR}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{leftMotorISR()}{leftMotorISR()}}
+{\footnotesize\ttfamily void left\+Motor\+I\+SR (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\+: Interrupt Service Routine for the left motor encoder 
+
+\+: This I\+SR is called when a tick on the left motor encoder is detected, and according to the direction of the motor, the encoder ticks are incremented or decremented 
+\begin{DoxyParams}{Parameters}
+{\em } & None \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: None 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motorTesting_8ino_afe461d27b9c48d5921c00d521181f12f}\label{motorTesting_8ino_afe461d27b9c48d5921c00d521181f12f}} 
+\index{motorTesting.ino@{motorTesting.ino}!loop@{loop}}
+\index{loop@{loop}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}}
+{\footnotesize\ttfamily void loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\+: Acts as the main execution thread, controls the execution of other subthreads 
+
+\+: Calls Control subthread, calculates velocities, calls U\+A\+RT spin subthread, calls debug print subthread 
+\begin{DoxyParams}{Parameters}
+{\em } & None \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: None 
+\end{DoxyReturn}
+Control loop sub thread every
+
+U\+A\+RT spin subthread Spins twice as fast as control loop, to ensure that we don\textquotesingle{}t miss any messages
+
+Subthread to debug print every second\mbox{\Hypertarget{motorTesting_8ino_a19131dc0463ca496b38a9afd37655406}\label{motorTesting_8ino_a19131dc0463ca496b38a9afd37655406}} 
+\index{motorTesting.ino@{motorTesting.ino}!process@{process}}
+\index{process@{process}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{process()}{process()}}
+{\footnotesize\ttfamily void process (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{buffer }\end{DoxyParamCaption})}
+
+
+
+\+: Processes a parsed message and calls the appropriate callback 
+
+\mbox{\Hypertarget{motorTesting_8ino_af357507b0a7631b8afa3f44e1c97f859}\label{motorTesting_8ino_af357507b0a7631b8afa3f44e1c97f859}} 
+\index{motorTesting.ino@{motorTesting.ino}!pwmWrite@{pwmWrite}}
+\index{pwmWrite@{pwmWrite}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{pwmWrite()}{pwmWrite()}}
+{\footnotesize\ttfamily void pwm\+Write (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{pwmL,  }\item[{uint8\+\_\+t}]{pwmR }\end{DoxyParamCaption})}
+
+
+
+\+: Writes P\+WM values to the motor pins 
+
+\+: Writes P\+WM values to the motor pins, and also checks for saturation 
+\begin{DoxyParams}{Parameters}
+{\em pwmL} & P\+WM value for left motor (0-\/255) \\
+\hline
+{\em pwmR} & P\+WM value for right motor (0-\/255) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: None 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motorTesting_8ino_a3ff1beaa4bb99fd71d1be948e05b46ea}\label{motorTesting_8ino_a3ff1beaa4bb99fd71d1be948e05b46ea}} 
+\index{motorTesting.ino@{motorTesting.ino}!rightMotorISR@{rightMotorISR}}
+\index{rightMotorISR@{rightMotorISR}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{rightMotorISR()}{rightMotorISR()}}
+{\footnotesize\ttfamily void right\+Motor\+I\+SR (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\+: Interrupt Service Routine for the right motor encoder 
+
+\+: This I\+SR is called when a tick on the right motor encoder is detected, and according to the direction of the motor, the encoder ticks are incremented or decremented 
+\begin{DoxyParams}{Parameters}
+{\em } & None \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: None 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motorTesting_8ino_aeeebe176d91494215a61355aa3310a5a}\label{motorTesting_8ino_aeeebe176d91494215a61355aa3310a5a}} 
+\index{motorTesting.ino@{motorTesting.ino}!setDirection@{setDirection}}
+\index{setDirection@{setDirection}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{setDirection()}{setDirection()}}
+{\footnotesize\ttfamily void set\+Direction (\begin{DoxyParamCaption}\item[{bool}]{left\+Direction,  }\item[{bool}]{right\+Direction }\end{DoxyParamCaption})}
+
+
+
+\+: Sets the direction of the motors 
+
+\+: Sets the direction of the motors, interally, the direction is converted to actual necessary voltage sign 
+\begin{DoxyParams}{Parameters}
+{\em left\+Direction} & true for forward, false for backward \\
+\hline
+{\em right\+Direction} & true for forward, false for backward \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: None 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motorTesting_8ino_adb1f85ea29b048450c9dbe06b3bbd486}\label{motorTesting_8ino_adb1f85ea29b048450c9dbe06b3bbd486}} 
+\index{motorTesting.ino@{motorTesting.ino}!setGainsCallback@{setGainsCallback}}
+\index{setGainsCallback@{setGainsCallback}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{setGainsCallback()}{setGainsCallback()}}
+{\footnotesize\ttfamily void set\+Gains\+Callback (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classGains}{Gains}} \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+\+: Callback for setting gains 
+
+\mbox{\Hypertarget{motorTesting_8ino_a4fc01d736fe50cf5b977f755b675f11d}\label{motorTesting_8ino_a4fc01d736fe50cf5b977f755b675f11d}} 
+\index{motorTesting.ino@{motorTesting.ino}!setup@{setup}}
+\index{setup@{setup}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily void setup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\+: Setup function, called once at the start of the program 
+
+\+: Sets up serial output, sets up encoder pins, sets up motor pins, sets up timer interrupts 
+\begin{DoxyParams}{Parameters}
+{\em } & None \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: None 
+\end{DoxyReturn}
+T\+I\+M\+ER Interrupts at Overflow We count overflows and get the time by overflow\+\_\+time$\ast$\mbox{\Hypertarget{motorTesting_8ino_a1ab31b90bc584c635ec159468ceed9b2}\label{motorTesting_8ino_a1ab31b90bc584c635ec159468ceed9b2}} 
+\index{motorTesting.ino@{motorTesting.ino}!sgn@{sgn}}
+\index{sgn@{sgn}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{sgn()}{sgn()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+int sgn (\begin{DoxyParamCaption}\item[{T}]{val }\end{DoxyParamCaption})}
+
+
+
+\+: Utility function to find \mbox{\hyperlink{motorTesting_8ino_a1ab31b90bc584c635ec159468ceed9b2}{sgn()}} of a number 
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & Number to find \mbox{\hyperlink{motorTesting_8ino_a1ab31b90bc584c635ec159468ceed9b2}{sgn()}} of \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{motorTesting_8ino_a4dd6d0ab6a375e40811338178971479d}\label{motorTesting_8ino_a4dd6d0ab6a375e40811338178971479d}} 
+\index{motorTesting.ino@{motorTesting.ino}!spinOnce@{spinOnce}}
+\index{spinOnce@{spinOnce}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{spinOnce()}{spinOnce()}}
+{\footnotesize\ttfamily void spin\+Once (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\+: Reads a byte from the serial buffer , parses the byte string , manages the parser\textquotesingle{}s state machine 
+
+\+: Manages the serial buffers and parses it, for messages defined under \mbox{\hyperlink{UARTParser_8h}{U\+A\+R\+T\+Parser.\+h}}. Uses a read timeout, to ensure 1 message doesnt take too long to process 
+\begin{DoxyParams}{Parameters}
+{\em } & None \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: None 
+\end{DoxyReturn}
+\mbox{\Hypertarget{motorTesting_8ino_ad068583f9bffcd14ae6d4b8be2571e07}\label{motorTesting_8ino_ad068583f9bffcd14ae6d4b8be2571e07}} 
+\index{motorTesting.ino@{motorTesting.ino}!targetVelCallback@{targetVelCallback}}
+\index{targetVelCallback@{targetVelCallback}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{targetVelCallback()}{targetVelCallback()}}
+{\footnotesize\ttfamily void target\+Vel\+Callback (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classTarget}{Target}} \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+\+: Callback for setting target velocities 
+
+\+: Sets the target velocities for the left and right motors , and also sets the start\+Control flag if msg.\+theta $>$ 0.\+5 
+\begin{DoxyParams}{Parameters}
+{\em msg} & \mbox{\hyperlink{classTarget}{Target}} message \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{motorTesting_8ino_a4dabc3cdfa974a53a35b58ac4497d3c5}\label{motorTesting_8ino_a4dabc3cdfa974a53a35b58ac4497d3c5}} 
+\index{motorTesting.ino@{motorTesting.ino}!alpha@{alpha}}
+\index{alpha@{alpha}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{alpha}{alpha}}
+{\footnotesize\ttfamily const constexpr float alpha = 0.\+7\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+\+: I\+IR filter constant 
+
+\mbox{\Hypertarget{motorTesting_8ino_a8a74d04bf5719776a59b2aca40f0661b}\label{motorTesting_8ino_a8a74d04bf5719776a59b2aca40f0661b}} 
+\index{motorTesting.ino@{motorTesting.ino}!currentTickRate@{currentTickRate}}
+\index{currentTickRate@{currentTickRate}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{currentTickRate}{currentTickRate}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classCurrentTickRate}{Current\+Tick\+Rate}} current\+Tick\+Rate\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\+: Custom message for publishing current tick rates 
+
+\mbox{\Hypertarget{motorTesting_8ino_af1c4f6e3c8ba8df8cd55823286825913}\label{motorTesting_8ino_af1c4f6e3c8ba8df8cd55823286825913}} 
+\index{motorTesting.ino@{motorTesting.ino}!elapsed\_time@{elapsed\_time}}
+\index{elapsed\_time@{elapsed\_time}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{elapsed\_time}{elapsed\_time}}
+{\footnotesize\ttfamily volatile float elapsed\+\_\+time = 0}
+
+\mbox{\Hypertarget{motorTesting_8ino_a306866bf1bc3907bfab3bb64017b0b03}\label{motorTesting_8ino_a306866bf1bc3907bfab3bb64017b0b03}} 
+\index{motorTesting.ino@{motorTesting.ino}!encoderData@{encoderData}}
+\index{encoderData@{encoderData}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{encoderData}{encoderData}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structEncoderData}{Encoder\+Data}} encoder\+Data\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  0, 0, .leftEncoderTicks = 0, .rightEncoderTicks = 0, .leftEncoderDirection = 0, .rightEncoderDirection = 0}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\+: Encoder data structure, stores encoder ticks, encoder direction state, and previous encoder ticks 
+
+\mbox{\Hypertarget{motorTesting_8ino_acd8714c68c378f4a322e8460c97961f8}\label{motorTesting_8ino_acd8714c68c378f4a322e8460c97961f8}} 
+\index{motorTesting.ino@{motorTesting.ino}!encoderPins@{encoderPins}}
+\index{encoderPins@{encoderPins}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{encoderPins}{encoderPins}}
+{\footnotesize\ttfamily constexpr const \mbox{\hyperlink{structEncoderPins}{Encoder\+Pins}} encoder\+Pins\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  .leftEnc = 2, .leftEncDirection = 10, .rightEnc = 3, .rightEncDirection = 11}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{motorTesting_8ino_a3bb37470b57c97e739b2fd130dea2ad2}\label{motorTesting_8ino_a3bb37470b57c97e739b2fd130dea2ad2}} 
+\index{motorTesting.ino@{motorTesting.ino}!gains@{gains}}
+\index{gains@{gains}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{gains}{gains}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGains}{Gains}} gains\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\+: Custom message for receiving gains 
+
+\mbox{\Hypertarget{motorTesting_8ino_a27a4ee66359b8249e703adc9fdae8a44}\label{motorTesting_8ino_a27a4ee66359b8249e703adc9fdae8a44}} 
+\index{motorTesting.ino@{motorTesting.ino}!globalTarget@{globalTarget}}
+\index{globalTarget@{globalTarget}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{globalTarget}{globalTarget}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTarget}{Target}} global\+Target\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\+: Global object for storing target velocities once parsng is done 
+
+\mbox{\Hypertarget{motorTesting_8ino_a37493986c179679b9397500e68ab746e}\label{motorTesting_8ino_a37493986c179679b9397500e68ab746e}} 
+\index{motorTesting.ino@{motorTesting.ino}!globalTimer@{globalTimer}}
+\index{globalTimer@{globalTimer}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{globalTimer}{globalTimer}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGlobalTime}{Global\+Time}}$<$unsigned long$>$ global\+Timer\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\+: Used for maintaining time globally 
+
+\mbox{\Hypertarget{motorTesting_8ino_abf2c3a6c5424d25e4c467dcbe6c73302}\label{motorTesting_8ino_abf2c3a6c5424d25e4c467dcbe6c73302}} 
+\index{motorTesting.ino@{motorTesting.ino}!in\_buf@{in\_buf}}
+\index{in\_buf@{in\_buf}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{in\_buf}{in\_buf}}
+{\footnotesize\ttfamily uint8\+\_\+t in\+\_\+buf\mbox{[}50\mbox{]}}
+
+
+
+\+: Input buffer for the serial data 
+
+\mbox{\Hypertarget{motorTesting_8ino_a373887a11f5efd43d050c8c8933c7e9a}\label{motorTesting_8ino_a373887a11f5efd43d050c8c8933c7e9a}} 
+\index{motorTesting.ino@{motorTesting.ino}!integratedTargetDistance@{integratedTargetDistance}}
+\index{integratedTargetDistance@{integratedTargetDistance}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{integratedTargetDistance}{integratedTargetDistance}}
+{\footnotesize\ttfamily float integrated\+Target\+Distance = 0}
+
+\mbox{\Hypertarget{motorTesting_8ino_a9cee8d86af34aeb1dec55392c5edf142}\label{motorTesting_8ino_a9cee8d86af34aeb1dec55392c5edf142}} 
+\index{motorTesting.ino@{motorTesting.ino}!intervalsTicks@{intervalsTicks}}
+\index{intervalsTicks@{intervalsTicks}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{intervalsTicks}{intervalsTicks}}
+{\footnotesize\ttfamily const constexpr \mbox{\hyperlink{structIntervals}{Intervals}} intervals\+Ticks\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  .uartSpinRate = ((\mbox{\hyperlink{motorTesting_8ino_a56c342474a3948096c70297bd9e841ed}{sysCons}}.\mbox{\hyperlink{structSystemConstants_aefed43c02542efa226d1a2d0b3762df2}{controlTimeInTicks}})),}
+\DoxyCodeLine{  .debugPrintInterval = \mbox{\hyperlink{classGlobalTime_ac4f89090f35d137ce0a03345f5da81af}{GlobalTime<unsigned long>::convertTimeMsToTicks}}(1000)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\+: \mbox{\hyperlink{structIntervals}{Intervals}} structure\+: U\+A\+RT spin rate is the same as control frequency, debug print interval = 1000ms 
+
+\mbox{\Hypertarget{motorTesting_8ino_aa5c807e528ebbf7dc19a7cb6a10f84b5}\label{motorTesting_8ino_aa5c807e528ebbf7dc19a7cb6a10f84b5}} 
+\index{motorTesting.ino@{motorTesting.ino}!leftFilt@{leftFilt}}
+\index{leftFilt@{leftFilt}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{leftFilt}{leftFilt}}
+{\footnotesize\ttfamily float left\+Filt = 0}
+
+\mbox{\Hypertarget{motorTesting_8ino_aba64b1ee1377fd2dad3e32b8c9987800}\label{motorTesting_8ino_aba64b1ee1377fd2dad3e32b8c9987800}} 
+\index{motorTesting.ino@{motorTesting.ino}!motorControl@{motorControl}}
+\index{motorControl@{motorControl}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{motorControl}{motorControl}}
+{\footnotesize\ttfamily constexpr const \mbox{\hyperlink{structMotorControl}{Motor\+Control}} motor\+Control\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{  4, 7, LOW, HIGH, 5, 6}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\+: Motor Actuation details\+: first 2 define the motor direction pins, next 2 define the voltage at motor direction pin which takes the robot forward, last 2 define the motor speed control pins 
+
+\mbox{\Hypertarget{motorTesting_8ino_aafab5b3b7e6814678e0447420b762cec}\label{motorTesting_8ino_aafab5b3b7e6814678e0447420b762cec}} 
+\index{motorTesting.ino@{motorTesting.ino}!motorGains@{motorGains}}
+\index{motorGains@{motorGains}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{motorGains}{motorGains}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{structControlLoopVariables}{Control\+Loop\+Variables}} right\+Motor \& motor\+Gains = \mbox{\hyperlink{structMotorsGain}{Motors\+Gain}}(19.\+5,263.\+33,0.\+361,100.\+0,21.\+0,283.\+592,0.\+595,100.\+0)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\+: Motor gains, initialized at run time 
+
+\+: stores control loop variables for right motor
+
+\+: stores control loop variables for left motor \mbox{\Hypertarget{motorTesting_8ino_ab0876f70f20e3c75d0a6a1adc4332a75}\label{motorTesting_8ino_ab0876f70f20e3c75d0a6a1adc4332a75}} 
+\index{motorTesting.ino@{motorTesting.ino}!rightFilt@{rightFilt}}
+\index{rightFilt@{rightFilt}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{rightFilt}{rightFilt}}
+{\footnotesize\ttfamily float right\+Filt = 0}
+
+\mbox{\Hypertarget{motorTesting_8ino_a2087c5dcd6de773f787f4bfcdc9f47c9}\label{motorTesting_8ino_a2087c5dcd6de773f787f4bfcdc9f47c9}} 
+\index{motorTesting.ino@{motorTesting.ino}!rotationToRadians@{rotationToRadians}}
+\index{rotationToRadians@{rotationToRadians}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{rotationToRadians}{rotationToRadians}}
+{\footnotesize\ttfamily const constexpr float rotation\+To\+Radians = 6.\+28318\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+\+: Stores value of 2$\ast$pi 
+
+\mbox{\Hypertarget{motorTesting_8ino_a0bc434e9119e7c568e91955138d8955c}\label{motorTesting_8ino_a0bc434e9119e7c568e91955138d8955c}} 
+\index{motorTesting.ino@{motorTesting.ino}!spinStates@{spinStates}}
+\index{spinStates@{spinStates}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{spinStates}{spinStates}}
+{\footnotesize\ttfamily \mbox{\hyperlink{motorTesting_8ino_a49799ffce05f1dc19b218abc2b8d4d2f}{Spin\+States}} spin\+States =\mbox{\hyperlink{motorTesting_8ino_a49799ffce05f1dc19b218abc2b8d4d2fac5222d41f21bc883f0c0b9754191b350}{Spin\+States\+::\+First}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\+: Defines the current state of the U\+A\+RT parser 
+
+\mbox{\Hypertarget{motorTesting_8ino_abc6728ce2c240dd61b57369281e1cefb}\label{motorTesting_8ino_abc6728ce2c240dd61b57369281e1cefb}} 
+\index{motorTesting.ino@{motorTesting.ino}!startControl@{startControl}}
+\index{startControl@{startControl}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{startControl}{startControl}}
+{\footnotesize\ttfamily volatile bool start\+Control = false}
+
+
+
+\+: Global Flag to start control 
+
+\mbox{\Hypertarget{motorTesting_8ino_a56c342474a3948096c70297bd9e841ed}\label{motorTesting_8ino_a56c342474a3948096c70297bd9e841ed}} 
+\index{motorTesting.ino@{motorTesting.ino}!sysCons@{sysCons}}
+\index{sysCons@{sysCons}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{sysCons}{sysCons}}
+{\footnotesize\ttfamily constexpr const \mbox{\hyperlink{structSystemConstants}{System\+Constants}} sys\+Cons = \mbox{\hyperlink{structSystemConstants}{System\+Constants}}(2000000, 495, 75)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+
+
+\+: System Constants, defined at compile time. Baud Rate = 2Mbps, ticks per revolution = 495, control frequency = 75Hz 
+
+\mbox{\Hypertarget{motorTesting_8ino_abb3238d8ce3264dd1c7cde8858e6f83f}\label{motorTesting_8ino_abb3238d8ce3264dd1c7cde8858e6f83f}} 
+\index{motorTesting.ino@{motorTesting.ino}!targ@{targ}}
+\index{targ@{targ}!motorTesting.ino@{motorTesting.ino}}
+\doxysubsubsection{\texorpdfstring{targ}{targ}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTarget}{Target}} targ\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\+: Custom message for receiving targets 
+

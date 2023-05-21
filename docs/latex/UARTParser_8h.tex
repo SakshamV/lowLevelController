@@ -1,0 +1,137 @@
+\hypertarget{UARTParser_8h}{}\doxysection{motor\+Testing/\+U\+A\+R\+T\+Parser.h File Reference}
+\label{UARTParser_8h}\index{motorTesting/UARTParser.h@{motorTesting/UARTParser.h}}
+{\ttfamily \#include $<$Hardware\+Serial.\+h$>$}\newline
+Include dependency graph for U\+A\+R\+T\+Parser.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{UARTParser_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{UARTParser_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classCustomMsg}{Custom\+Msg}}
+\begin{DoxyCompactList}\small\item\em \+: Abstract class for custom messages \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classGains}{Gains}}
+\item 
+class \mbox{\hyperlink{classTarget}{Target}}
+\item 
+class \mbox{\hyperlink{classCurrentTickRate}{Current\+Tick\+Rate}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{UARTParser_8h_aef88e249863a4190b6062bbf8fa5c656}{Tags}} \{ \mbox{\hyperlink{UARTParser_8h_aef88e249863a4190b6062bbf8fa5c656a09aa9e75617e9d8719738ca163c09137}{T\+A\+R\+G\+ET}}, 
+\mbox{\hyperlink{UARTParser_8h_aef88e249863a4190b6062bbf8fa5c656a2968e69007f150c43ef327ac52a4e942}{G\+A\+I\+NS}}, 
+\mbox{\hyperlink{UARTParser_8h_aef88e249863a4190b6062bbf8fa5c656a7770173898835c0954853cb16e8d284a}{C\+U\+R\+R\+E\+NT}}
+ \}
+\begin{DoxyCompactList}\small\item\em \+: Enum for tags \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{UARTParser_8h_a959d0a2944eb4f434de2f9d8b1fbea6e}{read\+Uart}} ()
+\begin{DoxyCompactList}\small\item\em \+: Reads bytes from serial port\textquotesingle{}s cyclic buffer \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{UARTParser_8h_aa00e2fd1aa7101d2b0561ec5179fdcc5}{publish\+Custom\+Msg}} (T \&input)
+\begin{DoxyCompactList}\small\item\em \+: Publishes custom message to serial port \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const unsigned char \mbox{\hyperlink{UARTParser_8h_a699debe60f841d3ebfda7df38f7747c8}{tags}} \mbox{[}$\,$\mbox{]} = \{\textquotesingle{}T\textquotesingle{},\textquotesingle{}G\textquotesingle{},\textquotesingle{}C\textquotesingle{}\}
+\begin{DoxyCompactList}\small\item\em \+: Tags for each message \end{DoxyCompactList}\item 
+Hardware\+Serial $\ast$ \mbox{\hyperlink{UARTParser_8h_a2430b658fd49bee7a14938820c7f9119}{hw}} = \&Serial
+\item 
+uint8\+\_\+t \mbox{\hyperlink{UARTParser_8h_aad401fc6b792ab66b08a387f967db1f8}{out\+\_\+buf}} \mbox{[}50\mbox{]}
+\begin{DoxyCompactList}\small\item\em \+: Output buffer for serial port \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{UARTParser_8h_aef88e249863a4190b6062bbf8fa5c656}\label{UARTParser_8h_aef88e249863a4190b6062bbf8fa5c656}} 
+\index{UARTParser.h@{UARTParser.h}!Tags@{Tags}}
+\index{Tags@{Tags}!UARTParser.h@{UARTParser.h}}
+\doxysubsubsection{\texorpdfstring{Tags}{Tags}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{UARTParser_8h_aef88e249863a4190b6062bbf8fa5c656}{Tags}}}
+
+
+
+\+: Enum for tags 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TARGET@{TARGET}!UARTParser.h@{UARTParser.h}}\index{UARTParser.h@{UARTParser.h}!TARGET@{TARGET}}}\mbox{\Hypertarget{UARTParser_8h_aef88e249863a4190b6062bbf8fa5c656a09aa9e75617e9d8719738ca163c09137}\label{UARTParser_8h_aef88e249863a4190b6062bbf8fa5c656a09aa9e75617e9d8719738ca163c09137}} 
+T\+A\+R\+G\+ET&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GAINS@{GAINS}!UARTParser.h@{UARTParser.h}}\index{UARTParser.h@{UARTParser.h}!GAINS@{GAINS}}}\mbox{\Hypertarget{UARTParser_8h_aef88e249863a4190b6062bbf8fa5c656a2968e69007f150c43ef327ac52a4e942}\label{UARTParser_8h_aef88e249863a4190b6062bbf8fa5c656a2968e69007f150c43ef327ac52a4e942}} 
+G\+A\+I\+NS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CURRENT@{CURRENT}!UARTParser.h@{UARTParser.h}}\index{UARTParser.h@{UARTParser.h}!CURRENT@{CURRENT}}}\mbox{\Hypertarget{UARTParser_8h_aef88e249863a4190b6062bbf8fa5c656a7770173898835c0954853cb16e8d284a}\label{UARTParser_8h_aef88e249863a4190b6062bbf8fa5c656a7770173898835c0954853cb16e8d284a}} 
+C\+U\+R\+R\+E\+NT&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{UARTParser_8h_aa00e2fd1aa7101d2b0561ec5179fdcc5}\label{UARTParser_8h_aa00e2fd1aa7101d2b0561ec5179fdcc5}} 
+\index{UARTParser.h@{UARTParser.h}!publishCustomMsg@{publishCustomMsg}}
+\index{publishCustomMsg@{publishCustomMsg}!UARTParser.h@{UARTParser.h}}
+\doxysubsubsection{\texorpdfstring{publishCustomMsg()}{publishCustomMsg()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void publish\+Custom\+Msg (\begin{DoxyParamCaption}\item[{T \&}]{input }\end{DoxyParamCaption})}
+
+
+
+\+: Publishes custom message to serial port 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & Custom message object, must have a serialize method \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{UARTParser_8h_a959d0a2944eb4f434de2f9d8b1fbea6e}\label{UARTParser_8h_a959d0a2944eb4f434de2f9d8b1fbea6e}} 
+\index{UARTParser.h@{UARTParser.h}!readUart@{readUart}}
+\index{readUart@{readUart}!UARTParser.h@{UARTParser.h}}
+\doxysubsubsection{\texorpdfstring{readUart()}{readUart()}}
+{\footnotesize\ttfamily int read\+Uart (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\+: Reads bytes from serial port\textquotesingle{}s cyclic buffer 
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{UARTParser_8h_a2430b658fd49bee7a14938820c7f9119}\label{UARTParser_8h_a2430b658fd49bee7a14938820c7f9119}} 
+\index{UARTParser.h@{UARTParser.h}!hw@{hw}}
+\index{hw@{hw}!UARTParser.h@{UARTParser.h}}
+\doxysubsubsection{\texorpdfstring{hw}{hw}}
+{\footnotesize\ttfamily Hardware\+Serial$\ast$ hw = \&Serial}
+
+\mbox{\Hypertarget{UARTParser_8h_aad401fc6b792ab66b08a387f967db1f8}\label{UARTParser_8h_aad401fc6b792ab66b08a387f967db1f8}} 
+\index{UARTParser.h@{UARTParser.h}!out\_buf@{out\_buf}}
+\index{out\_buf@{out\_buf}!UARTParser.h@{UARTParser.h}}
+\doxysubsubsection{\texorpdfstring{out\_buf}{out\_buf}}
+{\footnotesize\ttfamily uint8\+\_\+t out\+\_\+buf\mbox{[}50\mbox{]}}
+
+
+
+\+: Output buffer for serial port 
+
+\mbox{\Hypertarget{UARTParser_8h_a699debe60f841d3ebfda7df38f7747c8}\label{UARTParser_8h_a699debe60f841d3ebfda7df38f7747c8}} 
+\index{UARTParser.h@{UARTParser.h}!tags@{tags}}
+\index{tags@{tags}!UARTParser.h@{UARTParser.h}}
+\doxysubsubsection{\texorpdfstring{tags}{tags}}
+{\footnotesize\ttfamily const unsigned char tags\mbox{[}$\,$\mbox{]} = \{\textquotesingle{}T\textquotesingle{},\textquotesingle{}G\textquotesingle{},\textquotesingle{}C\textquotesingle{}\}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\+: Tags for each message 
+

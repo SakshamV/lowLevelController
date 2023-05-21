@@ -70,7 +70,9 @@ class GlobalTime {
   }
 };
 
-
+/**
+ * @brief: Used for maintaining time globally
+*/
 static GlobalTime<unsigned long> globalTimer;
 
 /**
@@ -88,6 +90,9 @@ typedef struct SystemConstants {
       controlTimeInTicks(GlobalTime<uint32_t>::convertTimeMsToTicks(uint16_t((float)10000/ this->controlFreqInHz))/10) {}
 } SystemConstants;
 
+/**
+ * @brief: System Constants, defined at compile time. Baud Rate = 2Mbps, ticks per revolution = 495, control frequency = 75Hz
+*/
 static constexpr const SystemConstants sysCons = SystemConstants(2000000, 495, 75);
 
 /**
@@ -102,6 +107,9 @@ typedef struct MotorControl {
   uint8_t rightMotorSpeedPin;
 } MotorControl;
 
+/**
+ * @brief: Motor Actuation details: first 2 define the motor direction pins, next 2 define the voltage at motor direction pin which takes the robot forward, last 2 define the motor speed control pins
+*/
 static constexpr const MotorControl motorControl = {
   4, 7, LOW, HIGH, 5, 6
 };
@@ -120,7 +128,9 @@ typedef struct EncoderData {
   uint8_t rightEncoderDirection;
 } EncoderData;
 
-
+/**
+ * @brief: Encoder data structure, stores encoder ticks, encoder direction state, and previous encoder ticks
+*/
 static EncoderData encoderData = {
   0, 0, .leftEncoderTicks = 0, .rightEncoderTicks = 0, .leftEncoderDirection = 0, .rightEncoderDirection = 0
 };
@@ -147,7 +157,9 @@ typedef struct Intervals {
   uint32_t debugPrintInterval;  // in Ticks From Milliseconds
 } Intervals;
 
-
+/**
+ * @brief: Intervals structure: UART spin rate is the same as control frequency, debug print interval = 1000ms
+*/
 static const constexpr Intervals intervalsTicks = {
   .uartSpinRate = ((sysCons.controlTimeInTicks)),
   .debugPrintInterval = GlobalTime<unsigned long>::convertTimeMsToTicks(1000)
@@ -172,6 +184,9 @@ typedef struct MotorsGain {
   Gains rightMotorGains;
 } MotorsGain;
 
+/**
+ * @brief: Motor gains, initialized at run time
+*/
 static auto motorGains = MotorsGain(19.5,263.33,0.361,100.0,21.0,283.592,0.595,100.0);
 
 /**
@@ -218,17 +233,27 @@ static Target targ;
  * @brief: Global object for storing target velocities once parsng is done
 */
 static Target globalTarget;
-
+/**
+ * @brief: Stores value of 2*pi
+*/
 static const constexpr float rotationToRadians = 6.28318;  // 1 rotation is 2Pi radians
+/**
+ * @brief: stores control loop variables for left motor
+*/
 static ControlLoopVariables leftMotor(&motorGains.leftMotorGains);
+/**
+ * @brief: stores control loop variables for right motor
+*/
 static ControlLoopVariables rightMotor(&motorGains.rightMotorGains);
+/**
+ * @brief: Global Flag to start control
+*/
 volatile bool startControl = false;
-
-
 
 template<typename T>
 /**
  * @brief: Utility function to find sgn() of a number
+ * @param val: Number to find sgn() of
 */
 int sgn(T val) {
   return (T(0) < val) - (val < T(0));
@@ -253,7 +278,7 @@ void detachEncInt(){
 /**
  * @brief: Callback for setting target velocities
  * @details: Sets the target velocities for the left and right motors , and also sets the startControl flag if msg.theta > 0.5
- * @param: msg: Target message
+ * @param msg: Target message
 */
 void targetVelCallback(const Target& msg) {
   globalTarget.leftMotorTarget = msg.leftMotorTarget;
@@ -427,12 +452,15 @@ void setup() {
   float integratedTargetDistance = 0;
 #endif
 
-
+/**
+ * @brief: IIR filter constant
+*/
 static const constexpr float alpha = 0.7;
 /**
- *  @brief: First order IIR filter for velocity , alpha - filter constant = 0.7
- * @param: raw: Raw velocity
- * @param: filter: Filtered velocity
+ *  @brief: First order IIR filter for velocity 
+ * @note: alpha = filter constant = 0.7
+ * @param raw Raw velocity
+ * @param filter Filtered velocity
  * @return: Filtered velocity
 */
 static inline float filterVelocity(const float raw, float& filter) {
@@ -521,8 +549,14 @@ void loop() {
   #endif
   }
 }
-//Returns Radians per second velocity from rotations in 1Khz Intervals
-//1 sec = 1000 ms //Encoder is on Motor Shaft
+
+/**
+ * @brief: This utility function converts rotations and interval to angular velocity in radians per second
+ * @note: 1 sec = 1000ms, Encoder is on Motor Shaft
+ * @param rotations No of rotations
+ * @param intervalMs Interval in milliseconds
+ * @return: No of rotations
+ */
 static inline float getRPSFromTicks(const float& rotations, const float& intervalMs) {
   auto abs_interval = (float)fabs(intervalMs);
   if(abs_interval<0.4){
@@ -536,7 +570,7 @@ static inline float getRPSFromTicks(const float& rotations, const float& interva
 
 /**
  * @brief: This utility function converts encoder ticks to No of rotations
- * @param: ticks: Encoder ticks
+ * @param ticks Encoder ticks
  * @return: No of rotations
  */
 static inline float getRotationsFromTicks(const int8_t& ticks) {
@@ -547,8 +581,8 @@ static inline float getRotationsFromTicks(const int8_t& ticks) {
 /**
  *  @brief: Writes PWM values to the motor pins
  * @details: Writes PWM values to the motor pins, and also checks for saturation
- * @param: pwmL: PWM value for left motor (0-255)
- * @param: pwmR: PWM value for right motor (0-255)
+ * @param pwmL PWM value for left motor (0-255)
+ * @param pwmR PWM value for right motor (0-255)
  * @return: None
  */
 void pwmWrite(uint8_t pwmL, uint8_t pwmR) {
@@ -566,8 +600,8 @@ void pwmWrite(uint8_t pwmL, uint8_t pwmR) {
 /**
  *  @brief: Sets the direction of the motors
  * @details: Sets the direction of the motors, interally, the direction is converted to actual necessary voltage sign
- * @param: leftDirection: true for forward, false for backward
- * @param: rightDirection: true for forward, false for backward
+ * @param leftDirection true for forward, false for backward
+ * @param rightDirection true for forward, false for backward
  * @return: None
  */
 void setDirection(bool leftDirection, bool rightDirection) {
@@ -585,7 +619,7 @@ void setDirection(bool leftDirection, bool rightDirection) {
 /** 
  * @brief: Takes control action on specified ControlLoopVariables object
   * @details: Calculates error, integral and derivative terms, applies PID weights, implements anti-windup and generates a control output.
-  * @param: motor: ControlLoopVariables& object on which control action is to be taken
+  * @param motor ControlLoopVariables& object on which control action is to be taken
   * @return: None
   */
 static void controlAction(ControlLoopVariables& motor) {
@@ -606,9 +640,9 @@ float leftFilt = 0;
 float rightFilt = 0;
 /**
  *  @brief: Sets controller target and input, runs control loop and applies voltage to motors
- * @details: Sets controller target and input, filters input velocity, runs control loop per motor and applies voltage to motors
- * @param: time_delta: time elapsed in timer ticks since last control loop call
- * @return: None
+ *  @details: Sets controller target and input, filters input velocity, runs control loop per motor and applies voltage to motors
+ *  @param time_delta time elapsed in timer ticks since last control loop call
+ *  @return: None
 */
 void controlLoop(unsigned long& time_delta) {
 

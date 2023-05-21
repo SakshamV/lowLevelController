@@ -2,6 +2,10 @@
 \label{classTarget}\index{Target@{Target}}
 
 
+{\ttfamily \#include $<$U\+A\+R\+T\+Parser.\+h$>$}
+
+
+
 Inheritance diagram for Target\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -18,8 +22,79 @@ Collaboration diagram for Target\+:\nopagebreak
 \includegraphics[width=154pt]{classTarget__coll__graph}
 \end{center}
 \end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTarget_a7008d6752ce64f82e56aae6ea6c2bb65}{Target}} ()
+\item 
+virtual uint8\+\_\+t \mbox{\hyperlink{classTarget_afde82153ebd1fe06d206305d13652bae}{serialize}} (unsigned char $\ast$outbuffer) const override
+\item 
+virtual uint8\+\_\+t \mbox{\hyperlink{classTarget_acb145d920891aa265848e28b4b7b4ff3}{deserialize}} (unsigned char $\ast$inbuffer) override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{classTarget_aa19700cdb3c0dd4e4d639fbbd1de6e5c}{left\+Motor\+Target}}
+\item 
+float \mbox{\hyperlink{classTarget_a67b337a9927de0748df60d5fcf45afb5}{right\+Motor\+Target}}
+\item 
+float \mbox{\hyperlink{classTarget_a9615f63401e2029e51ae4d7fb5a16349}{theta}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classTarget_a7008d6752ce64f82e56aae6ea6c2bb65}\label{classTarget_a7008d6752ce64f82e56aae6ea6c2bb65}} 
+\index{Target@{Target}!Target@{Target}}
+\index{Target@{Target}!Target@{Target}}
+\doxysubsubsection{\texorpdfstring{Target()}{Target()}}
+{\footnotesize\ttfamily Target\+::\+Target (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTarget_acb145d920891aa265848e28b4b7b4ff3}\label{classTarget_acb145d920891aa265848e28b4b7b4ff3}} 
+\index{Target@{Target}!deserialize@{deserialize}}
+\index{deserialize@{deserialize}!Target@{Target}}
+\doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
+{\footnotesize\ttfamily virtual uint8\+\_\+t Target\+::deserialize (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{inbuffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classCustomMsg_a90502e0d930c29c08684f60fc4f23de7}{Custom\+Msg}}.
+
+\mbox{\Hypertarget{classTarget_afde82153ebd1fe06d206305d13652bae}\label{classTarget_afde82153ebd1fe06d206305d13652bae}} 
+\index{Target@{Target}!serialize@{serialize}}
+\index{serialize@{serialize}!Target@{Target}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily virtual uint8\+\_\+t Target\+::serialize (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{outbuffer }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classCustomMsg_a35e14ec5186cc64dad60c6380df18733}{Custom\+Msg}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classTarget_aa19700cdb3c0dd4e4d639fbbd1de6e5c}\label{classTarget_aa19700cdb3c0dd4e4d639fbbd1de6e5c}} 
+\index{Target@{Target}!leftMotorTarget@{leftMotorTarget}}
+\index{leftMotorTarget@{leftMotorTarget}!Target@{Target}}
+\doxysubsubsection{\texorpdfstring{leftMotorTarget}{leftMotorTarget}}
+{\footnotesize\ttfamily float Target\+::left\+Motor\+Target}
+
+\mbox{\Hypertarget{classTarget_a67b337a9927de0748df60d5fcf45afb5}\label{classTarget_a67b337a9927de0748df60d5fcf45afb5}} 
+\index{Target@{Target}!rightMotorTarget@{rightMotorTarget}}
+\index{rightMotorTarget@{rightMotorTarget}!Target@{Target}}
+\doxysubsubsection{\texorpdfstring{rightMotorTarget}{rightMotorTarget}}
+{\footnotesize\ttfamily float Target\+::right\+Motor\+Target}
+
+\mbox{\Hypertarget{classTarget_a9615f63401e2029e51ae4d7fb5a16349}\label{classTarget_a9615f63401e2029e51ae4d7fb5a16349}} 
+\index{Target@{Target}!theta@{theta}}
+\index{theta@{theta}!Target@{Target}}
+\doxysubsubsection{\texorpdfstring{theta}{theta}}
+{\footnotesize\ttfamily float Target\+::theta}
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-motor\+Testing/U\+A\+R\+T\+Parser.\+h\end{DoxyCompactItemize}
+motor\+Testing/\mbox{\hyperlink{UARTParser_8h}{U\+A\+R\+T\+Parser.\+h}}\end{DoxyCompactItemize}
