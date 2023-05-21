@@ -18,7 +18,7 @@ public:
    * @brief:  Serializes Member variables to outbuffer
    * @param  outbuffer:  Valid pointer to buffer where data has to be written
   */
-  virtual uint8_t serialize(unsigned char *outbuffer) const = 0;
+  virtual uint8_t serialize(unsigned char *const outbuffer) const = 0;
   /**
    * @brief:  Deserializes custom message from inpt data buffer and updates the member variables
    * @param  inbuffer:  Valid pointer to a buffer
@@ -61,7 +61,7 @@ class Gains:public CustomMsg{
   /// @brief:  is the message meant for left motor or right motor
   bool isLeft;
 
-  virtual uint8_t serialize(unsigned char *outbuffer) const override
+  virtual uint8_t serialize(unsigned char *const outbuffer) const override
   {
       uint8_t offset = 0;
 
@@ -210,7 +210,7 @@ class Target :public CustomMsg{
   {
     ;
   }
-  virtual uint8_t serialize(unsigned char *outbuffer) const override{
+  virtual uint8_t serialize(unsigned char *const outbuffer) const override{
     uint8_t offset = 0;
 
     *(outbuffer+offset) = '{';
@@ -308,7 +308,7 @@ class CurrentTickRate:public CustomMsg{
   public:
   float leftTickRate=0;
   float rightTickRate=0;
-  virtual uint8_t serialize(unsigned char *outbuffer) const override{
+  virtual uint8_t serialize(unsigned char *const outbuffer) const override{
     uint8_t offset = 0;
 
     *(outbuffer+offset) = '{';
