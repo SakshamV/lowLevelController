@@ -23,7 +23,7 @@ public:
    * @brief:  Deserializes custom message from inpt data buffer and updates the member variables
    * @param  inbuffer:  Valid pointer to a buffer
   */
-  virtual uint8_t deserialize(unsigned char *inbuffer) = 0;
+  virtual uint8_t deserialize(const unsigned char  *const inbuffer) = 0;
 };
 
 /**
@@ -127,7 +127,7 @@ class Gains:public CustomMsg{
 
       return offset;
   }
-  virtual uint8_t deserialize(unsigned char *inbuffer) override
+  virtual uint8_t deserialize(const unsigned char  *const inbuffer) override
   {
     uint8_t offset = 0;
     offset+=2;
@@ -260,7 +260,7 @@ class Target :public CustomMsg{
 
     return offset;
   }
-  virtual uint8_t deserialize(unsigned char *inbuffer) override{
+  virtual uint8_t deserialize(const unsigned char  *const inbuffer) override{
     uint8_t offset = 0;
     offset+=2;
     union {
@@ -352,7 +352,7 @@ class CurrentTickRate:public CustomMsg{
 
     return offset;
   }
-  virtual uint8_t deserialize(unsigned char *inbuffer) override{
+  virtual uint8_t deserialize(const unsigned char  *const inbuffer) override{
     uint8_t offset = 0;
     offset+=2;
 

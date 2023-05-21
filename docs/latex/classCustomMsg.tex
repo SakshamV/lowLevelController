@@ -23,7 +23,7 @@ Inheritance diagram for Custom\+Msg\+:\nopagebreak
 \item 
 virtual uint8\+\_\+t \mbox{\hyperlink{classCustomMsg_a35e14ec5186cc64dad60c6380df18733}{serialize}} (unsigned char $\ast$outbuffer) const =0
 \begin{DoxyCompactList}\small\item\em \+: Serializes Member variables to outbuffer \end{DoxyCompactList}\item 
-virtual uint8\+\_\+t \mbox{\hyperlink{classCustomMsg_ad5bbe6e076164334a3865dd32a953c35}{deserialize}} (unsigned char $\ast$inbuffer)=0
+virtual uint8\+\_\+t \mbox{\hyperlink{classCustomMsg_a57ccd284f9aca43bbbbd1aac09d559ef}{deserialize}} (const unsigned char $\ast$const inbuffer)=0
 \begin{DoxyCompactList}\small\item\em \+: Deserializes custom message from inpt data buffer and updates the member variables \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -47,11 +47,11 @@ Definition at line 14 of file U\+A\+R\+T\+Parser.\+h.
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classCustomMsg_ad5bbe6e076164334a3865dd32a953c35}\label{classCustomMsg_ad5bbe6e076164334a3865dd32a953c35}} 
+\mbox{\Hypertarget{classCustomMsg_a57ccd284f9aca43bbbbd1aac09d559ef}\label{classCustomMsg_a57ccd284f9aca43bbbbd1aac09d559ef}} 
 \index{CustomMsg@{CustomMsg}!deserialize@{deserialize}}
 \index{deserialize@{deserialize}!CustomMsg@{CustomMsg}}
 \doxysubsubsection{\texorpdfstring{deserialize()}{deserialize()}}
-{\footnotesize\ttfamily virtual uint8\+\_\+t Custom\+Msg\+::deserialize (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{inbuffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+{\footnotesize\ttfamily virtual uint8\+\_\+t Custom\+Msg\+::deserialize (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$const}]{inbuffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
 
 
@@ -64,7 +64,7 @@ Definition at line 14 of file U\+A\+R\+T\+Parser.\+h.
 \end{DoxyParams}
 
 
-Implemented in \mbox{\hyperlink{classCurrentTickRate_a47366c7a8623803cb2a5f978a0f77975}{Current\+Tick\+Rate}}, \mbox{\hyperlink{classTarget_acb145d920891aa265848e28b4b7b4ff3}{Target}}, and \mbox{\hyperlink{classGains_a0fd9c90c926d86e97c7ec053bf7baed8}{Gains}}.
+Implemented in \mbox{\hyperlink{classCurrentTickRate_ae447dea7bfdfe0f031f3b35d8943309a}{Current\+Tick\+Rate}}, \mbox{\hyperlink{classTarget_a44c42489f12a6d52aef7b4a7ce7a301f}{Target}}, and \mbox{\hyperlink{classGains_ae597981b9e87f1b688de187a4f9b20b5}{Gains}}.
 
 \mbox{\Hypertarget{classCustomMsg_a35e14ec5186cc64dad60c6380df18733}\label{classCustomMsg_a35e14ec5186cc64dad60c6380df18733}} 
 \index{CustomMsg@{CustomMsg}!serialize@{serialize}}
