@@ -1,0 +1,5 @@
+<map id="ControlLoopVariables" name="ControlLoopVariables">
+<area shape="rect" id="node1" title=": Structure to store control loop variables per motor" alt="" coords="5,171,167,197"/>
+<area shape="rect" id="node2" href="$classGains.html" title=" " alt="" coords="57,81,115,108"/>
+<area shape="rect" id="node3" href="$classCustomMsg.html" title=": Abstract class for custom messages" alt="" coords="37,5,135,32"/>
+</map>

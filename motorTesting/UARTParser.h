@@ -2,11 +2,14 @@
 #define PARSE_UART_H
 #include <HardwareSerial.h>
 
+
+
 /**
-3 messages are supported
-Gains ={'G'kpkikdisatisLeft}\n
-Target = {'T',x,y,theta}\n
-Current = {'C',x,y}\n
+ * @brief:  Abstract class for custom messages
+ * @details:  All custom messages must inherit from this class, 3 custom messages are supported. Gains, Target, Current. \
+ * Gains ={'G',k_p,k_i,k_d,i_sat,isLeft}\n \
+ * Target = {'T',x,y,theta}\n \
+ * Current = {'C',x,y}\n \
 */
 class CustomMsg
 {
@@ -15,9 +18,16 @@ public:
   virtual uint8_t deserialize(unsigned char *data) = 0;
 };
 
+/**
+ * @brief:  Enum for tags
+*/
 enum Tags{TARGET,GAINS,CURRENT};
 
+/**
+ * @brief:  Tags for each message
+*/
 static const unsigned char tags[] = {'T','G','C'};
+
 HardwareSerial* hw= &Serial;
 
 
@@ -343,10 +353,20 @@ class CurrentTickRate:public CustomMsg{
   }
 };
 
-
+/**
+ * @brief:  Reads bytes from serial port's cyclic buffer
+*/
 inline int readUart(){return hw->read();}
 
+/**
+ * @brief: Output buffer for serial port
+*/
 uint8_t out_buf[50];
+/**
+ * @brief:  Publishes custom message to serial port
+ * @param:  input: Custom message object
+*/
+
 template<typename T>
 void publishCustomMsg(T& input){
   auto length = input.serialize(out_buf);

@@ -1,0 +1,5 @@
+<map id="MotorsGain" name="MotorsGain">
+<area shape="rect" id="node1" title=": Structure to store left and right motor gains" alt="" coords="6,185,103,212"/>
+<area shape="rect" id="node2" href="$classGains.html" title=" " alt="" coords="25,81,84,108"/>
+<area shape="rect" id="node3" href="$classCustomMsg.html" title=": Abstract class for custom messages" alt="" coords="5,5,104,32"/>
+</map>
