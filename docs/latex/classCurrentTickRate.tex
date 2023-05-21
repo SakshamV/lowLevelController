@@ -2,6 +2,11 @@
 \label{classCurrentTickRate}\index{CurrentTickRate@{CurrentTickRate}}
 
 
+\+: Custom message to send current tick rate of left and right motors to R\+Pi  
+
+
+
+
 {\ttfamily \#include $<$U\+A\+R\+T\+Parser.\+h$>$}
 
 
@@ -25,7 +30,7 @@ Collaboration diagram for Current\+Tick\+Rate\+:\nopagebreak
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual uint8\+\_\+t \mbox{\hyperlink{classCurrentTickRate_a4759b11291b326ed8d71e5f0284f8206}{serialize}} (unsigned char $\ast$outbuffer) const override
+virtual uint8\+\_\+t \mbox{\hyperlink{classCurrentTickRate_a310fe0d31949a292010e8c8a9eb15f48}{serialize}} (unsigned char $\ast$const outbuffer) const override
 \begin{DoxyCompactList}\small\item\em \+: Serializes Member variables to outbuffer \end{DoxyCompactList}\item 
 virtual uint8\+\_\+t \mbox{\hyperlink{classCurrentTickRate_ae447dea7bfdfe0f031f3b35d8943309a}{deserialize}} (const unsigned char $\ast$const inbuffer) override
 \begin{DoxyCompactList}\small\item\em \+: Deserializes custom message from inpt data buffer and updates the member variables \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -39,9 +44,9 @@ float \mbox{\hyperlink{classCurrentTickRate_a04fc81ccae72bc9bb4804c7eb14965b9}{r
 
 
 \doxysubsection{Detailed Description}
+\+: Custom message to send current tick rate of left and right motors to R\+Pi 
 
-
-Definition at line 307 of file U\+A\+R\+T\+Parser.\+h.
+Definition at line 317 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
@@ -61,19 +66,22 @@ Definition at line 307 of file U\+A\+R\+T\+Parser.\+h.
 {\em inbuffer} & Valid pointer to a buffer \\
 \hline
 \end{DoxyParams}
+\begin{DoxyNote}{Note}
+the deserialization logic has been taken from ros\+\_\+serial library 
+\end{DoxyNote}
 
 
 Implements \mbox{\hyperlink{classCustomMsg_a57ccd284f9aca43bbbbd1aac09d559ef}{Custom\+Msg}}.
 
 
 
-Definition at line 355 of file U\+A\+R\+T\+Parser.\+h.
+Definition at line 365 of file U\+A\+R\+T\+Parser.\+h.
 
-\mbox{\Hypertarget{classCurrentTickRate_a4759b11291b326ed8d71e5f0284f8206}\label{classCurrentTickRate_a4759b11291b326ed8d71e5f0284f8206}} 
+\mbox{\Hypertarget{classCurrentTickRate_a310fe0d31949a292010e8c8a9eb15f48}\label{classCurrentTickRate_a310fe0d31949a292010e8c8a9eb15f48}} 
 \index{CurrentTickRate@{CurrentTickRate}!serialize@{serialize}}
 \index{serialize@{serialize}!CurrentTickRate@{CurrentTickRate}}
 \doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
-{\footnotesize\ttfamily virtual uint8\+\_\+t Current\+Tick\+Rate\+::serialize (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{outbuffer }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily virtual uint8\+\_\+t Current\+Tick\+Rate\+::serialize (\begin{DoxyParamCaption}\item[{unsigned char $\ast$const}]{outbuffer }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
@@ -84,13 +92,16 @@ Definition at line 355 of file U\+A\+R\+T\+Parser.\+h.
 {\em outbuffer} & Valid pointer to buffer where data has to be written \\
 \hline
 \end{DoxyParams}
+\begin{DoxyNote}{Note}
+the serialization logic has been taken from ros\+\_\+serial library 
+\end{DoxyNote}
 
 
-Implements \mbox{\hyperlink{classCustomMsg_a35e14ec5186cc64dad60c6380df18733}{Custom\+Msg}}.
+Implements \mbox{\hyperlink{classCustomMsg_a9ce9511cc019392fb87f4fa6f61c442a}{Custom\+Msg}}.
 
 
 
-Definition at line 311 of file U\+A\+R\+T\+Parser.\+h.
+Definition at line 321 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
@@ -103,7 +114,7 @@ Definition at line 311 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
-Definition at line 309 of file U\+A\+R\+T\+Parser.\+h.
+Definition at line 319 of file U\+A\+R\+T\+Parser.\+h.
 
 \mbox{\Hypertarget{classCurrentTickRate_a04fc81ccae72bc9bb4804c7eb14965b9}\label{classCurrentTickRate_a04fc81ccae72bc9bb4804c7eb14965b9}} 
 \index{CurrentTickRate@{CurrentTickRate}!rightTickRate@{rightTickRate}}
@@ -113,7 +124,7 @@ Definition at line 309 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
-Definition at line 310 of file U\+A\+R\+T\+Parser.\+h.
+Definition at line 320 of file U\+A\+R\+T\+Parser.\+h.
 
 
 

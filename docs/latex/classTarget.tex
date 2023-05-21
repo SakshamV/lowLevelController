@@ -2,6 +2,11 @@
 \label{classTarget}\index{Target@{Target}}
 
 
+\+: Custom message to receive Left and right motor target speeds from R\+Pi  
+
+
+
+
 {\ttfamily \#include $<$U\+A\+R\+T\+Parser.\+h$>$}
 
 
@@ -27,7 +32,7 @@ Collaboration diagram for Target\+:\nopagebreak
 \item 
 \mbox{\hyperlink{classTarget_a7008d6752ce64f82e56aae6ea6c2bb65}{Target}} ()
 \item 
-virtual uint8\+\_\+t \mbox{\hyperlink{classTarget_afde82153ebd1fe06d206305d13652bae}{serialize}} (unsigned char $\ast$outbuffer) const override
+virtual uint8\+\_\+t \mbox{\hyperlink{classTarget_ab8d3b7e67e405b2309f2cf9ec9405905}{serialize}} (unsigned char $\ast$const outbuffer) const override
 \begin{DoxyCompactList}\small\item\em \+: Serializes Member variables to outbuffer \end{DoxyCompactList}\item 
 virtual uint8\+\_\+t \mbox{\hyperlink{classTarget_a44c42489f12a6d52aef7b4a7ce7a301f}{deserialize}} (const unsigned char $\ast$const inbuffer) override
 \begin{DoxyCompactList}\small\item\em \+: Deserializes custom message from inpt data buffer and updates the member variables \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -43,9 +48,9 @@ float \mbox{\hyperlink{classTarget_a9615f63401e2029e51ae4d7fb5a16349}{theta}}
 
 
 \doxysubsection{Detailed Description}
+\+: Custom message to receive Left and right motor target speeds from R\+Pi 
 
-
-Definition at line 192 of file U\+A\+R\+T\+Parser.\+h.
+Definition at line 199 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
@@ -58,7 +63,7 @@ Definition at line 192 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
-Definition at line 206 of file U\+A\+R\+T\+Parser.\+h.
+Definition at line 213 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
@@ -78,19 +83,22 @@ Definition at line 206 of file U\+A\+R\+T\+Parser.\+h.
 {\em inbuffer} & Valid pointer to a buffer \\
 \hline
 \end{DoxyParams}
+\begin{DoxyNote}{Note}
+the deserialization logic has been taken from ros\+\_\+serial library 
+\end{DoxyNote}
 
 
 Implements \mbox{\hyperlink{classCustomMsg_a57ccd284f9aca43bbbbd1aac09d559ef}{Custom\+Msg}}.
 
 
 
-Definition at line 263 of file U\+A\+R\+T\+Parser.\+h.
+Definition at line 270 of file U\+A\+R\+T\+Parser.\+h.
 
-\mbox{\Hypertarget{classTarget_afde82153ebd1fe06d206305d13652bae}\label{classTarget_afde82153ebd1fe06d206305d13652bae}} 
+\mbox{\Hypertarget{classTarget_ab8d3b7e67e405b2309f2cf9ec9405905}\label{classTarget_ab8d3b7e67e405b2309f2cf9ec9405905}} 
 \index{Target@{Target}!serialize@{serialize}}
 \index{serialize@{serialize}!Target@{Target}}
 \doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
-{\footnotesize\ttfamily virtual uint8\+\_\+t Target\+::serialize (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{outbuffer }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily virtual uint8\+\_\+t Target\+::serialize (\begin{DoxyParamCaption}\item[{unsigned char $\ast$const}]{outbuffer }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
@@ -101,13 +109,16 @@ Definition at line 263 of file U\+A\+R\+T\+Parser.\+h.
 {\em outbuffer} & Valid pointer to buffer where data has to be written \\
 \hline
 \end{DoxyParams}
+\begin{DoxyNote}{Note}
+the serialization logic has been taken from ros\+\_\+serial library 
+\end{DoxyNote}
 
 
-Implements \mbox{\hyperlink{classCustomMsg_a35e14ec5186cc64dad60c6380df18733}{Custom\+Msg}}.
+Implements \mbox{\hyperlink{classCustomMsg_a9ce9511cc019392fb87f4fa6f61c442a}{Custom\+Msg}}.
 
 
 
-Definition at line 213 of file U\+A\+R\+T\+Parser.\+h.
+Definition at line 220 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
@@ -124,7 +135,7 @@ Definition at line 213 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
-Definition at line 197 of file U\+A\+R\+T\+Parser.\+h.
+Definition at line 204 of file U\+A\+R\+T\+Parser.\+h.
 
 \mbox{\Hypertarget{classTarget_a67b337a9927de0748df60d5fcf45afb5}\label{classTarget_a67b337a9927de0748df60d5fcf45afb5}} 
 \index{Target@{Target}!rightMotorTarget@{rightMotorTarget}}
@@ -138,7 +149,7 @@ Definition at line 197 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
-Definition at line 201 of file U\+A\+R\+T\+Parser.\+h.
+Definition at line 208 of file U\+A\+R\+T\+Parser.\+h.
 
 \mbox{\Hypertarget{classTarget_a9615f63401e2029e51ae4d7fb5a16349}\label{classTarget_a9615f63401e2029e51ae4d7fb5a16349}} 
 \index{Target@{Target}!theta@{theta}}
@@ -152,7 +163,7 @@ Definition at line 201 of file U\+A\+R\+T\+Parser.\+h.
 
 
 
-Definition at line 205 of file U\+A\+R\+T\+Parser.\+h.
+Definition at line 212 of file U\+A\+R\+T\+Parser.\+h.
 
 
 

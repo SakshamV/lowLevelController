@@ -83,30 +83,30 @@ $(function() {
 <div class="center"><img src="classCustomMsg__inherit__graph.png" border="0" usemap="#CustomMsg_inherit__map" alt="Inheritance graph"/></div>
 <map name="CustomMsg_inherit__map" id="CustomMsg_inherit__map">
 <area shape="rect" title=": Abstract class for custom messages" alt="" coords="137,5,235,32"/>
-<area shape="rect" href="classCurrentTickRate.html" title=" " alt="" coords="5,80,132,107"/>
-<area shape="rect" href="classGains.html" title=" " alt="" coords="157,80,215,107"/>
-<area shape="rect" href="classTarget.html" title=" " alt="" coords="240,80,303,107"/>
+<area shape="rect" href="classCurrentTickRate.html" title=": Custom message to send current tick rate of left and right motors to RPi" alt="" coords="5,80,132,107"/>
+<area shape="rect" href="classGains.html" title=": Custom message to receive control gains from RPi" alt="" coords="157,80,215,107"/>
+<area shape="rect" href="classTarget.html" title=": Custom message to receive Left and right motor target speeds from RPi" alt="" coords="240,80,303,107"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a35e14ec5186cc64dad60c6380df18733"><td class="memItemLeft" align="right" valign="top">virtual uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCustomMsg.html#a35e14ec5186cc64dad60c6380df18733">serialize</a> (unsigned char *outbuffer) const =0</td></tr>
-<tr class="memdesc:a35e14ec5186cc64dad60c6380df18733"><td class="mdescLeft">&#160;</td><td class="mdescRight">: Serializes Member variables to outbuffer  <a href="classCustomMsg.html#a35e14ec5186cc64dad60c6380df18733">More...</a><br /></td></tr>
-<tr class="separator:a35e14ec5186cc64dad60c6380df18733"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ce9511cc019392fb87f4fa6f61c442a"><td class="memItemLeft" align="right" valign="top">virtual uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCustomMsg.html#a9ce9511cc019392fb87f4fa6f61c442a">serialize</a> (unsigned char *const outbuffer) const =0</td></tr>
+<tr class="memdesc:a9ce9511cc019392fb87f4fa6f61c442a"><td class="mdescLeft">&#160;</td><td class="mdescRight">: Serializes Member variables to outbuffer  <a href="classCustomMsg.html#a9ce9511cc019392fb87f4fa6f61c442a">More...</a><br /></td></tr>
+<tr class="separator:a9ce9511cc019392fb87f4fa6f61c442a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57ccd284f9aca43bbbbd1aac09d559ef"><td class="memItemLeft" align="right" valign="top">virtual uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCustomMsg.html#a57ccd284f9aca43bbbbd1aac09d559ef">deserialize</a> (const unsigned char *const inbuffer)=0</td></tr>
 <tr class="memdesc:a57ccd284f9aca43bbbbd1aac09d559ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">: Deserializes custom message from inpt data buffer and updates the member variables  <a href="classCustomMsg.html#a57ccd284f9aca43bbbbd1aac09d559ef">More...</a><br /></td></tr>
 <tr class="separator:a57ccd284f9aca43bbbbd1aac09d559ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>: Abstract class for custom messages </p>
-<p>: All custom messages must inherit from this class, 3 custom messages are supported. <a class="el" href="classGains.html">Gains</a>, <a class="el" href="classTarget.html">Target</a> and <a class="el" href="classCurrentTickRate.html">CurrentTickRate</a> </p><dl class="section note"><dt>Note</dt><dd>: <a class="el" href="classGains.html">Gains</a> ={'G',k_p,k_i,k_d,i_sat,isLeft}<br  />
+<p>: All custom messages must inherit from this class, 3 custom messages are supported. <a class="el" href="classGains.html" title=": Custom message to receive control gains from RPi">Gains</a>, <a class="el" href="classTarget.html" title=": Custom message to receive Left and right motor target speeds from RPi">Target</a> and <a class="el" href="classCurrentTickRate.html" title=": Custom message to send current tick rate of left and right motors to RPi">CurrentTickRate</a> </p><dl class="section note"><dt>Note</dt><dd>: <a class="el" href="classGains.html" title=": Custom message to receive control gains from RPi">Gains</a> ={'G',k_p,k_i,k_d,i_sat,isLeft}<br  />
 </dd>
 <dd>
-: <a class="el" href="classTarget.html">Target</a> = {'T',x,y,theta}<br  />
+: <a class="el" href="classTarget.html" title=": Custom message to receive Left and right motor target speeds from RPi">Target</a> = {'T',x,y,theta}<br  />
 </dd>
 <dd>
-: <a class="el" href="classCurrentTickRate.html">CurrentTickRate</a> = {'C',x,y}<br  />
+: <a class="el" href="classCurrentTickRate.html" title=": Custom message to send current tick rate of left and right motors to RPi">CurrentTickRate</a> = {'C',x,y}<br  />
 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="UARTParser_8h_source.html#l00014">14</a> of file <a class="el" href="UARTParser_8h_source.html">UARTParser.h</a>.</p>
@@ -142,13 +142,14 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section note"><dt>Note</dt><dd>the deserialization logic has been taken from ros_serial library </dd></dl>
 
 <p>Implemented in <a class="el" href="classCurrentTickRate.html#ae447dea7bfdfe0f031f3b35d8943309a">CurrentTickRate</a>, <a class="el" href="classTarget.html#a44c42489f12a6d52aef7b4a7ce7a301f">Target</a>, and <a class="el" href="classGains.html#ae597981b9e87f1b688de187a4f9b20b5">Gains</a>.</p>
 
 </div>
 </div>
-<a id="a35e14ec5186cc64dad60c6380df18733"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a35e14ec5186cc64dad60c6380df18733">&#9670;&nbsp;</a></span>serialize()</h2>
+<a id="a9ce9511cc019392fb87f4fa6f61c442a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ce9511cc019392fb87f4fa6f61c442a">&#9670;&nbsp;</a></span>serialize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -159,7 +160,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">virtual uint8_t CustomMsg::serialize </td>
           <td>(</td>
-          <td class="paramtype">unsigned char *&#160;</td>
+          <td class="paramtype">unsigned char *const&#160;</td>
           <td class="paramname"><em>outbuffer</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -178,8 +179,9 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section note"><dt>Note</dt><dd>the serialization logic has been taken from ros_serial library </dd></dl>
 
-<p>Implemented in <a class="el" href="classCurrentTickRate.html#a4759b11291b326ed8d71e5f0284f8206">CurrentTickRate</a>, <a class="el" href="classTarget.html#afde82153ebd1fe06d206305d13652bae">Target</a>, and <a class="el" href="classGains.html#a284c926d390b0423cb4a17179c1fe2d8">Gains</a>.</p>
+<p>Implemented in <a class="el" href="classCurrentTickRate.html#a310fe0d31949a292010e8c8a9eb15f48">CurrentTickRate</a>, <a class="el" href="classTarget.html#ab8d3b7e67e405b2309f2cf9ec9405905">Target</a>, and <a class="el" href="classGains.html#ae47a58c4536575db94db274cf974df24">Gains</a>.</p>
 
 </div>
 </div>

@@ -17,11 +17,13 @@ public:
   /**
    * @brief:  Serializes Member variables to outbuffer
    * @param  outbuffer:  Valid pointer to buffer where data has to be written
+   * @note the serialization logic has been taken from ros_serial library
   */
   virtual uint8_t serialize(unsigned char *const outbuffer) const = 0;
   /**
    * @brief:  Deserializes custom message from inpt data buffer and updates the member variables
    * @param  inbuffer:  Valid pointer to a buffer
+   * @note the deserialization logic has been taken from ros_serial library
   */
   virtual uint8_t deserialize(const unsigned char  *const inbuffer) = 0;
 };
@@ -41,7 +43,9 @@ static const unsigned char tags[] = {'T','G','C'};
 */
 HardwareSerial* hw= &Serial;
 
-
+/**
+ * @brief: Custom message to receive control gains from RPi
+*/
 class Gains:public CustomMsg{
   public:
   /// \name Gains
@@ -189,6 +193,9 @@ class Gains:public CustomMsg{
   }
 };
 
+/**
+ * @brief: Custom message to receive Left and right motor target speeds from RPi
+*/
 class Target :public CustomMsg{
   public:
   /**
@@ -304,6 +311,9 @@ class Target :public CustomMsg{
   }
 };
 
+/**
+ * @brief: Custom message to send current tick rate of left and right motors to RPi
+*/
 class CurrentTickRate:public CustomMsg{
   public:
   float leftTickRate=0;
