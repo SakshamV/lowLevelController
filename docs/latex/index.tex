@@ -1,0 +1,17 @@
+
+\begin{DoxyEnumerate}
+\item This repo has the platform.\+txt file used for building this code.
+\item This code was written for Arduino Uno Rev3 , built on Ubuntu 20.\+04.
+\item Arduino I\+DE 2.\+0.\+4 was used to build and flash this code.
+\item Built with C11 and C\+P\+P14 standard.
+\end{DoxyEnumerate}\hypertarget{index_autotoc_md1}{}\doxysection{Tasks}\label{index_autotoc_md1}
+
+\begin{DoxyEnumerate}
+\item This arduino codebase is used for wheel odometry, and wheel velocity control of the terpbot.
+\item The controller talks to an R\+PI over serial port 0.
+\item Arduino Uno is connected to 2 encoders and drives 2 motors via a dual DC motor driver shield.
+\item The controller transmits current wheel velocities as ticks per unit time (75Hz) to the R\+PI.
+\item The controller receives target wheel velocities as ticks per unit time (75Hz) from the R\+PI.
+\item An anti-\/windup P\+ID controller is used to control the wheel velocities.
+\item For the wiring logic, please look at the initialization of aptly named variables in the code. 
+\end{DoxyEnumerate}

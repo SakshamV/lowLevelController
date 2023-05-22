@@ -267,7 +267,7 @@ class Target :public CustomMsg{
 
     return offset;
   }
-  virtual uint8_t deserialize(const unsigned char  *const inbuffer) override{
+  virtual uint8_t deserialize(const unsigned char  * const inbuffer) override{
     uint8_t offset = 0;
     offset+=2;
     union {

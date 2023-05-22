@@ -1,15 +1,21 @@
 /**
  * @file motorTesting.ino
- * \mainpage
 */
 #include "./UARTParser.h"
 
-#define DEBUG_VELOCITIES 0
-#define TRAJECTORY 0
-#define DEBUG_CONTROL 0
-#define PRINT_ON_ROS 0
+/// @brief: Enables control loop at compile time.
 #define ENABLE_CONTROL 1
+/// @brief: Enables debug print at compile time.
+#define DEBUG_VELOCITIES 0
+/// @deprecated Not needed anymore
+#define TRAJECTORY 0
+/// @deprecated Not needed anymore
+#define DEBUG_CONTROL 0
+/// @deprecated Not needed anymore
+#define PRINT_ON_ROS 0
+/// @deprecated Not needed anymore
 #define ENABLE_ROS 0
+/// @deprecated Not needed anymore
 #define CALC_VEL 0
 
 /**
@@ -26,6 +32,12 @@ class GlobalTime {
     static const constexpr float time_per_tick_ms = ((float)1000/(double)(inputFreq/prescaler));
     static const constexpr float time_per_ovf_ms = 0xFFFF * time_per_tick_ms;
   public:
+    /**
+     * @brief: Returns the global time in timer ticks in a thread safe manner
+     * @details: Returns the global time in timer ticks, by disabling interrupts, reading the timer registers, and then enabling interrupts
+     * @param: None
+     * @return: Global time in timer ticks
+     */
     T getGlobalTimeinTicks() {
       // Making copies of these values to reduce data races
       auto tcnt1 = TCNT1;
@@ -39,23 +51,52 @@ class GlobalTime {
       this->globalTimeInTicks =((uint32_t)ovfs << 16) | tcnt1;
       return this->globalTimeInTicks;
     }
+    /**
+     * @brief: Converts timer ticks to time in milliseconds
+     * @note: Time per tick = 1000/(inputFreq/prescaler) = 1000/(16000000/1024) = 0.064 milliseconds
+     * @note: Time per overflow = 0xFFFF * time_per_tick_ms = 4194.304 milliseconds
+     * @param ticks: Timer ticks
+     * @return: Time in milliseconds
+    */
     static constexpr float convertTicksToTimeMs(uint32_t ticks){
         const auto overflows = ( (ticks & 0xFFFF0000) >>16);
         const auto tcnt1 = (ticks & 0x0000FFFF);
         return (float(tcnt1)*time_per_tick_ms + float(time_per_ovf_ms)*overflows);
     }
+    /**
+     * @brief: Converts time in milliseconds to timer ticks
+     * @note: Time per tick = 1000/(inputFreq/prescaler) = 1000/(16000000/1024) = 0.064 milliseconds
+     * @note: Time per overflow = 0xFFFF * time_per_tick_ms = 4194.304 milliseconds
+     * @param time_in_ms: Time in milliseconds
+     * @return: Timer ticks
+    */
     static constexpr uint32_t convertTimeMsToTicks(uint16_t time_in_ms){
       const auto noOfOverflows = uint32_t(uint32_t(time_in_ms*1000) / uint32_t(time_per_ovf_ms*1000));
       const auto rem = uint32_t(uint32_t(time_in_ms) % uint32_t(time_per_ovf_ms));
       const auto tcnt1 = uint32_t(uint32_t(rem*10000)/uint32_t(time_per_tick_ms*10000));
       return ((uint32_t)noOfOverflows << 16) | tcnt1;
     }
+    /**
+     * @brief: Increments the overflow count
+     * @param: None
+     * @return: None
+    */
     inline void incrementOvf(){
       this->noOfOverFlows+=1;
     }
+    /**
+     * @brief: Returns the overflow count
+     * @param: None
+     * @return: Overflow count
+    */
     uint16_t getOvf(){
       return this->noOfOverFlows;
     }
+    /**
+     * @brief: Returns the timer count
+     * @param: None
+     * @return: Timer count
+    */
     uint16_t getTCNT1(){
       return TCNT1;
     }
@@ -83,9 +124,13 @@ static GlobalTime<unsigned long> globalTimer;
  *@brief: Structure to store System constants
  */
 typedef struct SystemConstants {
+  /// @brief Baud Rate for serial communication
   unsigned long baudRate;
+  /// @brief Total Ticks of encoder per revolution of the motor @ gear ratio*ticks per motor revolution = 45*11 = 495
   float ticksPerRevOutput;
+  /// @brief Control frequency in Hz
   uint8_t controlFreqInHz;  // minimum speed seen , 20 rpm => therefore, time for 1 tick is 6ms => choosing control freq 20ms => Freq = 50Hz
+  /// @brief Control frequency in timer ticks
   uint32_t controlTimeInTicks;
   constexpr SystemConstants(unsigned long baud, float ticksPerRevOp, uint8_t controlFreq)
     : baudRate(baud),
@@ -103,11 +148,17 @@ static constexpr const SystemConstants sysCons = SystemConstants(2000000, 495, 7
  *@brief: Structure to store Motor actuation details
  */
 typedef struct MotorControl {
+  /// @brief The name says it all!
   uint8_t leftMotorDirectionPin;
+  /// @brief The name says it all!
   uint8_t rightMotorDirectionPin;
+  /// @brief Value that left motor direction pin must be set to, to go forward
   bool leftMotorForwardState;
+  /// @brief Value that right motor direction pin must be set to, to go forward
   bool rightMotorForwardState;
+  /// @brief Left motor driving pin
   uint8_t leftMotorSpeedPin;
+  /// @brief Right motor driving pin
   uint8_t rightMotorSpeedPin;
 } MotorControl;
 
@@ -122,13 +173,19 @@ static constexpr const MotorControl motorControl = {
  *@brief: Structure to store encoder data
  */
 typedef struct EncoderData {
+  /// @brief Previous right motor encoder ticks
   int64_t rightEncoderPrev;
+  /// @brief Previous left motor encoder ticks
   int64_t leftEncoderPrev;
   
+  /// @brief Current left motor encoder ticks
   int64_t leftEncoderTicks;
+  /// @brief Current right motor encoder ticks
   int64_t rightEncoderTicks;
 
+  /// @brief Current left motor encoder direction
   uint8_t leftEncoderDirection;
+  /// @brief Current right motor encoder direction
   uint8_t rightEncoderDirection;
 } EncoderData;
 
@@ -143,9 +200,13 @@ static EncoderData encoderData = {
  *@brief: Structure to store encoder wiring details
  */
 typedef struct EncoderPins {
+  /// @brief Left Motor's encoder pin used to measure ticks
   uint8_t leftEnc;
+  /// @brief Left Motor's encoder direction pin used to find direction of motion
   uint8_t leftEncDirection;
+  /// @brief Right Motor's encoder pin used to measure ticks
   uint8_t rightEnc;
+  /// @brief Right Motor's encoder direction pin used to find direction of motion
   uint8_t rightEncDirection;
 } EncoderPins;
 
@@ -176,6 +237,15 @@ static const constexpr Intervals intervalsTicks = {
  *@brief: Structure to store left and right motor gains
 */
 typedef struct MotorsGain {
+  /// @brief Structure to store PID gains of both motors
+  /// @param kp left motor proportional gain
+  /// @param ki left motor integral gain
+  /// @param kd left motor derivative gain
+  /// @param isat left motor integral saturation
+  /// @param kpr right motor proportional gain
+  /// @param kir right motor integral gain
+  /// @param kdr right motor derivative gain
+  /// @param isatr right motor integral saturation
   MotorsGain(double kp,double ki,double kd,double isat, double kpr,double kir, double kdr,double isatr){
     leftMotorGains.kp = kp;
     leftMotorGains.ki = ki;
@@ -187,7 +257,9 @@ typedef struct MotorsGain {
     rightMotorGains.kd = kdr;
     rightMotorGains.iSat = isatr;
   }
+  /// @brief Left motor gains
   Gains leftMotorGains;
+  /// @brief Right motor gains
   Gains rightMotorGains;
 } MotorsGain;
 
@@ -221,8 +293,10 @@ typedef struct ControlLoopVariables {
     motor_derivative = 0;
   }
   Gains* const motorGains;
-  float motor_setpoint = 0;  // Setpoint and input have to be in ticks per control_freq_time_period
-  float motor_input = 0;     // 
+  /// @note: Setpoint and input have to be in ticks per control_freq_time_period
+  float motor_setpoint = 0;  
+  /// @note: Setpoint and input have to be in ticks per control_freq_time_period
+  float motor_input = 0;     
   float motor_output = 0;
   float motor_error = 0;
   float motor_prev_error = 0;
@@ -329,7 +403,7 @@ void setGainsCallback(const Gains& msg){
 /**
  * @brief: Processes a parsed message and calls the appropriate callback
 */
-void process(uint8_t* buffer){
+void process(const uint8_t* const buffer){
   if(buffer[1]==tags[Tags::TARGET]){
     targ.deserialize(buffer);
     targetVelCallback(targ);
@@ -462,8 +536,10 @@ void setup() {
 }
 
 #if ENABLE_CONTROL
+  /**
+   * @brief: Maintains elapsed_time in seconds , for the control loop, updated every control loop call. Can be made a local variable honestly.
+  */
   volatile float elapsed_time = 0;
-  float integratedTargetDistance = 0;
 #endif
 
 /**

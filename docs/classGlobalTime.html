@@ -79,12 +79,16 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:afe8e30ed47e2d45151d6cb7628b56b85"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobalTime.html#afe8e30ed47e2d45151d6cb7628b56b85">getGlobalTimeinTicks</a> ()</td></tr>
+<tr class="memdesc:afe8e30ed47e2d45151d6cb7628b56b85"><td class="mdescLeft">&#160;</td><td class="mdescRight">: Returns the global time in timer ticks in a thread safe manner  <a href="classGlobalTime.html#afe8e30ed47e2d45151d6cb7628b56b85">More...</a><br /></td></tr>
 <tr class="separator:afe8e30ed47e2d45151d6cb7628b56b85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acfc484f6aef8ea1e310f8897c9691b36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobalTime.html#acfc484f6aef8ea1e310f8897c9691b36">incrementOvf</a> ()</td></tr>
+<tr class="memdesc:acfc484f6aef8ea1e310f8897c9691b36"><td class="mdescLeft">&#160;</td><td class="mdescRight">: Increments the overflow count  <a href="classGlobalTime.html#acfc484f6aef8ea1e310f8897c9691b36">More...</a><br /></td></tr>
 <tr class="separator:acfc484f6aef8ea1e310f8897c9691b36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae34a2f056770ec84d7c42cad1cb7a4b3"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobalTime.html#ae34a2f056770ec84d7c42cad1cb7a4b3">getOvf</a> ()</td></tr>
+<tr class="memdesc:ae34a2f056770ec84d7c42cad1cb7a4b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">: Returns the overflow count  <a href="classGlobalTime.html#ae34a2f056770ec84d7c42cad1cb7a4b3">More...</a><br /></td></tr>
 <tr class="separator:ae34a2f056770ec84d7c42cad1cb7a4b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95223f572209d872fe314a2c62255569"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobalTime.html#a95223f572209d872fe314a2c62255569">getTCNT1</a> ()</td></tr>
+<tr class="memdesc:a95223f572209d872fe314a2c62255569"><td class="mdescLeft">&#160;</td><td class="mdescRight">: Returns the timer count  <a href="classGlobalTime.html#a95223f572209d872fe314a2c62255569">More...</a><br /></td></tr>
 <tr class="separator:a95223f572209d872fe314a2c62255569"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52e89daf0d03b5802251528633f43520"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobalTime.html#a52e89daf0d03b5802251528633f43520">GlobalTime</a> ()</td></tr>
 <tr class="separator:a52e89daf0d03b5802251528633f43520"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -92,8 +96,10 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:aa2b24df0d81e33c96f2d898716920b63"><td class="memItemLeft" align="right" valign="top">static constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobalTime.html#aa2b24df0d81e33c96f2d898716920b63">convertTicksToTimeMs</a> (uint32_t ticks)</td></tr>
+<tr class="memdesc:aa2b24df0d81e33c96f2d898716920b63"><td class="mdescLeft">&#160;</td><td class="mdescRight">: Converts timer ticks to time in milliseconds  <a href="classGlobalTime.html#aa2b24df0d81e33c96f2d898716920b63">More...</a><br /></td></tr>
 <tr class="separator:aa2b24df0d81e33c96f2d898716920b63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4f89090f35d137ce0a03345f5da81af"><td class="memItemLeft" align="right" valign="top">static constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGlobalTime.html#ac4f89090f35d137ce0a03345f5da81af">convertTimeMsToTicks</a> (uint16_t time_in_ms)</td></tr>
+<tr class="memdesc:ac4f89090f35d137ce0a03345f5da81af"><td class="mdescLeft">&#160;</td><td class="mdescRight">: Converts time in milliseconds to timer ticks  <a href="classGlobalTime.html#ac4f89090f35d137ce0a03345f5da81af">More...</a><br /></td></tr>
 <tr class="separator:ac4f89090f35d137ce0a03345f5da81af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -111,7 +117,7 @@ class GlobalTime&lt; T &gt;</h3>
 
 <p>: Structure to manage time globally </p>
 
-<p class="definition">Definition at line <a class="el" href="motorTesting_8ino_source.html#l00019">19</a> of file <a class="el" href="motorTesting_8ino_source.html">motorTesting.ino</a>.</p>
+<p class="definition">Definition at line <a class="el" href="motorTesting_8ino_source.html#l00025">25</a> of file <a class="el" href="motorTesting_8ino_source.html">motorTesting.ino</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a52e89daf0d03b5802251528633f43520"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a52e89daf0d03b5802251528633f43520">&#9670;&nbsp;</a></span>GlobalTime()</h2>
@@ -138,7 +144,7 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="motorTesting_8ino_source.html#l00067">67</a> of file <a class="el" href="motorTesting_8ino_source.html">motorTesting.ino</a>.</p>
+<p class="definition">Definition at line <a class="el" href="motorTesting_8ino_source.html#l00108">108</a> of file <a class="el" href="motorTesting_8ino_source.html">motorTesting.ino</a>.</p>
 
 </div>
 </div>
@@ -169,7 +175,19 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="motorTesting_8ino_source.html#l00042">42</a> of file <a class="el" href="motorTesting_8ino_source.html">motorTesting.ino</a>.</p>
+<p>: Converts timer ticks to time in milliseconds </p>
+<dl class="section note"><dt>Note</dt><dd>: Time per tick = 1000/(inputFreq/prescaler) = 1000/(16000000/1024) = 0.064 milliseconds </dd>
+<dd>
+: Time per overflow = 0xFFFF * time_per_tick_ms = 4194.304 milliseconds </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ticks</td><td>Timer ticks </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>: Time in milliseconds </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="motorTesting_8ino_source.html#l00061">61</a> of file <a class="el" href="motorTesting_8ino_source.html">motorTesting.ino</a>.</p>
 
 </div>
 </div>
@@ -199,7 +217,19 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="motorTesting_8ino_source.html#l00047">47</a> of file <a class="el" href="motorTesting_8ino_source.html">motorTesting.ino</a>.</p>
+<p>: Converts time in milliseconds to timer ticks </p>
+<dl class="section note"><dt>Note</dt><dd>: Time per tick = 1000/(inputFreq/prescaler) = 1000/(16000000/1024) = 0.064 milliseconds </dd>
+<dd>
+: Time per overflow = 0xFFFF * time_per_tick_ms = 4194.304 milliseconds </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">time_in_ms</td><td>Time in milliseconds </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>: Timer ticks </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="motorTesting_8ino_source.html#l00073">73</a> of file <a class="el" href="motorTesting_8ino_source.html">motorTesting.ino</a>.</p>
 
 </div>
 </div>
@@ -228,7 +258,16 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="motorTesting_8ino_source.html#l00029">29</a> of file <a class="el" href="motorTesting_8ino_source.html">motorTesting.ino</a>.</p>
+<p>: Returns the global time in timer ticks in a thread safe manner </p>
+<p>: Returns the global time in timer ticks, by disabling interrupts, reading the timer registers, and then enabling interrupts </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"></td><td>None </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>: Global time in timer ticks </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="motorTesting_8ino_source.html#l00041">41</a> of file <a class="el" href="motorTesting_8ino_source.html">motorTesting.ino</a>.</p>
 
 </div>
 </div>
@@ -257,7 +296,16 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="motorTesting_8ino_source.html#l00056">56</a> of file <a class="el" href="motorTesting_8ino_source.html">motorTesting.ino</a>.</p>
+<p>: Returns the overflow count </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"></td><td>None </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>: Overflow count </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="motorTesting_8ino_source.html#l00092">92</a> of file <a class="el" href="motorTesting_8ino_source.html">motorTesting.ino</a>.</p>
 
 </div>
 </div>
@@ -286,7 +334,16 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="motorTesting_8ino_source.html#l00059">59</a> of file <a class="el" href="motorTesting_8ino_source.html">motorTesting.ino</a>.</p>
+<p>: Returns the timer count </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"></td><td>None </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>: Timer count </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="motorTesting_8ino_source.html#l00100">100</a> of file <a class="el" href="motorTesting_8ino_source.html">motorTesting.ino</a>.</p>
 
 </div>
 </div>
@@ -315,7 +372,16 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="motorTesting_8ino_source.html#l00053">53</a> of file <a class="el" href="motorTesting_8ino_source.html">motorTesting.ino</a>.</p>
+<p>: Increments the overflow count </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"></td><td>None </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>: None </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="motorTesting_8ino_source.html#l00084">84</a> of file <a class="el" href="motorTesting_8ino_source.html">motorTesting.ino</a>.</p>
 
 </div>
 </div>
@@ -334,7 +400,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="motorTesting_8ino_source.html#l00066">66</a> of file <a class="el" href="motorTesting_8ino_source.html">motorTesting.ino</a>.</p>
+<p class="definition">Definition at line <a class="el" href="motorTesting_8ino_source.html#l00107">107</a> of file <a class="el" href="motorTesting_8ino_source.html">motorTesting.ino</a>.</p>
 
 </div>
 </div>
@@ -352,7 +418,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="motorTesting_8ino_source.html#l00064">64</a> of file <a class="el" href="motorTesting_8ino_source.html">motorTesting.ino</a>.</p>
+<p class="definition">Definition at line <a class="el" href="motorTesting_8ino_source.html#l00105">105</a> of file <a class="el" href="motorTesting_8ino_source.html">motorTesting.ino</a>.</p>
 
 </div>
 </div>
@@ -370,7 +436,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="motorTesting_8ino_source.html#l00065">65</a> of file <a class="el" href="motorTesting_8ino_source.html">motorTesting.ino</a>.</p>
+<p class="definition">Definition at line <a class="el" href="motorTesting_8ino_source.html#l00106">106</a> of file <a class="el" href="motorTesting_8ino_source.html">motorTesting.ino</a>.</p>
 
 </div>
 </div>

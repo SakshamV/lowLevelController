@@ -18,20 +18,20 @@ Collaboration diagram for Motors\+Gain\+:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{structMotorsGain_abb679e750116d8fdc918708965b3d7fa}{Motors\+Gain}} (double kp, double ki, double kd, double isat, double kpr, double kir, double kdr, double isatr)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Structure to store P\+ID gains of both motors. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classGains}{Gains}} \mbox{\hyperlink{structMotorsGain_aa903d046f63956db04e3f506354bdef1}{left\+Motor\+Gains}}
-\item 
+\begin{DoxyCompactList}\small\item\em Left motor gains. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classGains}{Gains}} \mbox{\hyperlink{structMotorsGain_a8ba494719f495552b640351a6fa8df5e}{right\+Motor\+Gains}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Right motor gains. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \+: Structure to store left and right motor gains 
 
-Definition at line 178 of file motor\+Testing.\+ino.
+Definition at line 239 of file motor\+Testing.\+ino.
 
 
 
@@ -44,7 +44,30 @@ Definition at line 178 of file motor\+Testing.\+ino.
 
 
 
-Definition at line 179 of file motor\+Testing.\+ino.
+Structure to store P\+ID gains of both motors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em kp} & left motor proportional gain \\
+\hline
+{\em ki} & left motor integral gain \\
+\hline
+{\em kd} & left motor derivative gain \\
+\hline
+{\em isat} & left motor integral saturation \\
+\hline
+{\em kpr} & right motor proportional gain \\
+\hline
+{\em kir} & right motor integral gain \\
+\hline
+{\em kdr} & right motor derivative gain \\
+\hline
+{\em isatr} & right motor integral saturation \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 249 of file motor\+Testing.\+ino.
 
 
 
@@ -57,7 +80,11 @@ Definition at line 179 of file motor\+Testing.\+ino.
 
 
 
-Definition at line 190 of file motor\+Testing.\+ino.
+Left motor gains. 
+
+
+
+Definition at line 261 of file motor\+Testing.\+ino.
 
 \mbox{\Hypertarget{structMotorsGain_a8ba494719f495552b640351a6fa8df5e}\label{structMotorsGain_a8ba494719f495552b640351a6fa8df5e}} 
 \index{MotorsGain@{MotorsGain}!rightMotorGains@{rightMotorGains}}
@@ -67,7 +94,11 @@ Definition at line 190 of file motor\+Testing.\+ino.
 
 
 
-Definition at line 191 of file motor\+Testing.\+ino.
+Right motor gains. 
+
+
+
+Definition at line 263 of file motor\+Testing.\+ino.
 
 
 

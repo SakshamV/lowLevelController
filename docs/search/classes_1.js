@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['encoderdata_121',['EncoderData',['../structEncoderData.html',1,'']]],
-  ['encoderpins_122',['EncoderPins',['../structEncoderPins.html',1,'']]]
+  ['encoderdata_123',['EncoderData',['../structEncoderData.html',1,'']]],
+  ['encoderpins_124',['EncoderPins',['../structEncoderPins.html',1,'']]]
 ];

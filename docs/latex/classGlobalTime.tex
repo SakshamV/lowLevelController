@@ -9,22 +9,22 @@
 \begin{DoxyCompactItemize}
 \item 
 T \mbox{\hyperlink{classGlobalTime_afe8e30ed47e2d45151d6cb7628b56b85}{get\+Global\+Timein\+Ticks}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em \+: Returns the global time in timer ticks in a thread safe manner \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classGlobalTime_acfc484f6aef8ea1e310f8897c9691b36}{increment\+Ovf}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em \+: Increments the overflow count \end{DoxyCompactList}\item 
 uint16\+\_\+t \mbox{\hyperlink{classGlobalTime_ae34a2f056770ec84d7c42cad1cb7a4b3}{get\+Ovf}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em \+: Returns the overflow count \end{DoxyCompactList}\item 
 uint16\+\_\+t \mbox{\hyperlink{classGlobalTime_a95223f572209d872fe314a2c62255569}{get\+T\+C\+N\+T1}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em \+: Returns the timer count \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classGlobalTime_a52e89daf0d03b5802251528633f43520}{Global\+Time}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 static constexpr float \mbox{\hyperlink{classGlobalTime_aa2b24df0d81e33c96f2d898716920b63}{convert\+Ticks\+To\+Time\+Ms}} (uint32\+\_\+t ticks)
-\item 
+\begin{DoxyCompactList}\small\item\em \+: Converts timer ticks to time in milliseconds \end{DoxyCompactList}\item 
 static constexpr uint32\+\_\+t \mbox{\hyperlink{classGlobalTime_ac4f89090f35d137ce0a03345f5da81af}{convert\+Time\+Ms\+To\+Ticks}} (uint16\+\_\+t time\+\_\+in\+\_\+ms)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \+: Converts time in milliseconds to timer ticks \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -42,7 +42,7 @@ class Global\+Time$<$ T $>$}
 
 \+: Structure to manage time globally 
 
-Definition at line 19 of file motor\+Testing.\+ino.
+Definition at line 25 of file motor\+Testing.\+ino.
 
 
 
@@ -56,7 +56,7 @@ Definition at line 19 of file motor\+Testing.\+ino.
 
 
 
-Definition at line 67 of file motor\+Testing.\+ino.
+Definition at line 108 of file motor\+Testing.\+ino.
 
 
 
@@ -70,7 +70,24 @@ static constexpr float \mbox{\hyperlink{classGlobalTime}{Global\+Time}}$<$ T $>$
 
 
 
-Definition at line 42 of file motor\+Testing.\+ino.
+\+: Converts timer ticks to time in milliseconds 
+
+\begin{DoxyNote}{Note}
+\+: Time per tick = 1000/(input\+Freq/prescaler) = 1000/(16000000/1024) = 0.\+064 milliseconds 
+
+\+: Time per overflow = 0x\+F\+F\+FF $\ast$ time\+\_\+per\+\_\+tick\+\_\+ms = 4194.\+304 milliseconds 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em ticks} & Timer ticks \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: Time in milliseconds 
+\end{DoxyReturn}
+
+
+Definition at line 61 of file motor\+Testing.\+ino.
 
 \mbox{\Hypertarget{classGlobalTime_ac4f89090f35d137ce0a03345f5da81af}\label{classGlobalTime_ac4f89090f35d137ce0a03345f5da81af}} 
 \index{GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}!convertTimeMsToTicks@{convertTimeMsToTicks}}
@@ -81,7 +98,24 @@ static constexpr uint32\+\_\+t \mbox{\hyperlink{classGlobalTime}{Global\+Time}}$
 
 
 
-Definition at line 47 of file motor\+Testing.\+ino.
+\+: Converts time in milliseconds to timer ticks 
+
+\begin{DoxyNote}{Note}
+\+: Time per tick = 1000/(input\+Freq/prescaler) = 1000/(16000000/1024) = 0.\+064 milliseconds 
+
+\+: Time per overflow = 0x\+F\+F\+FF $\ast$ time\+\_\+per\+\_\+tick\+\_\+ms = 4194.\+304 milliseconds 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em time\+\_\+in\+\_\+ms} & Time in milliseconds \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: Timer ticks 
+\end{DoxyReturn}
+
+
+Definition at line 73 of file motor\+Testing.\+ino.
 
 \mbox{\Hypertarget{classGlobalTime_afe8e30ed47e2d45151d6cb7628b56b85}\label{classGlobalTime_afe8e30ed47e2d45151d6cb7628b56b85}} 
 \index{GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}!getGlobalTimeinTicks@{getGlobalTimeinTicks}}
@@ -92,7 +126,19 @@ T \mbox{\hyperlink{classGlobalTime}{Global\+Time}}$<$ T $>$\+::get\+Global\+Time
 
 
 
-Definition at line 29 of file motor\+Testing.\+ino.
+\+: Returns the global time in timer ticks in a thread safe manner 
+
+\+: Returns the global time in timer ticks, by disabling interrupts, reading the timer registers, and then enabling interrupts 
+\begin{DoxyParams}{Parameters}
+{\em } & None \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: Global time in timer ticks 
+\end{DoxyReturn}
+
+
+Definition at line 41 of file motor\+Testing.\+ino.
 
 \mbox{\Hypertarget{classGlobalTime_ae34a2f056770ec84d7c42cad1cb7a4b3}\label{classGlobalTime_ae34a2f056770ec84d7c42cad1cb7a4b3}} 
 \index{GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}!getOvf@{getOvf}}
@@ -103,7 +149,19 @@ uint16\+\_\+t \mbox{\hyperlink{classGlobalTime}{Global\+Time}}$<$ T $>$\+::get\+
 
 
 
-Definition at line 56 of file motor\+Testing.\+ino.
+\+: Returns the overflow count 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & None \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: Overflow count 
+\end{DoxyReturn}
+
+
+Definition at line 92 of file motor\+Testing.\+ino.
 
 \mbox{\Hypertarget{classGlobalTime_a95223f572209d872fe314a2c62255569}\label{classGlobalTime_a95223f572209d872fe314a2c62255569}} 
 \index{GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}!getTCNT1@{getTCNT1}}
@@ -114,7 +172,19 @@ uint16\+\_\+t \mbox{\hyperlink{classGlobalTime}{Global\+Time}}$<$ T $>$\+::get\+
 
 
 
-Definition at line 59 of file motor\+Testing.\+ino.
+\+: Returns the timer count 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & None \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: Timer count 
+\end{DoxyReturn}
+
+
+Definition at line 100 of file motor\+Testing.\+ino.
 
 \mbox{\Hypertarget{classGlobalTime_acfc484f6aef8ea1e310f8897c9691b36}\label{classGlobalTime_acfc484f6aef8ea1e310f8897c9691b36}} 
 \index{GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}!incrementOvf@{incrementOvf}}
@@ -125,7 +195,19 @@ void \mbox{\hyperlink{classGlobalTime}{Global\+Time}}$<$ T $>$\+::increment\+Ovf
 
 
 
-Definition at line 53 of file motor\+Testing.\+ino.
+\+: Increments the overflow count 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & None \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\+: None 
+\end{DoxyReturn}
+
+
+Definition at line 84 of file motor\+Testing.\+ino.
 
 
 
@@ -139,7 +221,7 @@ T \mbox{\hyperlink{classGlobalTime}{Global\+Time}}$<$ T $>$\+::control\+Loop\+Pr
 
 
 
-Definition at line 66 of file motor\+Testing.\+ino.
+Definition at line 107 of file motor\+Testing.\+ino.
 
 \mbox{\Hypertarget{classGlobalTime_aa9637543b350f19863abcb07d0a3df7f}\label{classGlobalTime_aa9637543b350f19863abcb07d0a3df7f}} 
 \index{GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}!debugPrevTime@{debugPrevTime}}
@@ -150,7 +232,7 @@ T \mbox{\hyperlink{classGlobalTime}{Global\+Time}}$<$ T $>$\+::debug\+Prev\+Time
 
 
 
-Definition at line 64 of file motor\+Testing.\+ino.
+Definition at line 105 of file motor\+Testing.\+ino.
 
 \mbox{\Hypertarget{classGlobalTime_a2553456f25d1562e02e3d13e2dfab8cc}\label{classGlobalTime_a2553456f25d1562e02e3d13e2dfab8cc}} 
 \index{GlobalTime$<$ T $>$@{GlobalTime$<$ T $>$}!uartSpinPrevTime@{uartSpinPrevTime}}
@@ -161,7 +243,7 @@ T \mbox{\hyperlink{classGlobalTime}{Global\+Time}}$<$ T $>$\+::uart\+Spin\+Prev\
 
 
 
-Definition at line 65 of file motor\+Testing.\+ino.
+Definition at line 106 of file motor\+Testing.\+ino.
 
 
 
