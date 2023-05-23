@@ -1,0 +1,5 @@
+<map id="controlAction" name="controlAction">
+<area shape="rect" id="node1" title=": Takes control action on specified ControlLoopVariables object" alt="" coords="251,5,359,32"/>
+<area shape="rect" id="node2" href="$motorTesting_8ino.html#af430002f30de883be3e3a8752a8690e3" title=": Sets controller target and input, runs control loop and applies voltage to motors" alt="" coords="104,5,203,32"/>
+<area shape="rect" id="node3" href="$motorTesting_8ino.html#afe461d27b9c48d5921c00d521181f12f" title=": Acts as the main execution thread, controls the execution of other subthreads" alt="" coords="5,5,56,32"/>
+</map>

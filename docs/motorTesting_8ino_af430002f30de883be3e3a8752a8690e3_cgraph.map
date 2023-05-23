@@ -1,0 +1,9 @@
+<map id="controlLoop" name="controlLoop">
+<area shape="rect" id="node1" title=": Sets controller target and input, runs control loop and applies voltage to motors" alt="" coords="5,148,104,175"/>
+<area shape="rect" id="node2" href="$motorTesting_8ino.html#a9ba23771cdc82562f54b74422a20a0af" title=": Takes control action on specified ControlLoopVariables object" alt="" coords="191,5,299,32"/>
+<area shape="rect" id="node3" href="$classGlobalTime.html#aa2b24df0d81e33c96f2d898716920b63" title=": Converts timer ticks to time in milliseconds" alt="" coords="152,57,339,98"/>
+<area shape="rect" id="node4" href="$motorTesting_8ino.html#a7f95eba7cc6eda9f5aeacdeefe605f67" title=": First order IIR filter for velocity" alt="" coords="192,123,299,149"/>
+<area shape="rect" id="node5" href="$motorTesting_8ino.html#af357507b0a7631b8afa3f44e1c97f859" title=": Writes PWM values to the motor pins" alt="" coords="201,173,290,200"/>
+<area shape="rect" id="node6" href="$motorTesting_8ino.html#aeeebe176d91494215a61355aa3310a5a" title=": Sets the direction of the motors" alt="" coords="195,224,296,251"/>
+<area shape="rect" id="node7" href="$motorTesting_8ino.html#a1ab31b90bc584c635ec159468ceed9b2" title=": Utility function to find sgn() of a number" alt="" coords="223,275,268,301"/>
+</map>

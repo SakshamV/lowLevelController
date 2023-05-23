@@ -1,4 +1,4 @@
 <map id="Target" name="Target">
-<area shape="rect" id="node1" title=": Custom message to receive Left and right motor target speeds from RPi" alt="" coords="23,80,86,107"/>
-<area shape="rect" id="node2" href="$classCustomMsg.html" title=": Abstract class for custom messages" alt="" coords="5,5,104,32"/>
+<area shape="rect" id="node1" title=": Custom message to receive Left and right motor target speeds from RPi" alt="" coords="5,145,151,281"/>
+<area shape="rect" id="node2" href="$classCustomMsg.html" title=": Abstract class for custom messages" alt="" coords="19,5,137,97"/>
 </map>

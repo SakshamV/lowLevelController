@@ -1,0 +1,5 @@
+<map id="setup" name="setup">
+<area shape="rect" id="node1" title=": Setup function, called once at the start of the program" alt="" coords="5,31,64,57"/>
+<area shape="rect" id="node2" href="$motorTesting_8ino.html#aad2a54ea9636ce3b4c46c30100f5e56b" title=": Interrupt Service Routine for the left motor encoder" alt="" coords="116,5,219,32"/>
+<area shape="rect" id="node3" href="$motorTesting_8ino.html#a3ff1beaa4bb99fd71d1be948e05b46ea" title=": Interrupt Service Routine for the right motor encoder" alt="" coords="112,56,223,83"/>
+</map>

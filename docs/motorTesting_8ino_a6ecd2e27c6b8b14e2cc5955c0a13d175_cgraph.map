@@ -1,0 +1,8 @@
+<map id="process" name="process">
+<area shape="rect" id="node1" title=": Processes a parsed message and calls the appropriate callback" alt="" coords="5,81,77,108"/>
+<area shape="rect" id="node2" href="$classGains.html#ae597981b9e87f1b688de187a4f9b20b5" title=": Deserializes custom message from inpt data buffer and updates the member variables" alt="" coords="127,5,265,32"/>
+<area shape="rect" id="node3" href="$classTarget.html#a44c42489f12a6d52aef7b4a7ce7a301f" title=": Deserializes custom message from inpt data buffer and updates the member variables" alt="" coords="125,56,267,83"/>
+<area shape="rect" id="node4" href="$motorTesting_8ino.html#adb1f85ea29b048450c9dbe06b3bbd486" title=": Callback for setting gains" alt="" coords="129,107,263,133"/>
+<area shape="rect" id="node5" href="$motorTesting_8ino.html#ad068583f9bffcd14ae6d4b8be2571e07" title=": Callback for setting target velocities" alt="" coords="127,157,265,184"/>
+<area shape="rect" id="node6" href="$motorTesting_8ino.html#af357507b0a7631b8afa3f44e1c97f859" title=": Writes PWM values to the motor pins" alt="" coords="315,157,404,184"/>
+</map>

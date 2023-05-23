@@ -1,6 +1,6 @@
 <map id="CustomMsg" name="CustomMsg">
-<area shape="rect" id="node1" title=": Abstract class for custom messages" alt="" coords="137,5,235,32"/>
-<area shape="rect" id="node2" href="$classCurrentTickRate.html" title=": Custom message to send current tick rate of left and right motors to RPi" alt="" coords="5,80,132,107"/>
-<area shape="rect" id="node3" href="$classGains.html" title=": Custom message to receive control gains from RPi" alt="" coords="157,80,215,107"/>
-<area shape="rect" id="node4" href="$classTarget.html" title=": Custom message to receive Left and right motor target speeds from RPi" alt="" coords="240,80,303,107"/>
+<area shape="rect" id="node1" title=": Abstract class for custom messages" alt="" coords="156,5,275,97"/>
+<area shape="rect" id="node2" href="$classCurrentTickRate.html" title=": Custom message to send current tick rate of left and right motors to RPi" alt="" coords="5,197,132,303"/>
+<area shape="rect" id="node3" href="$classGains.html" title=": Custom message to receive control gains from RPi" alt="" coords="156,145,275,355"/>
+<area shape="rect" id="node4" href="$classTarget.html" title=": Custom message to receive Left and right motor target speeds from RPi" alt="" coords="299,182,444,318"/>
 </map>

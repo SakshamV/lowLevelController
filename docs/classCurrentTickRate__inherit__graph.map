@@ -1,4 +1,4 @@
 <map id="CurrentTickRate" name="CurrentTickRate">
-<area shape="rect" id="node1" title=": Custom message to send current tick rate of left and right motors to RPi" alt="" coords="5,80,132,107"/>
-<area shape="rect" id="node2" href="$classCustomMsg.html" title=": Abstract class for custom messages" alt="" coords="19,5,118,32"/>
+<area shape="rect" id="node1" title=": Custom message to send current tick rate of left and right motors to RPi" alt="" coords="5,145,132,252"/>
+<area shape="rect" id="node2" href="$classCustomMsg.html" title=": Abstract class for custom messages" alt="" coords="9,5,128,97"/>
 </map>

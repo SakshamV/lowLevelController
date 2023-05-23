@@ -1,0 +1,18 @@
+<map id="loop" name="loop">
+<area shape="rect" id="node1" title=": Acts as the main execution thread, controls the execution of other subthreads" alt="" coords="5,249,56,276"/>
+<area shape="rect" id="node2" href="$motorTesting_8ino.html#af430002f30de883be3e3a8752a8690e3" title=": Sets controller target and input, runs control loop and applies voltage to motors" alt="" coords="128,173,227,200"/>
+<area shape="rect" id="node9" href="$UARTParser_8h.html#aa00e2fd1aa7101d2b0561ec5179fdcc5" title=": Publishes custom message to serial port" alt="" coords="104,249,251,276"/>
+<area shape="rect" id="node10" href="$motorTesting_8ino.html#a4dd6d0ab6a375e40811338178971479d" title=": Reads a byte from the serial buffer , parses the byte string , manages the parser&#39;s state machine" alt="" coords="136,325,219,352"/>
+<area shape="rect" id="node3" href="$motorTesting_8ino.html#a9ba23771cdc82562f54b74422a20a0af" title=": Takes control action on specified ControlLoopVariables object" alt="" coords="338,5,446,32"/>
+<area shape="rect" id="node4" href="$classGlobalTime.html#aa2b24df0d81e33c96f2d898716920b63" title=": Converts timer ticks to time in milliseconds" alt="" coords="299,57,485,98"/>
+<area shape="rect" id="node5" href="$motorTesting_8ino.html#a7f95eba7cc6eda9f5aeacdeefe605f67" title=": First order IIR filter for velocity" alt="" coords="339,123,445,149"/>
+<area shape="rect" id="node6" href="$motorTesting_8ino.html#af357507b0a7631b8afa3f44e1c97f859" title=": Writes PWM values to the motor pins" alt="" coords="723,275,812,301"/>
+<area shape="rect" id="node7" href="$motorTesting_8ino.html#aeeebe176d91494215a61355aa3310a5a" title=": Sets the direction of the motors" alt="" coords="341,224,443,251"/>
+<area shape="rect" id="node8" href="$motorTesting_8ino.html#a1ab31b90bc584c635ec159468ceed9b2" title=": Utility function to find sgn() of a number" alt="" coords="369,275,415,301"/>
+<area shape="rect" id="node11" href="$motorTesting_8ino.html#a6ecd2e27c6b8b14e2cc5955c0a13d175" title=": Processes a parsed message and calls the appropriate callback" alt="" coords="356,325,428,352"/>
+<area shape="rect" id="node16" href="$UARTParser_8h.html#a959d0a2944eb4f434de2f9d8b1fbea6e" title=": Reads bytes from serial port&#39;s cyclic buffer" alt="" coords="353,376,431,403"/>
+<area shape="rect" id="node12" href="$classGains.html#ae597981b9e87f1b688de187a4f9b20b5" title=": Deserializes custom message from inpt data buffer and updates the member variables" alt="" coords="535,224,673,251"/>
+<area shape="rect" id="node13" href="$classTarget.html#a44c42489f12a6d52aef7b4a7ce7a301f" title=": Deserializes custom message from inpt data buffer and updates the member variables" alt="" coords="533,275,675,301"/>
+<area shape="rect" id="node14" href="$motorTesting_8ino.html#adb1f85ea29b048450c9dbe06b3bbd486" title=": Callback for setting gains" alt="" coords="537,325,671,352"/>
+<area shape="rect" id="node15" href="$motorTesting_8ino.html#ad068583f9bffcd14ae6d4b8be2571e07" title=": Callback for setting target velocities" alt="" coords="535,376,673,403"/>
+</map>

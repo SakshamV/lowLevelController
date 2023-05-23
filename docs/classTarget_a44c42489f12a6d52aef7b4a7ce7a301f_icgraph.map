@@ -1,0 +1,6 @@
+<map id="Target::deserialize" name="Target::deserialize">
+<area shape="rect" id="node1" title=": Deserializes custom message from inpt data buffer and updates the member variables" alt="" coords="355,5,496,32"/>
+<area shape="rect" id="node2" href="$motorTesting_8ino.html#a6ecd2e27c6b8b14e2cc5955c0a13d175" title=": Processes a parsed message and calls the appropriate callback" alt="" coords="235,5,307,32"/>
+<area shape="rect" id="node3" href="$motorTesting_8ino.html#a4dd6d0ab6a375e40811338178971479d" title=": Reads a byte from the serial buffer , parses the byte string , manages the parser&#39;s state machine" alt="" coords="104,5,187,32"/>
+<area shape="rect" id="node4" href="$motorTesting_8ino.html#afe461d27b9c48d5921c00d521181f12f" title=": Acts as the main execution thread, controls the execution of other subthreads" alt="" coords="5,5,56,32"/>
+</map>

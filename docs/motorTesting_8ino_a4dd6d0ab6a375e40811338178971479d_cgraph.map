@@ -1,0 +1,10 @@
+<map id="spinOnce" name="spinOnce">
+<area shape="rect" id="node1" title=": Reads a byte from the serial buffer , parses the byte string , manages the parser&#39;s state machine" alt="" coords="5,107,88,133"/>
+<area shape="rect" id="node2" href="$motorTesting_8ino.html#a6ecd2e27c6b8b14e2cc5955c0a13d175" title=": Processes a parsed message and calls the appropriate callback" alt="" coords="139,81,211,108"/>
+<area shape="rect" id="node8" href="$UARTParser_8h.html#a959d0a2944eb4f434de2f9d8b1fbea6e" title=": Reads bytes from serial port&#39;s cyclic buffer" alt="" coords="136,132,215,159"/>
+<area shape="rect" id="node3" href="$classGains.html#ae597981b9e87f1b688de187a4f9b20b5" title=": Deserializes custom message from inpt data buffer and updates the member variables" alt="" coords="264,5,403,32"/>
+<area shape="rect" id="node4" href="$classTarget.html#a44c42489f12a6d52aef7b4a7ce7a301f" title=": Deserializes custom message from inpt data buffer and updates the member variables" alt="" coords="263,56,404,83"/>
+<area shape="rect" id="node5" href="$motorTesting_8ino.html#adb1f85ea29b048450c9dbe06b3bbd486" title=": Callback for setting gains" alt="" coords="266,107,401,133"/>
+<area shape="rect" id="node6" href="$motorTesting_8ino.html#ad068583f9bffcd14ae6d4b8be2571e07" title=": Callback for setting target velocities" alt="" coords="264,157,403,184"/>
+<area shape="rect" id="node7" href="$motorTesting_8ino.html#af357507b0a7631b8afa3f44e1c97f859" title=": Writes PWM values to the motor pins" alt="" coords="452,157,541,184"/>
+</map>

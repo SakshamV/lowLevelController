@@ -1,0 +1,5 @@
+<map id="GlobalTime::convertTicksToTimeMs" name="GlobalTime::convertTicksToTimeMs">
+<area shape="rect" id="node1" title=": Converts timer ticks to time in milliseconds" alt="" coords="251,5,437,47"/>
+<area shape="rect" id="node2" href="$motorTesting_8ino.html#af430002f30de883be3e3a8752a8690e3" title=": Sets controller target and input, runs control loop and applies voltage to motors" alt="" coords="104,13,203,39"/>
+<area shape="rect" id="node3" href="$motorTesting_8ino.html#afe461d27b9c48d5921c00d521181f12f" title=": Acts as the main execution thread, controls the execution of other subthreads" alt="" coords="5,13,56,39"/>
+</map>

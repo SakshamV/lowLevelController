@@ -1,4 +1,4 @@
 <map id="Gains" name="Gains">
-<area shape="rect" id="node1" title=": Custom message to receive control gains from RPi" alt="" coords="25,80,84,107"/>
-<area shape="rect" id="node2" href="$classCustomMsg.html" title=": Abstract class for custom messages" alt="" coords="5,5,104,32"/>
+<area shape="rect" id="node1" title=": Custom message to receive control gains from RPi" alt="" coords="5,145,124,355"/>
+<area shape="rect" id="node2" href="$classCustomMsg.html" title=": Abstract class for custom messages" alt="" coords="5,5,124,97"/>
 </map>
